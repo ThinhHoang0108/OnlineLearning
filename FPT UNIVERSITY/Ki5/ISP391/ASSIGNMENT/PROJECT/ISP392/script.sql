@@ -1,4 +1,4 @@
-CREATE DATABASE [ISP392]
+
 USE [ISP392]
 CREATE TABLE [User] (
   [ID] int IDENTITY(1,1),
@@ -24,13 +24,13 @@ CREATE TABLE [Assign] (
 
 CREATE TABLE [Category] (
   [ID] int IDENTITY(1,1),
-  [Name] varchar,
+  [Name] VARCHAR(50),
   PRIMARY KEY ([ID])
 );
 
 CREATE TABLE [Topic] (
   [ID] int,
-  [Name] varchar,
+  [Name] VARCHAR(50),
   PRIMARY KEY ([ID]),
   [IDcategory] int FOREIGN KEY REFERENCES [Category]([ID]),
 
@@ -38,9 +38,9 @@ CREATE TABLE [Topic] (
 
 CREATE TABLE [Blog] (
   [ID] int IDENTITY(1,1),
-  [Thumnail] varchar,
-  [content] varchar,
-  [Description] varchar,
+  [Thumnail] VARCHAR(MAX),
+  [content] varchar(MAX),
+  [Description] varchar(MAX),
   [IDuser] int FOREIGN KEY REFERENCES [User]([ID]),
   [IDtopic] int FOREIGN KEY REFERENCES [Topic]([ID]),
   [IDcategory] int FOREIGN KEY REFERENCES [Category]([ID]),
@@ -49,9 +49,9 @@ CREATE TABLE [Blog] (
 
 CREATE TABLE [Course] (
   [ID] int IDENTITY(1,1),
-  [Thumnail] varchar,
-  [Content] varchar,
-  [Description] varchar,
+  [Thumnail] varchar(MAX),
+  [Content] varchar(MAX),
+  [Description] varchar(MAX),
   [Price] int,
   [DateCreated] date,
   [IDtopic] int FOREIGN KEY REFERENCES [Topic]([ID]),
@@ -67,8 +67,8 @@ CREATE TABLE [Register] (
 
 CREATE TABLE [Subject] (
   [ID] int IDENTITY(1,1),
-  [Content] varchar,
-  [Description] varchar,
+  [Content] varchar(MAX),
+  [Description] varchar(MAX),
   [IDcategory] int FOREIGN KEY REFERENCES [Category]([ID]),
   [IDcourse] int FOREIGN KEY REFERENCES [Course]([ID]),
   PRIMARY KEY ([ID])
@@ -77,8 +77,8 @@ CREATE TABLE [Subject] (
 
 CREATE TABLE [QuestionBank] (
   [ID] int IDENTITY(1,1),
-  [Question] varchar,
-  [Answer] varchar,
+  [Question] varchar(MAX),
+  [Answer] varchar(MAX),
   [Level] int,
   [IDsubject] int FOREIGN KEY REFERENCES [Subject]([ID]),
   [IDcourse] int FOREIGN KEY REFERENCES [Course]([ID]),
@@ -88,7 +88,7 @@ CREATE TABLE [QuestionBank] (
 
 CREATE TABLE [Quizz] (
   [ID] int IDENTITY(1,1),
-  [content] varchar,
+  [content] varchar(MAX),
   [IDquestionbank] int FOREIGN KEY REFERENCES [QuestionBank]([ID]),
   [IDSubject] int FOREIGN KEY REFERENCES [Subject]([ID]),
   PRIMARY KEY ([ID])
