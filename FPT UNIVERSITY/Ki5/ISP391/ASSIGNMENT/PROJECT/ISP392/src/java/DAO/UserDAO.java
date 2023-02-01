@@ -13,7 +13,8 @@ import util.MyDAO;
  *
  * @author ADMIN
  */
-public class UserDAO extends MyDAO{
+public class UserDAO extends MyDAO {
+
     public List<User> getAllUser() {
         List<User> t = new ArrayList<>();
         xSql = "SELECT * FROM dbo.[User]";
@@ -37,5 +38,21 @@ public class UserDAO extends MyDAO{
         }
         return (t);
     }
-    
+
+    public int getNumberUser() {
+        int t = 0;
+        xSql = "SELECT COUNT(ID) as Total FROM [User]";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                t = rs.getInt("Total");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
 }

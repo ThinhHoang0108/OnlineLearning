@@ -29,7 +29,7 @@ CREATE TABLE [Category] (
 );
 
 CREATE TABLE [Topic] (
-  [ID] int,
+  [ID] int IDENTITY(1,1),
   [Name] VARCHAR(50),
   PRIMARY KEY ([ID]),
   [IDcategory] int FOREIGN KEY REFERENCES [Category]([ID]),
@@ -116,7 +116,7 @@ CREATE TABLE [Status] (
   PRIMARY KEY ([ID])
 );
 
-CREATE TABLE [QuiizzHave] (
+CREATE TABLE [QuizzHave] (
   [IDquizz] int FOREIGN KEY REFERENCES [Quizz]([ID]),
   [IDstatus] int FOREIGN KEY REFERENCES [Status]([ID]),
   PRIMARY KEY ([IDquizz], [IDstatus])
@@ -145,3 +145,17 @@ CREATE TABLE [BlogHave] (
   PRIMARY KEY ([IDblog], [IDstatus]),
 );
 
+insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Giulietta', '2022-02-26', '2649787684', 'gflowitt0', 'A9cqcUiD');
+insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Ahmed', '2003-12-18', '4267209759', 'amccandie1', 'iiGg574pw');
+insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Zulema', '2018-07-12', '8426857686', 'zpadbury2', 'ujDSAmv1tarl');
+insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Christabel', '2000-06-07', '9021201342', 'clillyman3', 'IqvThuJ3z');
+insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Marchall', '2004-11-21', '3817200366', 'mbettaney4', 'QahiYqhQpn');
+
+insert into [Category] (Name) values ('Topic');
+insert into [Category] (Name) values ('Course');
+insert into [Category] (Name) values ('Subject');
+insert into [Category] (Name) values ('Blog');
+
+insert into [Topic] (Name,IDcategory) values ('Digital Marketing',1);
+insert into [Topic] (Name,IDcategory) values ('Accounting',1);
+insert into [Topic] (Name,IDcategory) values ('Sale',1);

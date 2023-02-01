@@ -1,4 +1,5 @@
 
+import DAO.TopicDAO;
 import DAO.UserDAO;
 import java.util.List;
 import model.User;
@@ -14,9 +15,12 @@ import model.User;
 public class test {
 
     public static void main(String[] args) {
-        DAO.UserDAO dao = new UserDAO();
-        List<User> list = dao.getAllUser();
-        System.out.println(list);
-
+        DAO.UserDAO userdao = new UserDAO();
+        DAO.TopicDAO topicdao = new TopicDAO();
+//        List<User> list = dao.getAllUser();
+//        System.out.println(list);
+        int t = userdao.getNumberUser();
+        int t1=topicdao.getNumberTopic();
+        System.out.println(t1);
     }
 }
