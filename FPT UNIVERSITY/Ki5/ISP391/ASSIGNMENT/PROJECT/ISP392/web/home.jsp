@@ -30,7 +30,6 @@
         <section id="hero" class="d-flex justify-content-center align-items-center">
             <div class="container position-relative" data-aos="zoom-in" data-aos-delay="100">
                 <h1>Learning Today,<br>Leading Tomorrow</h1>
-                <h2>We are team of talented designers making websites with Bootstrap</h2>
                 <a href="courses.html" class="btn-get-started">Get Started</a>
             </div>
         </section><!-- End Hero -->
@@ -43,21 +42,20 @@
 
                     <div class="row">
                         <div class="col-lg-6 order-1 order-lg-2" data-aos="fade-left" data-aos-delay="100">
-                            <img src="assets/img/about.jpg" class="img-fluid" alt="">
+                            <img src="img/about.jpg" class="img-fluid" alt="">
                         </div>
                         <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
-                            <h3>Voluptatem dignissimos provident quasi corporis voluptates sit assumenda.</h3>
+                            <h3>This website provide many courses in whole world</h3>
                             <p class="fst-italic">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                                magna aliqua.
+                                When you study in our website, you will see
                             </p>
                             <ul>
-                                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat.</li>
-                                <li><i class="bi bi-check-circle"></i> Duis aute irure dolor in reprehenderit in voluptate velit.</li>
-                                <li><i class="bi bi-check-circle"></i> Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</li>
+                                <li><i class="bi bi-check-circle"></i> Learning easily </li>
+                                <li><i class="bi bi-check-circle"></i> Many new foreigner learner</li>
+                                <li><i class="bi bi-check-circle"></i> Many free courses</li>
                             </ul>
                             <p>
-                                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
+                                Let's study with Team 2_ISP392_IS1603_FPT University
                             </p>
 
                         </div>
@@ -73,12 +71,12 @@
                     <div class="row counters">
 
                         <div class="col-lg-3 col-6 text-center">
-                            <span data-purecounter-start="0" data-purecounter-end="1232" data-purecounter-duration="1" class="purecounter"></span>
+                            <span data-purecounter-start="0" data-purecounter-end="${countMember}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Students</p>
                         </div>
 
                         <div class="col-lg-3 col-6 text-center">
-                            <span data-purecounter-start="0" data-purecounter-end="64" data-purecounter-duration="1" class="purecounter"></span>
+                            <span data-purecounter-start="0" data-purecounter-end="${countTopic}" data-purecounter-duration="1" class="purecounter"></span>
                             <p>Courses</p>
                         </div>
 

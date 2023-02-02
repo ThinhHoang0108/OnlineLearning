@@ -43,6 +43,7 @@ public class AboutController extends HttpServlet {
             request.setAttribute("countMember", countMember);
             request.setAttribute("countTopic", countTopic);
             request.getRequestDispatcher("about.jsp").forward(request, response);
+            request.getRequestDispatcher("home.jsp").forward(request, response);
 //            PrintWriter out1 = response.getWriter();
 //            out1.print(countMember);
             //404 -> url
