@@ -62,7 +62,7 @@
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <h3>This website provide many courses in whole world</h3>
             <p class="fst-italic">
-              When you study in our website, you will see
+              When you study in our sdfdsfwebsite, you will see
             </p>
             <ul>
               <li><i class="bi bi-check-circle"></i> Learning easily </li>
