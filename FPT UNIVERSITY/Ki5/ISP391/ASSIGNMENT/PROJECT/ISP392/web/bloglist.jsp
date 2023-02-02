@@ -63,7 +63,7 @@
                                         <img src="${g.thumnailURL}" alt="...">
                                     </div>
                                     <div class="card-body">
-                                        <h5 class="card-title"><a href="">${g.content}</a></h5>
+                                        <h5 class="card-title"><a href="blogdetail">${g.content}</a></h5>
                                         <p class="card-text">${g.description}</p>
                                     </div>
                                 </div>
