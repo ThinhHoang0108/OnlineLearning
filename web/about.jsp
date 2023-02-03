@@ -65,7 +65,7 @@
                             </p>
                             <ul>
                                 <li><i class="bi bi-check-circle"></i> Learning easily </li>
-                                <li><i class="bi bi-check-circle"></i> Many new foreigner learnersadfasdfasdf</li>
+                                <li><i class="bi bi-check-circle"></i> Many new foreigner</li>
                                 <li><i class="bi bi-check-circle"></i> Many free courses</li>
                             </ul>
                             <p>
