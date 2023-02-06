@@ -47,7 +47,7 @@
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
         <h2>About Us</h2>
-        <p>This app was created by a group which has 5 members from class IS1603 in FPT university </p>
+        <p>This app was created by a group which has 5 members from class IS1603 in FPT university sdafasd</p>
       </div>
     </div><!-- End Breadcrumbs -->
 
