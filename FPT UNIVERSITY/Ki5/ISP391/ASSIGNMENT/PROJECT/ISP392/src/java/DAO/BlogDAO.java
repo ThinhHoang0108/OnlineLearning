@@ -13,7 +13,8 @@ import util.MyDAO;
  *
  * @author ADMIN
  */
-public class BlogDAO extends MyDAO{
+public class BlogDAO extends MyDAO {
+
     public List<Blog> getAllBlog() {
         List<Blog> t = new ArrayList<>();
         xSql = "SELECT * FROM dbo.[Blog]";
@@ -22,7 +23,7 @@ public class BlogDAO extends MyDAO{
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                x = Blog.builder().bID(rs.getInt(1))
+                x = Blog.builder().id(rs.getInt(1))
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
                         .description(rs.getString(4))
@@ -39,5 +40,31 @@ public class BlogDAO extends MyDAO{
             e.printStackTrace();
         }
         return (t);
+    }
+
+    public Blog getBlogById(int blogID) {
+        Blog x = null;
+        xSql = "SELECT * FROM dbo.Blog WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, blogID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                x = Blog.builder()
+                        .id(rs.getInt(1))
+                        .thumnailURL(rs.getString(2))
+                        .content(rs.getString(3))
+                        .description(rs.getString(4))
+                        .uID(rs.getInt(5))
+                        .tID(rs.getInt(6))
+                        .cID(rs.getInt(7))
+                        .createDate(rs.getDate(8)).build();
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (x);
     }
 }

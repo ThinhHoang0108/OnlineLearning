@@ -1,7 +1,9 @@
 
+import DAO.BlogDAO;
 import DAO.TopicDAO;
 import DAO.UserDAO;
 import java.util.List;
+import model.Blog;
 import model.User;
 
 /*
@@ -17,10 +19,14 @@ public class test {
     public static void main(String[] args) {
         DAO.UserDAO userdao = new UserDAO();
         DAO.TopicDAO topicdao = new TopicDAO();
+        DAO.BlogDAO dao = new BlogDAO();
 //        List<User> list = dao.getAllUser();
 //        System.out.println(list);
         int t = userdao.getNumberUser();
-        int t1=topicdao.getNumberTopic();
-        System.out.println(t1);
+        int t1 = topicdao.getNumberTopic();
+        Blog blog = dao.getBlogById(3);
+        List<Blog> list = dao.getAllBlog();
+        System.out.println(list);
+        System.out.println(t);
     }
 }
