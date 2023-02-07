@@ -18,6 +18,8 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Category {
- 
-    
+
+    private int id;
+    private String name;
+
 }
