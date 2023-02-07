@@ -40,6 +40,10 @@
         <servlet-name>BlgDetailController</servlet-name>
         <servlet-class>controller.BlgDetailController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>HomeController</servlet-name>
+        <servlet-class>controller.HomeController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -71,6 +75,10 @@
     <servlet-mapping>
         <servlet-name>BlgDetailController</servlet-name>
         <url-pattern>/blogdetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HomeController</servlet-name>
+        <url-pattern>/HomeController</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
