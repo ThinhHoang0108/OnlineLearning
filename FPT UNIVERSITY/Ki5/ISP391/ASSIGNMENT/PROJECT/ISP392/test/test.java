@@ -22,11 +22,13 @@ public class test {
         DAO.BlogDAO dao = new BlogDAO();
 //        List<User> list = dao.getAllUser();
 //        System.out.println(list);
-        int t = userdao.getNumberUser();
-        int t1 = topicdao.getNumberTopic();
-        Blog blog = dao.getBlogById(3);
-        List<Blog> list = dao.getAllBlog();
-        System.out.println(list);
-        System.out.println(t);
+//        int t = userdao.getNumberUser();
+//        int t1 = topicdao.getNumberTopic();
+//        Blog blog = dao.getBlogById(3);
+//        List<Blog> list = dao.getAllBlog();
+//        System.out.println(list);
+//        System.out.println(t);
+            User admin = userdao.login("thinh123", "123123");
+            System.out.println(admin);
     }
 }

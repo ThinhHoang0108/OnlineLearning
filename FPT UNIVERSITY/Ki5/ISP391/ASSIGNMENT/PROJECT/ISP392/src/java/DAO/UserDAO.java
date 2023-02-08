@@ -55,4 +55,28 @@ public class UserDAO extends MyDAO {
         }
         return (t);
     }
+
+    public User login(String username, String password) {
+        User x = null;
+        xSql = "SELECT * FROM dbo.[User] WHERE Username = ? AND Password = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, username);
+            ps.setString(2, password);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                x = User.builder().uID(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .dob(rs.getDate(3))
+                        .phone(rs.getString(4))
+                        .username(rs.getString(5))
+                        .password(rs.getString(6)).build();
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (x);
+    }
 }

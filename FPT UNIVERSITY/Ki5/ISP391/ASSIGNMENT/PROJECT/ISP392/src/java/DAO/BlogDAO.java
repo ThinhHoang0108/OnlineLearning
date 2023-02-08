@@ -17,7 +17,7 @@ public class BlogDAO extends MyDAO {
 
     public List<Blog> getAllBlog() {
         List<Blog> t = new ArrayList<>();
-        xSql = "SELECT * FROM dbo.[Blog]";
+        String xSql = "SELECT * FROM dbo.[Blog]";
         Blog x;
         try {
             ps = con.prepareStatement(xSql);
