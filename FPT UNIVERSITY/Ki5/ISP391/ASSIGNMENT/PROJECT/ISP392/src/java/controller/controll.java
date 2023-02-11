@@ -9,5 +9,7 @@ package controller;
  * @author ADMIN
  */
 public class controll {
-    
+    public static void main(String[] args) {
+        
+    }
 }
