@@ -57,7 +57,7 @@ public class UserDAO extends MyDAO {
     public void getUserbyID(){
         
     }
-    public void insertUser(){
+    public void insertUser(String name, String DOB, String phoneNumber, String userName, String passWord){
         
     }
 
