@@ -38,6 +38,10 @@ public class UserDAO extends MyDAO {
         }
         return (t);
     }
+    public void updateUser(String name, String phoneNumber, String passWord){
+        
+    }
+    
 
     public int getNumberUser() {
         int t = 0;
