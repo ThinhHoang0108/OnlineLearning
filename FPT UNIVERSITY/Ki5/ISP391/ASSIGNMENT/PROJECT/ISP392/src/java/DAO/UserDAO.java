@@ -54,6 +54,10 @@ public class UserDAO extends MyDAO {
         }
     }
     
+    public void getUserbyID(){
+        
+    }
+    
 
     public int getNumberUser() {
         int t = 0;
