@@ -4,6 +4,8 @@
  */
 package DAO;
 
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.User;
@@ -39,7 +41,17 @@ public class UserDAO extends MyDAO {
         return (t);
     }
     public void updateUser(String name, String phoneNumber, String passWord){
-        
+        try {
+            String sql = "update [User] set name = ?, phoneNumber=?, passWord=? where ID = ?";
+            PreparedStatement st = connection.prepareStatement(sql);
+          
+            st.setString(1, name);
+            st.setString(2, phoneNumber);
+            st.setString(3, passWord);
+            st.executeUpdate();
+        } catch (SQLException e) {
+
+        }
     }
     
 
