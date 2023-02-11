@@ -47,7 +47,7 @@
     <div class="breadcrumbs" data-aos="fade-in">
       <div class="container">
         <h2>About Us</h2>
-        <p>This app was created by a group which has 5 members from class IS1603 in FPT university sdafvdsgdfvgdsfvdfsvsasd</p>
+        <p>This app was created by a group which has 5 members from class IS1603 in FPT university</p>
       </div>
     </div><!-- End Breadcrumbs -->
 
@@ -62,7 +62,7 @@
           <div class="col-lg-6 pt-4 pt-lg-0 order-2 order-lg-1 content">
             <h3>This website provide many courses in whole world</h3>
             <p class="fst-italic">
-              When you study in our sdfdsfwebsite, you will see
+              When you study in our website, you will see
             </p>
             <ul>
               <li><i class="bi bi-check-circle"></i> Learning easily </li>
