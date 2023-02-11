@@ -57,7 +57,9 @@ public class UserDAO extends MyDAO {
     public void getUserbyID(){
         
     }
-    
+    public void insertUser(){
+        
+    }
 
     public int getNumberUser() {
         int t = 0;
