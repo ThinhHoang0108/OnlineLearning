@@ -59,7 +59,7 @@ public class UserDAO extends MyDAO {
     }
     public void insertUser(String name, String DOB, String phoneNumber, String userName, String passWord){
                 try {
-            String sql = "insert into Account values(?, ?, ?, ?, ?, ?, ?)";
+            String sql = "insert into [User] values(?, ?, ?, ?, ?, ?, ?)";
          
             
         } catch (SQLException e) {
