@@ -58,9 +58,17 @@ public class UserDAO extends MyDAO {
         
     }
     public void insertUser(String name, String DOB, String phoneNumber, String userName, String passWord){
-        
+                try {
+            String sql = "insert into Account values(?, ?, ?, ?, ?, ?, ?)";
+         
+            
+        } catch (SQLException e) {
+
+        }
     }
 
+    
+    
     public int getNumberUser() {
         int t = 0;
         xSql = "SELECT COUNT(ID) as Total FROM [User]";
