@@ -5,6 +5,7 @@
 package DAO;
 
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,6 +18,46 @@ import util.MyDAO;
  */
 public class UserDAO extends MyDAO {
 
+    public void updatePassword(String email, String password) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE [dbo].[User]\n"
+                    + "   SET [Password] = ?\n"
+                    + " WHERE [Email] = ?");
+            ps.setString(1, password);
+            ps.setString(2, email);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
+    public boolean checkEmail(String email) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT * FROM [User] WHERE Email = ?");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        System.out.println(new UserDAO().checkEmail("lythhe161708@fpt.edu.vn"));
+    }
+    public String getPasswordOfEmail(String email) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("SELECT [Password] FROM [User] WHERE Email = ?");
+            ps.setString(1, email);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getString(1);
+            }
+        } catch (Exception e) {
+        }
+        return null;
+    }
+    
     public List<User> getAllUser() {
         List<User> t = new ArrayList<>();
         xSql = "SELECT * FROM dbo.[User]";
