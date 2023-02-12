@@ -5,13 +5,21 @@
 package util;
 
 import java.util.Properties;
+import javax.mail.Message;
+import javax.mail.MessagingException;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 /**
  *
  * @author dell
  */
 public class Mailer {
-    public static void send(String to, String sub,
+
+   public static void send(String to, String sub,
             String msg) {
         String user = "Lythhe161708@fpt.edu.vn";
         String pass = "Huongly4102!";
@@ -38,4 +46,6 @@ public class Mailer {
             e.printStackTrace();
         }
     }
+
+    
 }
