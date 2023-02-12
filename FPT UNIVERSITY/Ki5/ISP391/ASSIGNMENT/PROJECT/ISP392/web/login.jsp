@@ -27,6 +27,9 @@
 
                                     <div class="form-group">
                                         <label for="password">Password
+                                            <a href="forgot" class="float-right">
+                                                    Forgot Password?
+                                            </a>
                                         </label>
                                         <input id="password" type="password" class="form-control" name="password" required data-eye>
                                     </div>
