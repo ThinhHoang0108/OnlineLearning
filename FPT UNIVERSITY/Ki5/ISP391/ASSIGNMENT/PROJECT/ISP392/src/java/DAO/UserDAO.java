@@ -42,9 +42,11 @@ public class UserDAO extends MyDAO {
         }
         return false;
     }
+
     public static void main(String[] args) {
         System.out.println(new UserDAO().checkEmail("lythhe161708@fpt.edu.vn"));
     }
+
     public String getPasswordOfEmail(String email) {
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT [Password] FROM [User] WHERE Email = ?");
@@ -57,7 +59,7 @@ public class UserDAO extends MyDAO {
         }
         return null;
     }
-    
+
     public List<User> getAllUser() {
         List<User> t = new ArrayList<>();
         xSql = "SELECT * FROM dbo.[User]";
@@ -81,15 +83,16 @@ public class UserDAO extends MyDAO {
         }
         return (t);
     }
-    public User getUserByID(int userID){
+
+    public User getUserByID(int userID) {
         User x = null;
         xSql = "SELECT * FROM dbo.User WHERE ID = ?";
         try {
             ps = con.prepareStatement(xSql);
             ps.setInt(1, userID);
             rs = ps.executeQuery();
-         if(rs.next()){
-              x = User.builder()
+            if (rs.next()) {
+                x = User.builder()
                         .userID(rs.getInt(1))
                         .name(rs.getString(2))
                         .dob(rs.getDate(3))
@@ -97,18 +100,19 @@ public class UserDAO extends MyDAO {
                         .username(rs.getString(5))
                         .password(rs.getString(6))
                         .build();
-         }
-            
+            }
+
         } catch (Exception e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
         return (x);
     }
-    public void updateUser(String name, String phoneNumber, String passWord){
+
+    public void updateUser(String name, String phoneNumber, String passWord) {
         try {
             String sql = "update [User] set name = ?, phoneNumber=?, passWord=? where ID = ?";
             PreparedStatement st = connection.prepareStatement(sql);
-          
+
             st.setString(1, name);
             st.setString(2, phoneNumber);
             st.setString(3, passWord);
@@ -117,18 +121,29 @@ public class UserDAO extends MyDAO {
 
         }
     }
-    
-    public void getUserbyID(){
-        
+
+    public void insertUser(UserDAO u) {
+        String sql = "INSERT INTO [dbo].[User]\n"
+                + "           ([Name]\n"
+                + "           ,[Dateofbirth]\n"
+                + "           ,[PhoneNumber]\n"
+                + "           ,[Username]\n"
+                + "           ,[Password])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?)";
+        try {
+            ps = con.prepareStatement(sql);
+            
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
     }
-   public void insertUser(String name, String DOB, String phoneNumber, String userName, String passWord){
-        
+
+    public void insertUser(String name, String DOB, String phoneNumber, String userName, String passWord) {
+
     }
-   
-   
-    
-   
-    
+
     public int getNumberUser() {
         int t = 0;
         xSql = "SELECT COUNT(ID) as Total FROM [User]";
