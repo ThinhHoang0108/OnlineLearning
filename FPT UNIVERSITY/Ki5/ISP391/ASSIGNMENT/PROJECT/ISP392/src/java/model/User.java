@@ -19,7 +19,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class User {
-    private int uID;
+    private int userID;
     private String name;
     private Date dob;
     private String phone;

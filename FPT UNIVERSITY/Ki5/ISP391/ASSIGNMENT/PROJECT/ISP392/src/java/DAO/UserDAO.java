@@ -25,7 +25,7 @@ public class UserDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                x = User.builder().uID(rs.getInt(1))
+                x = User.builder().userID(rs.getInt(1))
                         .name(rs.getString(2))
                         .dob(rs.getDate(3))
                         .phone(rs.getString(4))
@@ -39,6 +39,29 @@ public class UserDAO extends MyDAO {
             e.printStackTrace();
         }
         return (t);
+    }
+    public User getUserByID(int userID){
+        User x = null;
+        xSql = "SELECT * FROM dbo.User WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, userID);
+            rs = ps.executeQuery();
+         if(rs.next()){
+              x = User.builder()
+                        .userID(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .dob(rs.getDate(3))
+                        .phone(rs.getString(4))
+                        .username(rs.getString(5))
+                        .password(rs.getString(6))
+                        .build();
+         }
+            
+        } catch (Exception e) {
+             e.printStackTrace();
+        }
+        return (x);
     }
     public void updateUser(String name, String phoneNumber, String passWord){
         try {
@@ -91,7 +114,7 @@ public class UserDAO extends MyDAO {
             ps.setString(2, password);
             rs = ps.executeQuery();
             if (rs.next()) {
-                x = User.builder().uID(rs.getInt(1))
+                x = User.builder().userID(rs.getInt(1))
                         .name(rs.getString(2))
                         .dob(rs.getDate(3))
                         .phone(rs.getString(4))

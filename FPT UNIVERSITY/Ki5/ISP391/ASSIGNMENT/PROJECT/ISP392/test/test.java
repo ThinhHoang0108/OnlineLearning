@@ -28,7 +28,10 @@ public class test {
 //        List<Blog> list = dao.getAllBlog();
 //        System.out.println(list);
 //        System.out.println(t);
-            User admin = userdao.login("thinh123", "123123");
-            System.out.println(admin);
+//            User admin = userdao.login("thinh123", "123123");
+//            System.out.println(admin);
+             UserDAO d = new UserDAO();
+        List<User> listUsers = d.getAllUser();
+        System.out.println(listUsers);
     }
 }
