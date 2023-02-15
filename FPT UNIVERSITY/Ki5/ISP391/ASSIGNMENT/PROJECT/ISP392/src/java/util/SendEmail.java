@@ -20,9 +20,7 @@ import javax.mail.internet.MimeMessage;
 public class SendEmail {
 
     public static void sendMail(String to, String sub,
-            String msg) {
-        String user = "assignmentisp392@gmail.com";
-        String pass = "Thinh1234567890";
+            String msg, final String user, final String pass) {
         //create an instance of Properties Class   
         Properties props = new Properties();
         /* Specifies the IP address of your default mail server
