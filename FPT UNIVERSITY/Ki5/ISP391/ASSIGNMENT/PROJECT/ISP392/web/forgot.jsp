@@ -26,7 +26,7 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title">Forgot Password</h4>
-                                <form method="POST" action="forgot" class="my-login-validation" novalidate="">
+                                <form method="POST" action="ForgotPasswordController" class="my-login-validation" novalidate="">
                                     <div class="form-group">
                                         <label for="email">E-Mail Address</label>
                                         <input id="email" type="email" class="form-control" name="email" value="${email}" autofocus>

@@ -1,4 +1,5 @@
 
+import Base.Base;
 import DAO.BlogDAO;
 import DAO.TopicDAO;
 import DAO.UserDAO;
@@ -32,6 +33,7 @@ public class test {
 //            System.out.println(admin);
              UserDAO d = new UserDAO();
         List<User> listUsers = d.getAllUser();
-        System.out.println(listUsers);
+        User acc = d.checkUserExist("thinh123");
+
     }
 }

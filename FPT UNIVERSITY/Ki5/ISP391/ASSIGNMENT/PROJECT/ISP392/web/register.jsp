@@ -21,8 +21,8 @@
                                 <form method="POST" class="my-login-validation" novalidate="" action="register">
                                     <div class="form-group">
                                         <!-- Name -->
-                                        <label for="name">Name</label>
-                                        <input id="name" type="text" class="form-control" name="name" required placeholder="Sam Smith,...">
+                                        <label for="name">Full Name</label>
+                                        <input id="name" type="text" class="form-control" name="fullname" required placeholder="Sam Smith,...">
                                     </div>
 
                                     <div class="form-group">
@@ -51,7 +51,7 @@
                                         </div>
                                     </div>
                                     <h4 class=" text-danger">
-                                        ${error}
+                                        ${msg}
                                     </h4><br/>
                                     <div class="form-group m-0">
                                         <button type="submit" class="btn btn-primary btn-block">

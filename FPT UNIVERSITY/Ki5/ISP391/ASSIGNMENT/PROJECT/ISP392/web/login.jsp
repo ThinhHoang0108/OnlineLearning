@@ -27,7 +27,7 @@
 
                                     <div class="form-group">
                                         <label for="password">Password
-                                            <a href="forgot" class="float-right">
+                                            <a href="ForgotPasswordController" class="float-right">
                                                     Forgot Password?
                                             </a>
                                         </label>

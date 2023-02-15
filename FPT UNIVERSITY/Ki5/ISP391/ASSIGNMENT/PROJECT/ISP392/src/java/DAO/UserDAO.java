@@ -44,7 +44,7 @@ public class UserDAO extends MyDAO {
     }
 
     public static void main(String[] args) {
-        System.out.println(new UserDAO().checkEmail("lythhe161708@fpt.edu.vn"));
+        System.out.println(new UserDAO().checkEmail("assignmentISP392@gmail.com"));
     }
 
     public String getPasswordOfEmail(String email) {
@@ -184,4 +184,29 @@ public class UserDAO extends MyDAO {
         }
         return (x);
     }
+
+    public User checkUserExist(String user) {
+        User x = null;
+        xSql = "SELECT * FROM dbo.[User] WHERE Username = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, user);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                x = User.builder().userID(rs.getInt(1))
+                        .name(rs.getString(2))
+                        .dob(rs.getDate(3))
+                        .phone(rs.getString(4))
+                        .username(rs.getString(5))
+                        .password(rs.getString(6)).build();
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (x);
+    }
+
+   
 }
