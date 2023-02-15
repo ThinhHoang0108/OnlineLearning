@@ -21,8 +21,8 @@ public class SendEmail {
 
     public static void sendMail(String to, String sub,
             String msg) {
-        String user = "thinhhxhe161617@fpt.edu.vn";
-        String pass = "ThinH0108";
+        String user = "assignmentisp392@gmail.com";
+        String pass = "Thinh1234567890";
         //create an instance of Properties Class   
         Properties props = new Properties();
         /* Specifies the IP address of your default mail server
