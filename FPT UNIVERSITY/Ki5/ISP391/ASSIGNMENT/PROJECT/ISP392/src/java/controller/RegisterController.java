@@ -69,7 +69,7 @@ public class RegisterController extends HttpServlet {
         User account = dao.checkUserExist(user);
         if (account == null) {
             String subject = "Verify your account";
-            String message = "String message = \"<!DOCTYPE html>\\n\"\n"
+            String message = "<!DOCTYPE html>\n"
                     + "<html lang=\"en\">\n"
                     + "<head></head>\n"
                     + "<body style=\"color:#000;\">\n"
@@ -89,8 +89,7 @@ public class RegisterController extends HttpServlet {
                     + "    <h4>Thank you very much</h4>\n"
                     + "</body>\n"
                     + "</html>";
-
-            SendEmail.sendMail("thinhhxhe161617@fpt.edu.vn", subject, message, Base.USERNAME_EMAIL, Base.PASSWORD_EMAIL);
+            SendEmail.sendMail(email,subject,message);
             request.setAttribute("msg", "Verification link has been sent to your email");
             System.out.println("user: " + user);
             request.getRequestDispatcher("login.jsp").forward(request, response);
