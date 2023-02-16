@@ -263,6 +263,15 @@
                 });
             });
         </script>
+        <script type="text/javascript">
+            function confirmDelete(id) {
+                
+                if (confirm("Are you sure you want to delete?")) {
+                    window.location.href = 'deletecourse?id='+id;
+                }
+                return false;
+            }
+        </script>
     </head>
     <body>
         <div class="container-xl">
@@ -271,7 +280,7 @@
                     <div class="table-title">
                         <div class="row">
                             <div class="col-sm-6">
-                                <h2>Manage <b>Course</b></h2>
+                                <h2>Manage <b>Employees</b></h2>
                             </div>
                             <div class="col-sm-6">
                                 <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add New Employee</span></a>
@@ -288,32 +297,32 @@
                                         <label for="selectAll"></label>
                                     </span>
                                 </th>
-                                <th>Content</th>
-                                <th>Description</th>
-                                <th>Created Date</th>
-                                <th>Category</th>
+                                <th>Name</th>
+                                <th>Email</th>
+                                <th>Address</th>
+                                <th>Phone</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>	
-                            <c:forEach items="${listCourse}" var="l" >
-                                <tr>
-                                    <th>
-                                        <span class="custom-checkbox">
-                                            <input type="checkbox" id="checkbox5" name="options[]" value="1">
-                                            <label for="checkbox5"></label>
-                                        </span>
-                                    </th>
-                                    <td>${l.content}</td>
-                                    <td>${l.description}</td>
-                                    <td>${l.createDate}</td>
-                                    <td>${l.IDcategory}</td>
-                                    <td>
-                                        <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                        <a href="#deleteEmployeeModal" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
-                                    </td>
-
-                                </tr> 
-                            </c:forEach>
+                        <tbody>
+                            <c:forEach items="${listCourse}" var="l" >  					
+                            <tr>
+                                <td>
+                                    <span class="custom-checkbox">
+                                        <input type="checkbox" id="checkbox5" name="options[]" value="1">
+                                        <label for="checkbox5"></label>
+                                    </span>
+                                </td>
+                                <td>${l.id}</td>
+                                <td>${l.content}</td>
+                                <td>${l.createDate}</td>
+                                <td>${l.IDcategory}</td>
+                                <td>
+                                    <a href="#editEmployeeModal" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <i onclick="confirmDelete(${l.id})" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                </td>
+                            </tr> 
+                            </c:forEach>  
                         </tbody>
                     </table>
                     <div class="clearfix">
