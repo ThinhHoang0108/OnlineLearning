@@ -18,11 +18,11 @@ import javax.mail.internet.MimeMessage;
  * @author ADMIN
  */
 public class SendEmail {
+
     public static void sendMail(String to, String sub,
             String msg, final String user, final String pass) {
         //create an instance of Properties Class   
         Properties props = new Properties();
-
         /* Specifies the IP address of your default mail server
      	   for e.g if you are using gmail server as an email sever
            you will pass smtp.gmail.com as value of mail.smtp host. 
@@ -34,7 +34,6 @@ public class SendEmail {
         props.put("mail.smtp.port", "587");
         props.put("mail.smtp.auth", "true");
         props.put("mail.smtp.starttls.enable", "true");
-
         /* Pass Properties object(props) and Authenticator object   
            for authentication to Session instance 
          */
@@ -58,12 +57,7 @@ public class SendEmail {
 
             /* Transport class is used to deliver the message to the recipients */
             Transport.send(message);
-
         } catch (MessagingException e) {
         }
-    }
-
-    public static void sendMail(String thinhhxhe161617fpteduvn, String verify_your_account, String assignmentisp392gmailcom, String thinh1234567890) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
     }
 }

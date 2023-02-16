@@ -5,6 +5,8 @@
 
 package controller;
 
+import DAO.UserDAO;
+import com.oracle.wls.shaded.org.apache.bcel.generic.AALOAD;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -12,6 +14,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.sql.Date;
+import model.User;
 
 /**
  *
@@ -55,12 +59,17 @@ public class addUser extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
+        
         String name_raw = request.getParameter("name");
         String dob_raw = request.getParameter("dob");
         String phone_raw = request.getParameter("phone");
         String username_raw = request.getParameter("username");
         String password_raw = request.getParameter("password");
         
+        
+        UserDAO dao = new UserDAO();
+        dao.insertUser(name_raw, dob_raw, phone_raw, username_raw, password_raw);
+        request.getRequestDispatcher("listUsers.jsp").forward(request, response);
     } 
 
     /** 

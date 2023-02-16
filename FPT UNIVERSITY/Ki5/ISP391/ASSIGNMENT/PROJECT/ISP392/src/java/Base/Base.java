@@ -10,7 +10,8 @@ package Base;
  * @author thuong
  */
 public class Base {
-        public final static String USERNAME_EMAIL = "assignmentisp391@gmail.com";
-    public final static String PASSWORD_EMAIL = "Thinh1234567890";
+
+    public final static String USERNAME_EMAIL = "thinhhxhe161617@fpt.edu.vn";
+    public final static String PASSWORD_EMAIL = "passwordgmail";
     public final static String LINK_VERIFY = "http://localhost:9999/ISP392/verify";
 }

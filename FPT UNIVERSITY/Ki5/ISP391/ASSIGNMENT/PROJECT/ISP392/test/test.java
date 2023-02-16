@@ -6,6 +6,7 @@ import DAO.UserDAO;
 import java.util.List;
 import model.Blog;
 import model.User;
+import util.SendEmail;
 
 /*
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
@@ -31,9 +32,10 @@ public class test {
 //        System.out.println(t);
 //            User admin = userdao.login("thinh123", "123123");
 //            System.out.println(admin);
-             UserDAO d = new UserDAO();
+        UserDAO d = new UserDAO();
         List<User> listUsers = d.getAllUser();
-        User acc = d.checkUserExist("thinh123");
+        String message = "Welcome to join";
+                 User acc = d.checkUserExist("thinh123");
 
     }
 }

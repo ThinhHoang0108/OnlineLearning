@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -122,7 +123,7 @@ public class UserDAO extends MyDAO {
         }
     }
 
-    public void insertUser(UserDAO u) {
+    public void insertUser(String name,String dob,String phoneNumber,String username, String password) {
         String sql = "INSERT INTO [dbo].[User]\n"
                 + "           ([Name]\n"
                 + "           ,[Dateofbirth]\n"
@@ -133,16 +134,18 @@ public class UserDAO extends MyDAO {
                 + "           (?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql);
-            
+             ps.setString(1, name);
+                ps.setString(2, dob);
+                ps.setString(3, phoneNumber);
+                ps.setString(4, username);
+                ps.setString(5, password);               
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
     }
 
-    public void insertUser(String name, String DOB, String phoneNumber, String userName, String passWord) {
-
-    }
+    
 
     public int getNumberUser() {
         int t = 0;
