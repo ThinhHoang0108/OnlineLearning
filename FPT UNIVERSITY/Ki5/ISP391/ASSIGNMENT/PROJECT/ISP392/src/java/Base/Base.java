@@ -12,6 +12,6 @@ package Base;
 public class Base {
 
     public final static String USERNAME_EMAIL = "thinhhxhe161617@fpt.edu.vn";
-    public final static String PASSWORD_EMAIL = "passwordgmail";
+    public final static String PASSWORD_EMAIL = "tqwcuvanbuulzvhk";
     public final static String LINK_VERIFY = "http://localhost:9999/ISP392/verify";
 }

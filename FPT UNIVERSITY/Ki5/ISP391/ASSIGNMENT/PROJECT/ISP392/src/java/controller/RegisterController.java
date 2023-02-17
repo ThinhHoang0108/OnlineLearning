@@ -90,8 +90,7 @@ public class RegisterController extends HttpServlet {
                     + "</body>\n"
                     + "</html>";
             SendEmail.sendMail(email,subject,message, Base.USERNAME_EMAIL, Base.PASSWORD_EMAIL);
-            request.setAttribute("msg", "Verification link has been sent to your email");
-            System.out.println("user: " + user);
+            request.setAttribute("error", "Verification link has been sent to your email");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
             // day ve login

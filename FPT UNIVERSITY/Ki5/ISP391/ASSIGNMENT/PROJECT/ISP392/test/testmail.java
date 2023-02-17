@@ -15,7 +15,7 @@ public class testmail {
     public static void main(String[] args) {
         SendEmail send = new SendEmail();
         String email = "thinhhxhe161617@fpt.edu.vn";
-        String fullname ="Hoang Xuan Thinh";
+        String fullname = "Hoang Xuan Thinh";
         String user = "thinh123";
         String pass = "123123";
         String subject = "Verify your account";
@@ -39,7 +39,7 @@ public class testmail {
                 + "    <h4>Thank you very much</h4>\n"
                 + "</body>\n"
                 + "</html>";
-        SendEmail.sendMail("thinhhxhe161617@fpt.edu.vn", subject, message);
+        SendEmail.sendMail("thinhhxhe161617@fpt.edu.vn", subject, message, Base.USERNAME_EMAIL, Base.PASSWORD_EMAIL);
 
     }
 }
