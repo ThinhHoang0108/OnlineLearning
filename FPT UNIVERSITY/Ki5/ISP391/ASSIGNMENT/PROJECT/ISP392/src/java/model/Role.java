@@ -4,7 +4,6 @@
  */
 package model;
 
-import java.sql.Date;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,12 +17,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class User {
-    private int userID;
-    private String name;
-    private Date dob;
-    private String phone;
-    private String username;
-    private String password;
-    private Role role;
+public class Role {
+    private int role_id;
+    private String role_name;
 }

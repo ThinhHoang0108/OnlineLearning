@@ -1,10 +1,12 @@
 
 import Base.Base;
 import DAO.BlogDAO;
+import DAO.RoleDAO;
 import DAO.TopicDAO;
 import DAO.UserDAO;
 import java.util.List;
 import model.Blog;
+import model.Role;
 import model.User;
 import util.SendEmail;
 
@@ -36,6 +38,12 @@ public class test {
         List<User> listUsers = d.getAllUser();
         String message = "Welcome to join";
                  User acc = d.checkUserExist("thinh123");
+        int userid = userdao.getUserIdByEmail("hoangxthinh@gmail.com");
+        System.out.println(userid);
+        System.out.println(listUsers);
+        RoleDAO role = new RoleDAO();
+        Role role1 = role.getRoleByID(2);
+        System.out.println(role1);
 
     }
 }

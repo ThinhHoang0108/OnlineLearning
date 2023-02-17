@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.User;
 
 /**
  *
@@ -58,7 +59,12 @@ public class VerifyController extends HttpServlet {
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
+        account.registerUser(fullname,user, pass, email);
+        User userAccount = account.login(user, pass);
+        request.getSession().setAttribute("account", account);
+        response.sendRedirect("home");
     }
+    
 
     /**
      * Returns a short description of the servlet.

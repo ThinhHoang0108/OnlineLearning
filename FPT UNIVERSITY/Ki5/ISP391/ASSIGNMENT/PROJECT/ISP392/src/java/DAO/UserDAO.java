@@ -123,7 +123,7 @@ public class UserDAO extends MyDAO {
         }
     }
 
-    public void insertUser(String name,String dob,String phoneNumber,String username, String password) {
+    public void insertUser(String name, String dob, String phoneNumber, String username, String password) {
         String sql = "INSERT INTO [dbo].[User]\n"
                 + "           ([Name]\n"
                 + "           ,[Dateofbirth]\n"
@@ -134,18 +134,16 @@ public class UserDAO extends MyDAO {
                 + "           (?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql);
-             ps.setString(1, name);
-                ps.setString(2, dob);
-                ps.setString(3, phoneNumber);
-                ps.setString(4, username);
-                ps.setString(5, password);               
+            ps.setString(1, name);
+            ps.setString(2, dob);
+            ps.setString(3, phoneNumber);
+            ps.setString(4, username);
+            ps.setString(5, password);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
         }
     }
-
-    
 
     public int getNumberUser() {
         int t = 0;
@@ -211,5 +209,48 @@ public class UserDAO extends MyDAO {
         return (x);
     }
 
+    public void registerUser(String fullname, String user, String pass, String email) {
+        xSql = "INSERT INTO [dbo].[User]\n"
+                + "           ([Name]\n"
+                + "           ,[Username]\n"
+                + "           ,[Password]\n"
+                + "           ,[email]\n"
+                + "           ,[idrole])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,2)";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, fullname);
+            ps.setString(2, user);
+            ps.setString(3, pass);
+            ps.setString(4, email);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public int getUserIdByEmail(String email) {
+        xSql = "SELECT ID FROM dbo.[User] WHERE email = ?";
+        try {
+            if (con != null) {
+                ps = con.prepareStatement(xSql);
+                ps.setString(1, email);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return -1;
+
+    }
+
    
+
+
 }
