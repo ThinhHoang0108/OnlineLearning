@@ -39,16 +39,6 @@ public class deleteCourse extends HttpServlet {
             String xid = request.getParameter("id");
             DAO.CourseDAO dao = new CourseDAO();
             int id = Integer.parseInt(xid);
-//            dao.deleteCourse(id);
-//request.getDispatcherType(.deleteCourse(id);"")
-//            response.getRequestDispatcher("editcourse").forward(request, response);
-//            List<Course> listCourse = (List<Course>) dao.getAllcourse();
-//            HttpSession session = request.getSession();
-//            request.setAttribute("listCourse", listCourse);
-//            listCourse.re;
-//            session.setAttribute("listCourse", listCourse);
-            //request.getRequestDispatcher("editcourse").forward(request, response);
-
             response.sendRedirect("editcourse");
         }
     }
