@@ -7,7 +7,7 @@ package Base;
 
 /**
  *
- * @author thuong
+ * @author thinh
  */
 public class Base {
 
