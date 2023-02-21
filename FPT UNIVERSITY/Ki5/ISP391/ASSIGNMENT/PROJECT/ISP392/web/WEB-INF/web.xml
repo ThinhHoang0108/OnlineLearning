@@ -84,6 +84,10 @@
         <servlet-name>SubjectListController</servlet-name>
         <servlet-class>controller.subject.SubjectListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ChangeProfile</servlet-name>
+        <servlet-class>controller.ChangeProfile</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -159,6 +163,10 @@
     <servlet-mapping>
         <servlet-name>SubjectListController</servlet-name>
         <url-pattern>/SubjectListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeProfile</servlet-name>
+        <url-pattern>/changeProfile</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
