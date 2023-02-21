@@ -28,6 +28,7 @@ public class SubjectDAO extends MyDAO{
                         .description(rs.getString(3))
                         .cateID(rs.getInt(4))
                         .courseID(rs.getInt(5))
+                        .thumbnail(rs.getString(6))
                         .build();
                 t.add(x);
             }

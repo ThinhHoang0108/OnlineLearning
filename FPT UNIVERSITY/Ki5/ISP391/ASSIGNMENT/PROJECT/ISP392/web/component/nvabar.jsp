@@ -52,7 +52,7 @@
                     <ul>
                         <li><a class="active" href="home.jsp">Home</a></li>
                         <li><a href="about">About</a></li>
-                        <li><a href="courses.html">Courses</a></li>
+                        <li><a href="courselist">Courses</a></li>
                         <li><a href="blog">Blog</a></li>
                         <li><a href="trainers.html">Trainers</a></li>
                         <li><a href="pricing.html">Pricing</a></li>

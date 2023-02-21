@@ -24,5 +24,6 @@ public class Subject {
     private String description;
     private int cateID;
     private int courseID;
+    private String thumbnail;
 
 }

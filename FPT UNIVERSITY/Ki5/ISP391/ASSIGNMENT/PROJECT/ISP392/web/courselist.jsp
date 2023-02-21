@@ -65,7 +65,7 @@
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h4>Web Developments</h4> 
                                         </div>
-                                        <h3><a href="course-details.html">${l.content}</a></h3>
+                                        <h3><a href="coursedetail.jsp">${l.content}</a></h3>
                                         <p>${l.description}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">
