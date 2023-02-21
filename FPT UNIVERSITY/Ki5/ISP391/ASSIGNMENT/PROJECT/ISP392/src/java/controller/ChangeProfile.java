@@ -65,7 +65,8 @@ public class ChangeProfile extends HttpServlet {
         String phoneNumber = request.getParameter("phone");
         String password = request.getParameter("pass");
         int id = Integer.parseInt(request.getParameter("id"));
-        new UserDAO().updateUser(dob, phoneNumber, password,id);
+        UserDAO u = new UserDAO();
+        u.updateUser(dob, phoneNumber, password);
         request.setAttribute("msg", "Success");
         request.setAttribute("id", id);
         request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
