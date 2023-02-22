@@ -43,7 +43,6 @@ public class SendEmail {
                 return new PasswordAuthentication(user, pass);
             }
         });
-
         try {
 
             /* Create an instance of MimeMessage, 

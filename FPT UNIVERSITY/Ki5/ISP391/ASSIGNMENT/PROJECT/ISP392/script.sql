@@ -1,20 +1,20 @@
 CREATE DATABASE [ISP392]
 USE [ISP392]
+CREATE TABLE [Role] (
+  [ID] int IDENTITY(1,1),
+  [Position] varchar(15),
+  PRIMARY KEY ([ID])
+);
 CREATE TABLE [User] (
   [ID] int IDENTITY(1,1),
   [Name] varchar(50),
   [Dateofbirth] date,
   [PhoneNumber] varchar(10),
   [Username] varchar(50),
+  [email] varchar(50),	
   [Password] varchar(50),
   PRIMARY KEY ([ID]),
   [IDrole] int FOREIGN KEY REFERENCES [Role]([ID])
-);
-
-CREATE TABLE [Role] (
-  [ID] int IDENTITY(1,1),
-  [Position] varchar(15),
-  PRIMARY KEY ([ID])
 );
 CREATE TABLE [Category] (
   [ID] int IDENTITY(1,1),
@@ -133,6 +133,10 @@ insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values (
 insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Zulema', '2018-07-12', '8426857686', 'zpadbury2', 'ujDSAmv1tarl');
 insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Christabel', '2000-06-07', '9021201342', 'clillyman3', 'IqvThuJ3z');
 insert into [User] (Name, Dateofbirth, PhoneNumber, Username, Password) values ('Marchall', '2004-11-21', '3817200366', 'mbettaney4', 'QahiYqhQpn');
+INSERT INTO dbo.[User] (Name,Dateofbirth,PhoneNumber,Username,Password,IDrole) VALUES ('Hoang Xuan Thinh', '2002-01-01', '123123123', 'thinh1', '1', '3')
+INSERT INTO dbo.[User] (Name,Dateofbirth,PhoneNumber,Username,Password,IDrole) VALUES ('Vu Xuan Thang', '2002-01-01', '123123123', 'thang1', '1', '3')
+INSERT INTO dbo.[User] (Name,Dateofbirth,PhoneNumber,Username,Password,IDrole) VALUES ('Nguyen Minh Tuan', '2002-01-01', '123123123', 'tuan1', '1', '3')
+INSERT INTO dbo.[User] (Name,Dateofbirth,PhoneNumber,Username,Password,IDrole) VALUES ('Tran Huong Ly', '2002-01-01', '123123123', 'ly1', '1', '3')
 ---------Course--------------
 insert into [Category] (Name) values ('Topic');
 insert into [Category] (Name) values ('Course');
@@ -153,3 +157,7 @@ insert into Course  (Thumnail, Content, Description, DateCreated, IDcategory) va
 insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('Hello World', 'Learn Python: The Complete Python Programming Course', 1, 1, 'http://dummyimage.com/800x533.png/5fa2dd/ffffff')
 insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('Data Types and Ints', 'A data type is an attribute of a piece of data that tells a device how the end-user might interact with the data. You can also think of them as categorizations that different coding programs might combine in order to execute certain functions. Most programming languages including C++ and Java use the same basic data types.', 1, 1, 'http://dummyimage.com/800x533.png/ff4444/ffffff')
 insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('Strings', 'In computer programming, a string is traditionally a sequence of characters, either as a literal constant or as some kind of variable. The latter may allow its elements to be mutated and the length changed, or it may be fixed (after creation). A string is generally considered as a data type and is often implemented as an array data structure of bytes (or words) that stores a sequence of elements, typically characters, using some character encoding. String may also denote more general arrays or other sequence (or list) data types and structures.', 1, 1, 'http://dummyimage.com/800x533.png/5fa2dd/ffffff')
+---------------------Role----------------------
+INSERT INTO dbo.Role (Position) VALUES ('Guest')
+INSERT INTO dbo.Role (Position) VALUES ('User')
+INSERT INTO dbo.Role (Position) VALUES ('Admin')

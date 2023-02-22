@@ -55,16 +55,16 @@ public class VerifyController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         UserDAO account = new UserDAO();
-        String fullname = request.getParameter("fullname");
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
-        account.registerUser(fullname,user, pass, email);
+        String phone = request.getParameter("phone");
+
+        account.registerUser( user, pass, email, phone);
         User userAccount = account.login(user, pass);
         request.getSession().setAttribute("account", account);
         response.sendRedirect("home");
     }
-    
 
     /**
      * Returns a short description of the servlet.

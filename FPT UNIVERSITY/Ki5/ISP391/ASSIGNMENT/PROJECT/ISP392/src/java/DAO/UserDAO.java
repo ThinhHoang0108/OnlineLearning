@@ -209,9 +209,9 @@ public class UserDAO extends MyDAO {
         return (x);
     }
 
-    public void registerUser(String fullname, String user, String pass, String email) {
+    public void registerUser(String user, String pass, String email, String phone) {
         xSql = "INSERT INTO [dbo].[User]\n"
-                + "           ([Name]\n"
+                + "           ([PhoneNumber]\n"
                 + "           ,[Username]\n"
                 + "           ,[Password]\n"
                 + "           ,[email]\n"
@@ -220,7 +220,7 @@ public class UserDAO extends MyDAO {
                 + "           (?,?,?,?,2)";
         try {
             ps = con.prepareStatement(xSql);
-            ps.setString(1, fullname);
+            ps.setString(1, phone);
             ps.setString(2, user);
             ps.setString(3, pass);
             ps.setString(4, email);

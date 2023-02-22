@@ -61,10 +61,11 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String fullname = request.getParameter("fullname");
+        
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
+        String phone = request.getParameter("phone");
         UserDAO dao = new UserDAO();
         User account = dao.checkUserExist(user);
         if (account == null) {
@@ -78,7 +79,7 @@ public class RegisterController extends HttpServlet {
                     + "    \n"
                     + "    <form id=\"myForm\" method=\"POST\" action=" + Base.LINK_VERIFY + ">\n"
                     + "        <input type=\"hidden\" value=" + email + " id=\"email\" name=\"email\">\n"
-                    + "        <input type=\"hidden\" value=" + fullname + " id=\"name\" name=\"fullname\">\n"
+                    + "        <input type=\"hidden\" value=" + phone + " id=\"name\" name=\"phone\">\n"
                     + "        <input type=\"text\" value=" + user + " id=\"username\" name=\"username\">\n"
                     + "        <input type=\"text\" value=" + pass + " id=\"password\" name=\"password\">\n"
                     + "        <input type=\"submit\" value=\"Verify\" \n"

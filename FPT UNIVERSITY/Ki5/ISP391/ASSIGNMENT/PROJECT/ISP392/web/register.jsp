@@ -20,12 +20,6 @@
                                 <h4 class="card-title">Register</h4>
                                 <form method="POST" class="my-login-validation" novalidate="" action="register">
                                     <div class="form-group">
-                                        <!-- Name -->
-                                        <label for="name">Full Name</label>
-                                        <input id="name" type="text" class="form-control" name="fullname" required placeholder="Sam Smith,...">
-                                    </div>
-
-                                    <div class="form-group">
                                         <label for="username">User Name</label>
                                         <input id="username" type="text" class="form-control" name="username" required>
                                     </div>
@@ -40,6 +34,10 @@
                                         <div class="invalid-feedback">
                                             Your email is invalid
                                         </div>
+                                    </div>
+                                     <div class="form-group">
+                                        <label for="phone">Phone Number</label>
+                                        <input id="password" type="text" class="form-control" name="phone" required>
                                     </div>
                                     <div class="form-group">
                                         <div class="custom-checkbox custom-control">
