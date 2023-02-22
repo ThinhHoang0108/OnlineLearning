@@ -24,7 +24,6 @@ public class Blog {
    private String content;
    private String description;
    private int uID;
-   private int tID;
    private int cID;
    private Date createDate;
    

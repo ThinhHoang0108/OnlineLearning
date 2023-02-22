@@ -6,13 +6,10 @@
         <meta charset="utf-8">
         <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-        <title>Events - Mentor Bootstrap Template</title>
         <meta content="" name="description">
         <meta content="" name="keywords">
 
-        <!-- Favicons -->
-        <link href="assets/img/favicon.png" rel="icon">
-        <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon">
+        
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -47,7 +44,7 @@
             <!-- ======= Breadcrumbs ======= -->
             <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
-                    <h2>Events</h2>
+                    <h2>Blog</h2>
                     <p>Est dolorum ut non faádasdcere possimus quibusdam eligendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>
                 </div>
             </div><!-- End Breadcrumbs -->

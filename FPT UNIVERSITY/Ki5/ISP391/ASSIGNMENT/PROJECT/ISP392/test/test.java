@@ -46,9 +46,11 @@ public class test {
 //        RoleDAO role = new RoleDAO();
 //        Role role1 = role.getRoleByID(2);
 //        System.out.println(role1);
-        SubjectDAO daosub = new SubjectDAO();
-        List<Subject> listSubject = daosub.getAllSubject();
-        System.out.println(listSubject);
+//        SubjectDAO daosub = new SubjectDAO();
+//        List<Subject> listSubject = daosub.getAllSubject();
+//        System.out.println(listSubject);
+        List<Blog> listBlog = dao.getAllBlog();
+        System.out.println(listBlog);
 
     }
 }

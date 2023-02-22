@@ -27,6 +27,7 @@ CREATE TABLE [Blog] (
   [Thumnail] VARCHAR(MAX),
   [content] varchar(MAX),
   [Description] varchar(MAX),
+  [created_date] DATETIME DEFAULT  (getdate()),
   [IDuser] int FOREIGN KEY REFERENCES [User]([ID]),
   [IDcategory] int FOREIGN KEY REFERENCES [Category]([ID]),
   PRIMARY KEY ([ID]),
@@ -166,3 +167,9 @@ insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VAL
 INSERT INTO dbo.Role (Position) VALUES ('Guest')
 INSERT INTO dbo.Role (Position) VALUES ('User')
 INSERT INTO dbo.Role (Position) VALUES ('Admin')
+-----------------------Blog--------------------
+insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/ff4444/ffffff', 'Tokyo Medical College', 'Dilation of Right External Carotid Artery with Four or More Intraluminal Devices, Percutaneous Approach');
+insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/dddddd/000000', 'Meijo University', 'Immobilization of Right Lower Arm using Splint');
+insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/dddddd/000000', 'University College of Borås', 'Dilation of Left Internal Mammary Artery with Intraluminal Device, Percutaneous Approach');
+insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/dddddd/000000', 'Anambra State University of Science and Technology', 'Bypass Left Common Iliac Vein to Lower Vein with Nonautologous Tissue Substitute, Percutaneous Endoscopic Approach');
+insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/dddddd/000000', 'Tata Institute of Social Sciences', 'Reposition Right Temporal Bone, External Approach');
