@@ -52,6 +52,7 @@ CREATE TABLE [Subject] (
   [ID] int IDENTITY(1,1),
   [Content] varchar(MAX),
   [Description] varchar(MAX),
+  [Thumnail] varchar(MAX),
   [IDcategory] int FOREIGN KEY REFERENCES [Category]([ID]),
   [IDcourse] int FOREIGN KEY REFERENCES [Course]([ID]),
   PRIMARY KEY ([ID])
@@ -142,6 +143,7 @@ insert into [Category] (Name) values ('Topic');
 insert into [Category] (Name) values ('Course');
 insert into [Category] (Name) values ('Subject');
 insert into [Category] (Name) values ('Blog');
+insert into [Category] (Name) values ('Programming Fundamental');
 ---------Course--------------
 insert into Course  (Thumnail, Content, Description, DateCreated, IDcategory) values ('http://dummyimage.com/800x533.png/ff4444/ffffff', 'Disp fx of posterior wall of left acetab, init for opn fx', 'Displaced fracture of posterior wall of left acetabulum, initial encounter for open fracture', '2022-03-21', 2);
 insert into Course  (Thumnail, Content, Description, DateCreated, IDcategory) values ('http://dummyimage.com/800x533.png/cc0000/ffffff', 'Other epilepsy, not intractable, without status epilepticus', 'Other epilepsy, not intractable, without status epilepticus', '2022-10-17', 4);
@@ -154,9 +156,12 @@ insert into Course  (Thumnail, Content, Description, DateCreated, IDcategory) va
 insert into Course  (Thumnail, Content, Description, DateCreated, IDcategory) values ('http://dummyimage.com/800x533.png/5fa2dd/ffffff', 'Galeazzi''s fx unsp rad, 7thJ', 'Galeazzi''s fracture of unspecified radius, subsequent encounter for open fracture type IIIA, IIIB, or IIIC with delayed healing', '2022-12-25', 3);
 insert into Course  (Thumnail, Content, Description, DateCreated, IDcategory) values ('http://dummyimage.com/800x533.png/cc0000/ffffff', 'Disp fx of base of nk of unsp femr, 7thM', 'Displaced fracture of base of neck of unspecified femur, subsequent encounter for open fracture type I or II with nonunion', '2022-04-25', 2);
 ------------------Subject----------------------
-insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('Hello World', 'Learn Python: The Complete Python Programming Course', 1, 1, 'http://dummyimage.com/800x533.png/5fa2dd/ffffff')
-insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('Data Types and Ints', 'A data type is an attribute of a piece of data that tells a device how the end-user might interact with the data. You can also think of them as categorizations that different coding programs might combine in order to execute certain functions. Most programming languages including C++ and Java use the same basic data types.', 1, 1, 'http://dummyimage.com/800x533.png/ff4444/ffffff')
-insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('Strings', 'In computer programming, a string is traditionally a sequence of characters, either as a literal constant or as some kind of variable. The latter may allow its elements to be mutated and the length changed, or it may be fixed (after creation). A string is generally considered as a data type and is often implemented as an array data structure of bytes (or words) that stores a sequence of elements, typically characters, using some character encoding. String may also denote more general arrays or other sequence (or list) data types and structures.', 1, 1, 'http://dummyimage.com/800x533.png/5fa2dd/ffffff')
+insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('DAY 1 | print("Hello, World")', 'Learn Python: The Complete Python Programming Course', 5, 1, 'ObuFmlCs2SE')
+insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('DAY 2 | If-Else', 'Learn Python: The Complete Python Programming Course', 5, 1, 'N62rgyoh2Iw')
+insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('DAY 3 | ARITHMETIC OPERATORS', 'Learn Python: The Complete Python Programming Course', 5, 1, 'LnJ_z1YaNck')
+insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('DAY 4 | DIVISION', 'Learn Python: The Complete Python Programming Course', 5, 1, 'UwA7Ud2NLEc')
+insert into [Subject] (Content, Description, IDcategory, IDcourse, Thumnail) VALUES ('DAY 5 | LOOPS', 'Learn Python: The Complete Python Programming Course', 5, 1, 'xhBCpqUR2WI')
+
 ---------------------Role----------------------
 INSERT INTO dbo.Role (Position) VALUES ('Guest')
 INSERT INTO dbo.Role (Position) VALUES ('User')
