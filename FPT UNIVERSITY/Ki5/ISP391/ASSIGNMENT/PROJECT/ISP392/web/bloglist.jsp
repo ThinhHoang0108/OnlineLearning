@@ -9,7 +9,7 @@
         <meta content="" name="description">
         <meta content="" name="keywords">
 
-        
+
 
         <!-- Google Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
@@ -57,8 +57,12 @@
                             <div class="col-md-6 d-flex align-items-stretch">
                                 <div class="card">
                                     <div class="card-img">
-                                        <img src="${g.thumnailURL}" alt="...">
+                                        <a href="blogdetail?blogID=${g.id}">
+                                            <img src="${g.thumnailURL}" alt="Image" class="img-fluid">
+                                        </a>
+
                                     </div>
+
                                     <div class="card-body">
                                         <h5 class="card-title"><a href="blogdetail?blogID=${g.id}">${g.content}</a></h5>
                                         <p class="card-text">${g.description}</p>
