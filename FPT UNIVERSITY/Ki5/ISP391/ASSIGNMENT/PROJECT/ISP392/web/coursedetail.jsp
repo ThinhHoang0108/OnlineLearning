@@ -115,6 +115,7 @@
                                         <div class="row">
                                             <div class="col-lg-8 details order-2 order-lg-1">
                                                 <h2>${g.description}</h2>
+                                                <p class="fst-italic">Category: ${g.category.name}</p>
                                                 <iframe width="800" height="500" src="https://www.youtube.com/embed/${g.thumbnail}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                             </div>
                                         </div>
