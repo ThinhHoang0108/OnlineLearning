@@ -27,9 +27,9 @@ public class BlogDAO extends MyDAO {
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
                         .description(rs.getString(4))
-                        .uID(rs.getInt(5))
-                        .cID(rs.getInt(6))
-                        .createDate(rs.getDate(7))
+                        .uID(rs.getInt(6))
+                        .cID(rs.getInt(7))
+                        .createDate(rs.getDate(5))
                         .build();
                 t.add(x);
             }
@@ -49,14 +49,14 @@ public class BlogDAO extends MyDAO {
             ps.setInt(1, blogID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                x = Blog.builder()
-                        .id(rs.getInt(1))
+                x = Blog.builder().id(rs.getInt(1))
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
                         .description(rs.getString(4))
-                        .uID(rs.getInt(5))
-                        .cID(rs.getInt(6))
-                        .createDate(rs.getDate(7)).build();
+                        .uID(rs.getInt(6))
+                        .cID(rs.getInt(7))
+                        .createDate(rs.getDate(5))
+                        .build();
             }
             rs.close();
             ps.close();

@@ -87,7 +87,7 @@ public class UserDAO extends MyDAO {
 
     public User getUserByID(int userID) {
         User x = null;
-        xSql = "SELECT * FROM dbo.User WHERE ID = ?";
+        xSql = "SELECT * FROM dbo.[User] WHERE ID = ?";
         try {
             ps = con.prepareStatement(xSql);
             ps.setInt(1, userID);

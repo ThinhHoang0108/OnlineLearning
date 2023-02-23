@@ -25,14 +25,14 @@ public class SubjectDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                Category category = new Category(rs.getInt(4), rs.getString(7));
+                Category category = new Category(rs.getInt(5), rs.getString(7));
                 x = Subject.builder().
                         subjectID(rs.getInt(1))
                         .content(rs.getString(2))
                         .description(rs.getString(3))
-                        .cateID(rs.getInt(4))
-                        .courseID(rs.getInt(5))
-                        .thumbnail(rs.getString(6))
+                        .cateID(rs.getInt(5))
+                        .courseID(rs.getInt(6))
+                        .thumbnail(rs.getString(4))
                         .category(category)
                         .build();
                 t.add(x);
