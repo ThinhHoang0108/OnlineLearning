@@ -37,6 +37,7 @@
         ======================================================== -->
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
         <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
     </head>
     <body>
@@ -65,11 +66,36 @@
                             </ul>
                         </li>
                         <li><a href="contact.html">Contact</a></li>
-                    </ul>
-                    <i class="bi bi-list mobile-nav-toggle"></i>
-                </nav><!-- .navbar -->
 
-                <a href="login.jsp" class="get-started-btn">Login</a>
+                    </ul>
+                    <c:choose>
+                        <c:when test="${sessionScope.account != null}">
+                            <c:choose>
+                                <c:when test="${sessionScope.account.roleID == 2}">
+                                    <a href="userprofile"><span class="material-icons">
+                                            account_circle 
+                                        </span>
+                                    </a>
+                                </c:when>
+                                <c:otherwise>
+                                    <a href="dashboard">
+                                        Dashboard
+                                    </a>
+                                </c:otherwise>
+                            </c:choose>
+                            <a href="logout"> 
+                                <span class="material-icons">
+                                    logout
+                                </span>
+                            </a>
+                        </c:when>
+                        <c:otherwise>                
+                            <a href="login.jsp"">Login</a>
+                        </c:otherwise>
+                    </c:choose>
+
+
+                </nav><!-- .navbar -->
 
             </div>
         </header><!-- End Header -->

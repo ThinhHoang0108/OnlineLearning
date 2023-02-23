@@ -11,6 +11,7 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Blog;
 
@@ -35,7 +36,8 @@ public class BlogController extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             DAO.BlogDAO dao = new BlogDAO();
             List<Blog> listBlog = dao.getAllBlog();
-            request.setAttribute("listBlog", listBlog);
+            HttpSession session = request.getSession();
+            session.setAttribute("listBlog", listBlog);
             request.getRequestDispatcher("bloglist.jsp").forward(request, response);
         }
     }

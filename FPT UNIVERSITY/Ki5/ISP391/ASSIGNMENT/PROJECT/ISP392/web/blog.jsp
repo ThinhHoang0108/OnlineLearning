@@ -44,6 +44,7 @@
                     <h2>Blog Details</h2>
                     <ol>
                         <li><a href="home.jsp">Home</a></li>
+                        <li><a href="bloglist.jsp">Blog</a></li>
                         <li>Blog Details</li>
                     </ol>
 

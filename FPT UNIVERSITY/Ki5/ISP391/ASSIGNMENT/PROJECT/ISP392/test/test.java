@@ -26,8 +26,8 @@ public class test {
         DAO.UserDAO userdao = new UserDAO();
         DAO.TopicDAO topicdao = new TopicDAO();
         DAO.BlogDAO dao = new BlogDAO();
-//        List<User> list = dao.getAllUser();
-//        System.out.println(list);
+        List<User> list = userdao.getAllUser();
+        System.out.println(list);
 //        int t = userdao.getNumberUser();
 //        int t1 = topicdao.getNumberTopic();
 //        Blog blog = dao.getBlogById(3);
@@ -49,8 +49,9 @@ public class test {
 //        SubjectDAO daosub = new SubjectDAO();
 //        List<Subject> listSubject = daosub.getAllSubject();
 //        System.out.println(listSubject);
-        List<Blog> listBlog = dao.getAllBlog();
-        System.out.println(listBlog);
+//        List<Blog> listBlog = dao.getAllBlog();
+//        System.out.println(listBlog);
+    
 
     }
 }

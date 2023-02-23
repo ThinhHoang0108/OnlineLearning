@@ -10,6 +10,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Role;
 import model.User;
 import util.MyDAO;
 
@@ -44,10 +45,6 @@ public class UserDAO extends MyDAO {
         return false;
     }
 
-    public static void main(String[] args) {
-        System.out.println(new UserDAO().checkEmail("assignmentISP392@gmail.com"));
-    }
-
     public String getPasswordOfEmail(String email) {
         try {
             PreparedStatement ps = connection.prepareStatement("SELECT [Password] FROM [User] WHERE Email = ?");
@@ -74,7 +71,10 @@ public class UserDAO extends MyDAO {
                         .dob(rs.getDate(3))
                         .phone(rs.getString(4))
                         .username(rs.getString(5))
-                        .password(rs.getString(6)).build();
+                        .password(rs.getString(7))
+                        .email(rs.getString(6))
+                        .roleID(rs.getInt(8))
+                        .build();
                 t.add(x);
             }
             rs.close();
@@ -93,13 +93,14 @@ public class UserDAO extends MyDAO {
             ps.setInt(1, userID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                x = User.builder()
-                        .userID(rs.getInt(1))
+                x = User.builder().userID(rs.getInt(1))
                         .name(rs.getString(2))
                         .dob(rs.getDate(3))
                         .phone(rs.getString(4))
                         .username(rs.getString(5))
-                        .password(rs.getString(6))
+                        .password(rs.getString(7))
+                        .email(rs.getString(6))
+                        .roleID(rs.getInt(8))
                         .build();
             }
 
@@ -119,7 +120,7 @@ public class UserDAO extends MyDAO {
             st.setString(3, passWord);
             st.executeUpdate();
         } catch (SQLException e) {
-             e.printStackTrace();
+            e.printStackTrace();
         }
     }
 
@@ -176,7 +177,10 @@ public class UserDAO extends MyDAO {
                         .dob(rs.getDate(3))
                         .phone(rs.getString(4))
                         .username(rs.getString(5))
-                        .password(rs.getString(6)).build();
+                        .password(rs.getString(7))
+                        .email(rs.getString(6))
+                        .roleID(rs.getInt(8))
+                        .build();
             }
             rs.close();
             ps.close();
@@ -199,7 +203,10 @@ public class UserDAO extends MyDAO {
                         .dob(rs.getDate(3))
                         .phone(rs.getString(4))
                         .username(rs.getString(5))
-                        .password(rs.getString(6)).build();
+                        .password(rs.getString(7))
+                        .email(rs.getString(6))
+                        .roleID(rs.getInt(8))
+                        .build();
             }
             rs.close();
             ps.close();
@@ -249,8 +256,5 @@ public class UserDAO extends MyDAO {
         return -1;
 
     }
-
-   
-
 
 }
