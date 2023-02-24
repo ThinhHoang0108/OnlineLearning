@@ -1086,6 +1086,43 @@ section {
 .cource-details-tabs .details p:last-child {
     margin-bottom: 0;
 }
+.label {
+    position: absolute;
+    padding: 5px 10px;
+    z-index: 2;
+    text-transform: uppercase;
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: .2rem;
+    color: #ffffff;
+    z-index: 2;
+}
+.label.new {
+    background: #84bd00;
+}
+.label.sale {
+    background: #ffc107;
+}
+
+.top-right {
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-transform: rotate(90deg) scaleX(-1);
+    -ms-transform: rotate(90deg) scaleX(-1);
+    transform: rotate(90deg) scaleX(-1);
+    -webkit-transform-origin: top right;
+    -ms-transform-origin: top right;
+    transform-origin: top right;
+}
+.top-right.second {
+    left: 30px;
+}
+.top-right .content {
+    -webkit-transform: scaleX(-1);
+    -ms-transform: scaleX(-1);
+    transform: scaleX(-1);
+}
 
 @media (max-width: 992px) {
     .cource-details-tabs .nav-link {

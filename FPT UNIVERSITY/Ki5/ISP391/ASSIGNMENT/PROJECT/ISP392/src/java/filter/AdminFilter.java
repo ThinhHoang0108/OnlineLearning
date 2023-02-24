@@ -24,14 +24,14 @@ import model.User;
  * @author ADMIN
  */
 public class AdminFilter implements Filter {
-    
+
     private static final boolean debug = true;
 
     // The filter configuration object we are associated with.  If
     // this value is null, this filter instance is not currently
     // configured. 
     private FilterConfig filterConfig = null;
-    
+
     public AdminFilter() {
     }
 
@@ -47,16 +47,17 @@ public class AdminFilter implements Filter {
     public void doFilter(ServletRequest request, ServletResponse response,
             FilterChain chain)
             throws IOException, ServletException {
-        
+
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse res = (HttpServletResponse) response;
         HttpSession session = req.getSession();
         User user = (User) session.getAttribute("account");
-        
+
         if (user != null && user.getRoleID() == 3) {
-          chain.doFilter(request, response);
-          return;
+            chain.doFilter(request, response);
+            return;
         }
+        session.setAttribute("error", "You do not have access to this page. Try a Admin account");
         res.sendRedirect("http://localhost:9999/ISP392/login.jsp");
     }
 
@@ -73,8 +74,9 @@ public class AdminFilter implements Filter {
      * @param filterConfig
      */
     @Override
-    public void init(FilterConfig filterConfig) {
-        
+    public void init(FilterConfig filterConfig
+    ) {
+
     }
 
     /**
@@ -90,5 +92,5 @@ public class AdminFilter implements Filter {
         sb.append(")");
         return (sb.toString());
     }
-    
+
 }

@@ -12,6 +12,7 @@ import jakarta.servlet.http.Cookie;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import model.User;
 
 /**
@@ -79,12 +80,13 @@ public class LoginController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-      //check login
+        //check login
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         boolean remember = request.getParameter("remember") != null;
         //check username va pass
         User account = new UserDAO().login(username, password);
+        HttpSession session = request.getSession();
         if (account != null) {
             //co tich remember me va khong tich
             if (remember) {
@@ -98,7 +100,7 @@ public class LoginController extends HttpServlet {
             request.getSession().setAttribute("account", account);
             response.sendRedirect("home.jsp");
         } else {
-            request.setAttribute("error", "Username or password incorect");
+            session.setAttribute("error", "Username or password incorect");
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
         }

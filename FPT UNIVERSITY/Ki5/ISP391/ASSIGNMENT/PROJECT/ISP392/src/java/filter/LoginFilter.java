@@ -83,6 +83,7 @@ public class LoginFilter implements Filter {
                     return;
                 }
             }
+            session.setAttribute("error", "You do not have access to this page. Please login to doing this feature");
             response1.sendRedirect("http://localhost:9999/ISP392/login.jsp");
         }
     }

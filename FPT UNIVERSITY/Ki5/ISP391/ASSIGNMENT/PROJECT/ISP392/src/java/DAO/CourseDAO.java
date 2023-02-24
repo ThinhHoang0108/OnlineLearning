@@ -38,6 +38,31 @@ public class CourseDAO extends MyDAO {
         }
         return (t);
     }
+     public List<Course> getRandomcourse() {
+        List<Course> t = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.[Course]";
+        Course x;
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = Course.builder().id(rs.getInt(1))
+                        .thumnailURL(rs.getString(2))
+                        .content(rs.getString(3))
+                        .description(rs.getString(4))
+                        .createDate(rs.getDate(5))
+                        .IDcategory(rs.getInt(6))                  
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+    
 
     public Course getCourseById(int blogID) {
         Course x = null;

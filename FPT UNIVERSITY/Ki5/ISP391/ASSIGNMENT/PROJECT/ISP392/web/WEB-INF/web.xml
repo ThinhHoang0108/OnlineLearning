@@ -12,6 +12,7 @@
         <filter-name>LoginFilter</filter-name>
         <url-pattern>/change.jsp</url-pattern>
         <url-pattern>/changeProfile.jsp</url-pattern>
+        <url-pattern>/coursedetail.jsp</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
@@ -19,6 +20,7 @@
         <url-pattern>/listUsers.jsp</url-pattern>
         <url-pattern>/userDetail.jsp</url-pattern>
         <url-pattern>/AddNewQuizz</url-pattern>
+        <url-pattern>/editcourse</url-pattern>
     </filter-mapping>
     <servlet>
         <servlet-name>LoginController</servlet-name>
