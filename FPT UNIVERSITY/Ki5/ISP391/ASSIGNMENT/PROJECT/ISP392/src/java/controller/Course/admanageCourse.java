@@ -5,6 +5,7 @@
 
 package controller.Course;
 
+import DAO.CategoryDAO;
 import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -15,6 +16,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
+import model.Category;
 import model.Course;
 
 /**
@@ -51,11 +53,12 @@ public class admanageCourse extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        //processRequest(request, response);
-        DAO.CourseDAO dao = new CourseDAO();
-            //HttpSession session = request.getSession();
-            List<Course> listCourse = dao.getAllcourse();
+        DAO.CourseDAO daocourse = new CourseDAO();
+        DAO.CategoryDAO daocate = new CategoryDAO();
+            List<Course> listCourse = daocourse.getAllcourse();
+            List<Category> listCategories = daocate.getAllCategory();
             request.setAttribute("listCourse", listCourse);
+            request.setAttribute("listCategories", listCategories);
             request.getRequestDispatcher("editcourse.jsp").forward(request, response);
     } 
 
