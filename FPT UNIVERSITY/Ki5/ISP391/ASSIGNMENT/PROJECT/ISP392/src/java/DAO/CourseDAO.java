@@ -87,4 +87,36 @@ public class CourseDAO extends MyDAO {
         }
         return (x);
     }
+    public void deleteCourse(String id) {
+        xSql = "Delete FROM dbo.Course WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void insertCourse(String thumnail, String content, String description, String datecreate, String category) {
+        String sql = "INSERT INTO [dbo].[Course]\n"
+                + "           ([thumnail]\n"
+                + "           ,[content]\n"               
+                + "           ,[description]\n"
+                + "           ,[datecreated]\n"
+                + "           ,[IDcategory])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,?)";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, content);
+            ps.setString(2, thumnail);
+            ps.setString(3, description);
+            ps.setString(4, datecreate);
+            ps.setString(5, category);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
