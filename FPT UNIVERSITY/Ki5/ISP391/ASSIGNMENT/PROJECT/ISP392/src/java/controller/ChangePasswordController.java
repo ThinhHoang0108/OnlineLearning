@@ -44,6 +44,7 @@ public class ChangePasswordController extends HttpServlet {
             String email = request.getParameter("email");
             request.setAttribute("email", email);
             request.getRequestDispatcher("reset.jsp").forward(request, response);
+            //tuan
         }
         else{
             HttpSession session = request.getSession();
