@@ -38,7 +38,7 @@ public class deleteCourse extends HttpServlet {
         try ( PrintWriter out = response.getWriter()) {
             String xid = request.getParameter("id");
             DAO.CourseDAO dao = new CourseDAO();
-            int id = Integer.parseInt(xid);
+            dao.deleteCourse(xid);
             response.sendRedirect("editcourse");
         }
     }
