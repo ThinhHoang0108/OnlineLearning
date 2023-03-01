@@ -55,7 +55,7 @@
             <!-- ======= Courses Section ======= -->
             <section id="courses" class="courses">
                 <div class="container" data-aos="fade-up">
-                    
+
                     <div class="row" data-aos="zoom-in" data-aos-delay="100">    
                         <c:forEach items="${listCourse}" var="l" >
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
@@ -63,21 +63,9 @@
                                     <img src="${l.thumnailURL}" class="img-fluid" alt="...">
                                     <div class="course-content">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
-                                            <h4>Web Developments</h4> 
+                                            <h4>${l.createDate}</h4> 
                                         </div>
-                                        <h3><a href="coursedetail.jsp">${l.content}</a></h3>
-                                        <p>${l.description}</p>
-                                        <div class="trainer d-flex justify-content-between align-items-center">
-                                            <div class="trainer-profile d-flex align-items-center">
-                                                <img src="assets/img/trainers/trainer-1.jpg" class="img-fluid" alt="">
-                                                <span>Antonio</span>
-                                            </div>
-                                            <div class="trainer-rank d-flex align-items-center">
-                                                <i class="bx bx-user"></i>&nbsp;50
-                                                &nbsp;&nbsp;
-                                                <i class="bx bx-heart"></i>&nbsp;65
-                                            </div>
-                                        </div>
+                                        <h3><a href="coursedetail?courseID=${l.id}">${l.content}</a></h3>
                                     </div>
                                 </div>
                             </div> <!-- End Course Item-->
