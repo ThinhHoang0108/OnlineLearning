@@ -2,8 +2,8 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="utf-8">
+       <head>
+       <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Edit Profile</title>
@@ -20,41 +20,54 @@
                 height: 120px;
             }
         </style>
+    </head>
     <body>
-        <h1>${sessionScope.user.getUsername()}</h1>
-        
-        <form action="editprofile" method="post">
-            <div class="modal-header">						
-                <h4 class="modal-title">Edit Profile</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+         <div id="layoutSidenav_content">
+                <div class="container-fluid px-4 px-lg-5 mb-5" style="margin-top: 91px">
+                    <h1>User Detail of ${acc.name} </h1>
+                    <div class="mb-3 mx-auto d-block shadow p-3 bg-white rounded" style="padding: 10px 0px 10px 10px; border-radius: 8px; width: 32%; margin-left: 10px; width: 100% !important">
+                        
+                        <table>                   
+
+                            <tr><td colspan="2" id="error-fname"></td></tr>
+                           
+                            <tr>
+                                <td> Name: </td>
+                                <td>${acc.name}</td>
+                            </tr>
+                            <tr><td colspan="2" id="error-lname" ></td></tr>
+
+                            <tr>
+                                <td>DOB: </td>
+                                <td>${acc.dob}</td>
+                            </tr>
+                            <tr><td colspan="2" ></td></tr>
+
+                            <tr>
+                                <td>Phone: </td>
+                                <td>${acc.phone}</td>
+                            </tr>
+                            <tr><td colspan="2"></td></tr>
+
+                            <tr>
+                                <td>Username: </td>
+                                <td>${acc.username}</td>
+                            </tr>
+                            <tr><td></td></tr>
+
+                            <tr>
+                                <td>Password: </td>
+                                <td>*********</td>
+                            </tr>
+                            <tr><td colspan="2"></td></tr>
+
+
+                        </table>
+                    </div>
+                </div>  
             </div>
-            <div class="modal-body">
-                <div class="form-group">
-                    <label hidden>
-                    <input value="${sessionScope.user.getUserId()}" name="id" type="text" class="form-control" 'hidden="hidden"' required>
-                    </label>
-                </div>
-                <div class="form-group">
-                    <label>Date of birth</label>
-                    <input value="${sessionScope.user.getDob()}" name="dob" type="Date" class="form-control" readonly required>
-                </div>
-                 <div class="form-group">
-                    <label>Phone Number</label>
-                    <input value="${sessionScope.user.getPhone()}" name="phone" type="text" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>User Name</label>
-                    <input value="${sessionScope.user.getUsername()}" name="username" type="text" class="form-control" required>
-                </div>
-                <div class="form-group">
-                    <label>Password</label>
-                    <input value="${sessionScope.user.getPassword()}" name="pass" type="text" class="form-control" required>
-                </div>
-               
-            </div>
-            <div class="modal-footer">
-                <input type="submit" class="btn btn-success" value="Edit">
-            </div>
-        </form>
+        </div>
+
+    
     </body>
 </html>
