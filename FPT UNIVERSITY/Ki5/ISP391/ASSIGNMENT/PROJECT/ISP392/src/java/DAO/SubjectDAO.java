@@ -16,13 +16,14 @@ import util.MyDAO;
  */
 public class SubjectDAO extends MyDAO {
 
-    public List<Subject> getAllSubject() {
+    public List<Subject> getAllSubject(int courseID) {
         List<Subject> t = new ArrayList<>();
         String xSql = "SELECT s.*, c.Name FROM dbo.Subject s  \n"
-                + "INNER JOIN dbo.Category c ON c.ID = s.IDcategory ";
+                + "INNER JOIN dbo.Category c ON c.ID = s.IDcategory WHERE S.IDCOURSE=?";
         Subject x;
         try {
             ps = con.prepareStatement(xSql);
+            ps.setInt(1, courseID);
             rs = ps.executeQuery();
             while (rs.next()) {
                 Category category = new Category(rs.getInt(5), rs.getString(7));
