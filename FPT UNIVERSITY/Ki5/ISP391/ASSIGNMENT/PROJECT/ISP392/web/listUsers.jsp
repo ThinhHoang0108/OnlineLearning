@@ -41,22 +41,23 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>DOB</th>
-                            <th>Phone</th>
+
                             <th>Username</th>
-                            <th>Password</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${requestScope.listUsers}" var="o">
+                        <c:forEach items="${listUsers}" var="o">
                             <tr>
                                 <td>${o.userID}</td>
-                                <td>${o.name}</td>
-                                <td>${o.dob}</td>
-                                <td>${o.phone}</td>
+                                <td><a href="UserDetail?userID=${o.userID}">${o.name}</a></td>
+                                <td>${o.dob}</td>                               
                                 <td>${o.username}</td>
-                                <td>${o.password}</td>                               
+
                             </tr>
                         </c:forEach>        
+
+
                     </tbody>
                 </table>
             </div>
