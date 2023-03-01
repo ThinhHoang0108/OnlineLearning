@@ -46,12 +46,12 @@ public class CourseDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                x = Course.builder().id(rs.getInt(1))
-                        .thumnailURL(rs.getString(2))
-                        .content(rs.getString(3))
-                        .description(rs.getString(4))
-                        .createDate(rs.getDate(5))
-                        .IDcategory(rs.getInt(6))                  
+                x = Course.builder().id(rs.getInt("ID"))
+                        .thumnailURL(rs.getString("Thumnail"))
+                        .content(rs.getString("Content"))
+                        .description(rs.getString("Description"))
+                        .createDate(rs.getDate("DateCreated"))
+                        .IDcategory(rs.getInt("IDcategory"))                  
                         .build();
                 t.add(x);
             }
@@ -64,20 +64,20 @@ public class CourseDAO extends MyDAO {
     }
     
 
-    public Course getCourseById(int blogID) {
+    public Course getCourseById(int courseID) {
         Course x = null;
         xSql = "SELECT * FROM dbo.Course WHERE ID = ?";
         try {
             ps = con.prepareStatement(xSql);
-            ps.setInt(1, blogID);
+            ps.setInt(1, courseID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                x = Course.builder().id(rs.getInt(1))
-                        .thumnailURL(rs.getString(2))
-                        .content(rs.getString(3))
-                        .description(rs.getString(4))
-                        .createDate(rs.getDate(5))
-                        .IDcategory(rs.getInt(6))                  
+                x = Course.builder().id(rs.getInt("ID"))
+                        .thumnailURL(rs.getString("Thumnail"))
+                        .content(rs.getString("Content"))
+                        .description(rs.getString("Description"))
+                        .createDate(rs.getDate("DateCreated"))
+                        .IDcategory(rs.getInt("IDcategory"))                  
                         .build();
             }
             rs.close();
