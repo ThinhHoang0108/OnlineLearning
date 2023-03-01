@@ -32,9 +32,9 @@ public class SubjectListController extends HttpServlet {
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         SubjectDAO dao = new SubjectDAO();
-        List<Subject> listSubject = dao.getAllSubject();
-        request.setAttribute("listSubject", listSubject);
-        request.getRequestDispatcher("coursedetail.jsp").forward(request, response);
+        //List<Subject> listSubject = dao.getAllSubject();
+        //request.setAttribute("listSubject", listSubject);
+       // request.getRequestDispatcher("coursedetail.jsp").forward(request, response);
         
     } 
 
