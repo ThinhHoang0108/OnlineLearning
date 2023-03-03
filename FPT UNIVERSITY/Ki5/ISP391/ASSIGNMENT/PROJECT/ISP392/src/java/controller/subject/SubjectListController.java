@@ -5,15 +5,11 @@
 
 package controller.subject;
 
-import DAO.SubjectDAO;
 import java.io.IOException;
-import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Subject;
 
 /**
  *
@@ -31,7 +27,7 @@ public class SubjectListController extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        SubjectDAO dao = new SubjectDAO();
+//        SubjectDAO dao = new SubjectDAO();
         //List<Subject> listSubject = dao.getAllSubject();
         //request.setAttribute("listSubject", listSubject);
        // request.getRequestDispatcher("coursedetail.jsp").forward(request, response);

@@ -17,13 +17,10 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Subject {
-
-    private int subjectID;
+public class Lesson {
+    private int lessonID;
+    private String urlVideo;
+    private int courseID;
     private String content;
     private String description;
-    private int cateID;
-    private int courseID;
-    private String thumbnail;
-    private Category category;
 }

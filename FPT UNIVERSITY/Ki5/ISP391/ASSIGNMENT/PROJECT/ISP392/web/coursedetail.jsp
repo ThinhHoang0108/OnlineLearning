@@ -99,22 +99,22 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <ul class="nav nav-tabs flex-column">
-                                <c:forEach items="${listSubject}" var="l">
+                                <c:forEach items="${listLesson}" var="l">
                                     <li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#tab-${l.subjectID}">${l.content}</a>
+                                        <a class="nav-link" data-bs-toggle="tab" href="#tab-${l.lessonID}">${l.content}</a>
                                     </li>
                                 </c:forEach>
                             </ul>
                         </div>
                         <div class="col-lg-9 mt-4 mt-lg-0">
                             <div class="tab-content">
-                                <c:forEach items="${listSubject}" var="g">
-                                    <div class="tab-pane" id="tab-${g.subjectID}">
+                                <c:forEach items="${listLesson}" var="g">
+                                    <div class="tab-pane" id="tab-${g.lessonID}">
                                         <div class="row">
                                             <div class="col-lg-8 details order-2 order-lg-1">
                                                 <h2>${g.description}</h2>
-                                                <p class="fst-italic">Category: ${g.category.name}</p>
-                                                <iframe width="800" height="500" src="https://www.youtube.com/embed/${g.thumbnail}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                                <p class="fst-italic"></p>
+                                                <iframe width="800" height="500" src="https://www.youtube.com/embed/${g.urlVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
                                             </div>
                                         </div>
                                     </div>
