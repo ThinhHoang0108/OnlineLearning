@@ -48,7 +48,7 @@
             <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
                     <h2>Course Details</h2>
-<!--                    <p>Est dolorum ut non facere possimus quibusdam eliasdasdadasdgendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>-->
+                    <!--                    <p>Est dolorum ut non facere possimus quibusdam eliasdasdadasdgendi voluptatem. Quia id aut similique quia voluptas sit quaerat debitis. Rerum omnis ipsam aperiam consequatur laboriosam nemo harum praesentium. </p>-->
                 </div>
             </div><!-- End Breadcrumbs -->
 
@@ -66,20 +66,20 @@
                         </div>
                         <div class="col-lg-4">
 
-<!--                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Trainer</h5>
-                                <p><a href="#">Walter White</a></p>
-                            </div>
-
-                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Course Fee</h5>
-                                <p>$165</p>
-                            </div>
-
-                            <div class="course-info d-flex justify-content-between align-items-center">
-                                <h5>Available Seats</h5>
-                                <p>30</p>
-                            </div>-->
+                            <!--                            <div class="course-info d-flex justify-content-between align-items-center">
+                                                            <h5>Trainer</h5>
+                                                            <p><a href="#">Walter White</a></p>
+                                                        </div>
+                            
+                                                        <div class="course-info d-flex justify-content-between align-items-center">
+                                                            <h5>Course Fee</h5>
+                                                            <p>$165</p>
+                                                        </div>
+                            
+                                                        <div class="course-info d-flex justify-content-between align-items-center">
+                                                            <h5>Available Seats</h5>
+                                                            <p>30</p>
+                                                        </div>-->
 
                             <div class="course-info d-flex justify-content-between align-items-center">
                                 <h5>Schedule</h5>
@@ -122,8 +122,10 @@
                             </div>
                         </div>
                     </div>
-
+                    <div class ="row ">
+                    </div>
                 </div>
+
             </section><!-- End Cource Details Tabs Section -->
 
         </main><!-- End #main -->

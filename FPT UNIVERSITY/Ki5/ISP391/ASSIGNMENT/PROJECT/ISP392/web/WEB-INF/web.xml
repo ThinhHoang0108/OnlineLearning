@@ -118,6 +118,10 @@
         <servlet-name>CourseDetail</servlet-name>
         <servlet-class>controller.Course.CourseDetail</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>DoQuizController</servlet-name>
+        <servlet-class>controller.quiz.DoQuizController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -205,6 +209,10 @@
     <servlet-mapping>
         <servlet-name>CourseDetail</servlet-name>
         <url-pattern>/coursedetail</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>DoQuizController</servlet-name>
+        <url-pattern>/DoQuiz</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
