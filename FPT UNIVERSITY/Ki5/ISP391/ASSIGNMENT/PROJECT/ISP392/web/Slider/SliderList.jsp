@@ -1,4 +1,5 @@
 
+
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,16 +23,16 @@
             }
         </style>
     <body>
-
+       
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
                     <div class="row">
                         <div class="col-sm-6">
-                            <h2>Manage <b> User</b></h2>
+                            <h2>Manage <b>Slider</b></h2>
                         </div>
                         <div class="col-lg-4">
-                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"> <i class="material-icons">&#xE147;</i> <span>Add New User</span></a>				
+                            <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"> <i class="material-icons">&#xE147;</i> <span>Add New Slider</span></a>				
                         </div>
                     </div>
                 </div>
@@ -39,24 +40,27 @@
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Name</th>
-                            <th>DOB</th>
-                            <th>Username</th>
-
+                            <th>Title</th>
+                            <th>Image</th>
+                            <th>Status</th>
+                            <th>Actions</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <c:forEach items="${listUsers}" var="o">
+                        <c:forEach items="${listSliders}" var="o">
                             <tr>
-                                <td>${o.userID}</td>
-                                <td><a href="UserDetail?userID=${o.userID}">${o.name}</a></td>
-                                <td>${o.dob}</td>                               
-                                <td>${o.username}</td>
-
+                                <td>${o.sliderId}</td>
+                                <td>${o.title}</td>
+                                <td>
+                                    <img src="${o.slider_url}">
+                                </td>
+                                <td>${o.status}</td>
+                                <td>
+                                    <a href="#"  class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="#" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                </td>
                             </tr>
                         </c:forEach>        
-
-
                     </tbody>
                 </table>
             </div>
@@ -64,34 +68,37 @@
         <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="addUser" >
+                    <form action="addSlider" >
                         <div class="modal-header">						
-                            <h4 class="modal-title">Add User</h4>
+                            <h4 class="modal-title">Add Slider</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
                         <div class="modal-body">					
 
                             <div class="form-group">
-                                <label>Name</label>
-                                <input name="name" type="text" class="form-control" required>
+                                <label>Title</label>
+                                <input name="title" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Dob</label>
-                                <input name="Dob" type="date" class="form-control" required>
+                                <label>Status</label>
+                                <input name="Status" type="checkbox" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Phone</label>
-                                <input name="phone" type="text" class="form-control" required>
+                                <label>Slider_URL</label>
+                                <input name="slider_url" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>UserName</label>
-                                <input name="username" class="form-control" required>
+                                <label>Content</label>
+                                <input name="content" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Password</label>
-                                <input name="password" class="form-control" required>
+                                <label>Notes</label>
+                                <input name="Notes" type="text" class="form-control" required>
                             </div>
-
+                            <div class="form-group">
+                                <label>CourseID</label>
+                                <input name="Course" type="text" class="form-control" required>
+                            </div>
 
                         </div>
                         <div class="modal-footer">
@@ -102,8 +109,8 @@
                 </div>
             </div>
         </div>
-
-
-        <script src="js/manager.js" type="text/javascript"></script>
-    </body>
+        
+        
+    <script src="js/manager.js" type="text/javascript"></script>
+</body>
 </html>
