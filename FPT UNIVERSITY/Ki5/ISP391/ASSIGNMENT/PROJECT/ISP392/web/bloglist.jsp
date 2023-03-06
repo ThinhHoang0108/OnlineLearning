@@ -78,7 +78,7 @@
             </section><!-- End Events Section -->
             <div class="container">
                 <c:choose>
-                    <c:when test="${listCoursebyPageing == null || listCoursebyPageing.size() ==0}">
+                    <c:when test="${listBlogByPageing == null || listBlogByPageing.size() ==0}">
                         Not have any Course
                     </c:when>
                     <c:when test="${totalPage < 2}">

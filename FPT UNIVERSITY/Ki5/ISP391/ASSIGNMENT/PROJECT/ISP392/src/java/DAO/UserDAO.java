@@ -66,14 +66,14 @@ public class UserDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                x = User.builder().userID(rs.getInt(1))
-                        .name(rs.getString(2))
-                        .dob(rs.getDate(3))
-                        .phone(rs.getString(4))
-                        .username(rs.getString(5))
-                        .password(rs.getString(7))
-                        .email(rs.getString(6))
-                        .roleID(rs.getInt(8))
+                 x = User.builder().userID(rs.getInt("ID"))
+                        .name(rs.getString("Name"))
+                        .dob(rs.getDate("Dateofbirth"))
+                        .phone(rs.getString("PhoneNumber"))
+                        .username(rs.getString("Username"))
+                        .password(rs.getString("Password"))
+                        .email(rs.getString("email"))
+                        .roleID(rs.getInt("IDrole"))
                         .build();
                 t.add(x);
             }
@@ -93,14 +93,14 @@ public class UserDAO extends MyDAO {
             ps.setInt(1, userID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                x = User.builder().userID(rs.getInt(1))
-                        .name(rs.getString(2))
-                        .dob(rs.getDate(3))
-                        .phone(rs.getString(4))
-                        .username(rs.getString(5))
-                        .password(rs.getString(7))
-                        .email(rs.getString(6))
-                        .roleID(rs.getInt(8))
+                 x = User.builder().userID(rs.getInt("ID"))
+                        .name(rs.getString("Name"))
+                        .dob(rs.getDate("Dateofbirth"))
+                        .phone(rs.getString("PhoneNumber"))
+                        .username(rs.getString("Username"))
+                        .password(rs.getString("Password"))
+                        .email(rs.getString("email"))
+                        .roleID(rs.getInt("IDrole"))
                         .build();
             }
 
@@ -172,14 +172,14 @@ public class UserDAO extends MyDAO {
             ps.setString(2, password);
             rs = ps.executeQuery();
             if (rs.next()) {
-                x = User.builder().userID(rs.getInt(1))
-                        .name(rs.getString(2))
-                        .dob(rs.getDate(3))
-                        .phone(rs.getString(4))
-                        .username(rs.getString(5))
-                        .password(rs.getString(7))
-                        .email(rs.getString(6))
-                        .roleID(rs.getInt(8))
+                x = User.builder().userID(rs.getInt("ID"))
+                        .name(rs.getString("Name"))
+                        .dob(rs.getDate("Dateofbirth"))
+                        .phone(rs.getString("PhoneNumber"))
+                        .username(rs.getString("Username"))
+                        .password(rs.getString("Password"))
+                        .email(rs.getString("email"))
+                        .roleID(rs.getInt("IDrole"))
                         .build();
             }
             rs.close();
@@ -198,14 +198,14 @@ public class UserDAO extends MyDAO {
             ps.setString(1, user);
             rs = ps.executeQuery();
             if (rs.next()) {
-                x = User.builder().userID(rs.getInt(1))
-                        .name(rs.getString(2))
-                        .dob(rs.getDate(3))
-                        .phone(rs.getString(4))
-                        .username(rs.getString(5))
-                        .password(rs.getString(7))
-                        .email(rs.getString(6))
-                        .roleID(rs.getInt(8))
+                x = User.builder().userID(rs.getInt("ID"))
+                        .name(rs.getString("Name"))
+                        .dob(rs.getDate("Dateofbirth"))
+                        .phone(rs.getString("PhoneNumber"))
+                        .username(rs.getString("Username"))
+                        .password(rs.getString("Password"))
+                        .email(rs.getString("email"))
+                        .roleID(rs.getInt("IDrole"))
                         .build();
             }
             rs.close();

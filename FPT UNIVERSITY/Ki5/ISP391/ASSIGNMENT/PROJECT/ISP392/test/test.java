@@ -28,6 +28,8 @@ public class test {
 
     public static void main(String[] args) {
         DAO.UserDAO userdao = new UserDAO();
+        List<User> listuser = userdao.getAllUser();
+        System.out.println(listuser);
         DAO.TopicDAO topicdao = new TopicDAO();
         DAO.BlogDAO dao = new BlogDAO();
         DAO.LessonDAO dao1 = new LessonDAO();

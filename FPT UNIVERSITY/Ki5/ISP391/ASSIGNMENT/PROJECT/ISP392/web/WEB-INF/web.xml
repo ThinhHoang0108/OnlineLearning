@@ -16,10 +16,13 @@
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
-        <!--<url-pattern>/editcourse.jsp</url-pattern>-->
         <url-pattern>/listUsers.jsp</url-pattern>
         <url-pattern>/userDetail.jsp</url-pattern>
         <url-pattern>/AddNewQuizz</url-pattern>
+        <url-pattern>/editcourse</url-pattern>
+        <url-pattern>/editcourse.jsp</url-pattern>
+        <url-pattern>/addcourse</url-pattern>
+        <url-pattern>/deletecourse</url-pattern>
         <!--<url-pattern>/editcourse</url-pattern>-->
     </filter-mapping>
     <servlet>

@@ -62,7 +62,7 @@ public class LoginController extends HttpServlet {
             User account = new UserDAO().login(username, password);
             if (account != null) { //cookie hợp lệ
                 request.getSession().setAttribute("account", account);
-                response.sendRedirect("home.jsp");
+                response.sendRedirect("home");
                 return;
             }
         }
@@ -98,7 +98,7 @@ public class LoginController extends HttpServlet {
                 response.addCookie(passwordCookie);
             }
             request.getSession().setAttribute("account", account);
-            response.sendRedirect("home.jsp");
+            response.sendRedirect("home");
         } else {
             session.setAttribute("error", "Username or password incorect");
             request.getRequestDispatcher("login.jsp").forward(request, response);
