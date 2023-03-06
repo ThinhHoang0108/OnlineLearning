@@ -108,7 +108,8 @@ public class test {
 //                System.out.println("home guest");
 //            }
 //        }
-        int i = PAGE_SIZE;
+        List<Blog> listBlogByPageing = dao.getAllBlogByPage(1, Base.PAGE_SIZE);
+        int i = dao.getTotalBlog();
         System.out.println(i);
     }
 }

@@ -265,9 +265,9 @@
         </script>
         <script type="text/javascript">
             function confirmDelete(id) {
-                
+
                 if (confirm("Are you sure you want to delete?")) {
-                    window.location.href = 'deletecourse?id='+id;
+                    window.location.href = 'deletecourse?id=' + id;
                 }
                 return false;
             }
@@ -304,38 +304,87 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${listCourse}" var="l" >  					
-                            <tr>
-                                <td>
-                                    <span class="custom-checkbox">
-                                        <!--<input type="checkbox" id="checkbox5" name="options[]" value="1">-->
-                                        <!--<label for="checkbox5"></label>-->
-                                    </span>
-                                </td>
-                                <td>${l.id}</td>
-                                <td>${l.content}</td>
-                                <td>${l.createDate}</td>
-                                <td>${l.description}</td>
-                                <td>
-                                    <a href="loadCourse?id=${l.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <i onclick="confirmDelete(${l.id})" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                                </td>
-                            </tr> 
+                            <c:forEach items="${sessionScope.listCoursebyPageing}" var="l" >  					
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <!--<input type="checkbox" id="checkbox5" name="options[]" value="1">-->
+                                            <!--<label for="checkbox5"></label>-->
+                                        </span>
+                                    </td>
+                                    <td>${l.id}</td>
+                                    <td>${l.content}</td>
+                                    <td>${l.createDate}</td>
+                                    <td>${l.description}</td>
+                                    <td>
+                                        <a href="loadCourse?id=${l.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                        <i onclick="confirmDelete(${l.id})" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                    </td>
+                                </tr> 
                             </c:forEach>  
                         </tbody>
                     </table>
-                    <div class="clearfix">
-                        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                        <ul class="pagination">
-                            <li class="page-item disabled"><a href="#">Previous</a></li>
-                            <li class="page-item"><a href="#" class="page-link">1</a></li>
-                            <li class="page-item"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item"><a href="#" class="page-link">4</a></li>
-                            <li class="page-item"><a href="#" class="page-link">5</a></li>
-                            <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                        </ul>
-                    </div>
+                    <div class="container">
+                        <c:choose>
+                            <c:when test="${listCoursebyPageing == null || listCoursebyPageing.size() ==0}">
+                                Not have any Course
+                            </c:when>
+                            <c:when test="${totalPage < 2}">
+                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <c:forEach begin="1" end="${totalPage}" var="i">
+                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                            </c:forEach>
+                                    </ul>
+                                </nav>
+                            </c:when>  
+                            <c:when test="${page < 2}">
+                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <li class="page-item disabled">
+                                            <span class="page-link">Previous</span>
+                                        </li>
+                                        <c:forEach begin="1" end="${totalPage}" var="i">
+                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                            </c:forEach>
+                                        <li class="page-item">
+                                            <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </c:when>  
+                            <c:when test="${page + 1 > totalPage}">
+                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
+                                        </li>
+                                        <c:forEach begin="1" end="${totalPage}" var="i">
+                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                            </c:forEach>
+                                        <li class="page-item disabled">
+                                            <span class="page-link">Next</span>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </c:when>
+                            <c:otherwise>
+                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                    <ul class="pagination">
+                                        <li class="page-item">
+                                            <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
+                                        </li>
+                                        <c:forEach begin="1" end="${totalPage}" var="i">
+                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                            </c:forEach>
+                                        <li class="page-item">
+                                            <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
+                                        </li>
+                                    </ul>
+                                </nav>
+                            </c:otherwise>
+                        </c:choose>
+                    </div><
                 </div>
             </div>        
         </div>
@@ -357,7 +406,7 @@
                                 <label>Content</label>
                                 <input name="content" type="text" class="form-control" required>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea name="description" class="form-control" required></textarea>
@@ -370,7 +419,7 @@
                                 <label>Category</label>
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listCategories}" var="lc">
-                                       <option value="${lc.id}">${lc.name}</option>
+                                        <option value="${lc.id}">${lc.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -413,7 +462,7 @@
                                 <label>Category</label>
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listCategories}" var="lc">
-                                       <option value="${lc.id}">${lc.name}</option>
+                                        <option value="${lc.id}">${lc.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>

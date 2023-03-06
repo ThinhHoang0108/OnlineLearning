@@ -4,6 +4,7 @@
  */
 package controller;
 
+import Base.Base;
 import DAO.BlogDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -34,10 +35,24 @@ public class BlogController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
             DAO.BlogDAO dao = new BlogDAO();
+            int totalBlog = dao.getTotalBlog();
+            int totalPage = totalBlog / Base.PAGE_SIZE;
+            if (totalBlog % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
             List<Blog> listBlog = dao.getAllBlog();
-            HttpSession session = request.getSession();
-            session.setAttribute("listBlog", listBlog);
+            request.getSession().setAttribute("listBlog", listBlog);
+            List<Blog> listBlogByPageing = dao.getAllBlogByPage(page, Base.PAGE_SIZE);
+            request.getSession().setAttribute("listBlogByPageing", listBlogByPageing);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "blog?");
             request.getRequestDispatcher("bloglist.jsp").forward(request, response);
         }
     }

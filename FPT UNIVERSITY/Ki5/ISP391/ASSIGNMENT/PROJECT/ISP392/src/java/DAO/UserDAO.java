@@ -257,4 +257,34 @@ public class UserDAO extends MyDAO {
 
     }
 
+    public List<User> getAllUserByPage(int page, int PAGE_SIZE) {
+        List<User> t = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.[User] ORDER BY ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        User x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE);
+            ps.setInt(3, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = User.builder().userID(rs.getInt("ID"))
+                        .name(rs.getString("Name"))
+                        .dob(rs.getDate("Dateofbirth"))
+                        .phone(rs.getString("PhoneNumber"))
+                        .username(rs.getString("Username"))
+                        .password(rs.getString("Password"))
+                        .email(rs.getString("email"))
+                        .roleID(rs.getInt("IDrole"))
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
 }

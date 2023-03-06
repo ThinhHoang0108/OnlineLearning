@@ -4,6 +4,8 @@
  */
 package controller;
 
+import Base.Base;
+import DAO.CourseDAO;
 import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -36,9 +38,25 @@ public class UserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
             UserDAO d = new UserDAO();
+            int totalUser = d.getNumberUser();
+            int totalPage = totalUser / Base.PAGE_SIZE;
+            if (totalUser % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
             List<User> listUsers = d.getAllUser();
             request.setAttribute("listUsers", listUsers);
+            request.getSession().setAttribute("listUsers", listUsers);
+            List<User> listUserByPageing = d.getAllUserByPage(page, Base.PAGE_SIZE);
+            request.getSession().setAttribute("listUserByPageing", listUserByPageing);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "manageUser?");
             request.getRequestDispatcher("listUsers.jsp").forward(request, response);
         }
     }

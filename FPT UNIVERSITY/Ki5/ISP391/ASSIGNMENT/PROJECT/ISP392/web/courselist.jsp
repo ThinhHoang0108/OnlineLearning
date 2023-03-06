@@ -73,7 +73,7 @@
                     </div>
                     <!-- End Course Item-->
 
-            </section><!-- End Courses Section -->
+            </section>
             <div class="container">
                 <c:choose>
                     <c:when test="${listCoursebyPageing == null || listCoursebyPageing.size() ==0}">
@@ -134,7 +134,8 @@
                         </nav>
                     </c:otherwise>
                 </c:choose>
-            </div>
+            </div><!-- End Courses Section -->
+
         </main><!-- End #main -->
         <!-- ======= Footer ======= -->
         <%@ include file="component/footer.jsp" %>
