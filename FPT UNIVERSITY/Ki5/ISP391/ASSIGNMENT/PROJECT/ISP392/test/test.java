@@ -1,5 +1,6 @@
 
 import Base.Base;
+import static Base.Base.PAGE_SIZE;
 import DAO.BlogDAO;
 import DAO.LessonDAO;
 import DAO.RoleDAO;
@@ -107,5 +108,7 @@ public class test {
 //                System.out.println("home guest");
 //            }
 //        }
+        int i = PAGE_SIZE;
+        System.out.println(i);
     }
 }

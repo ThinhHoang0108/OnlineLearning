@@ -4,6 +4,7 @@
  */
 package controller.Course;
 
+import Base.Base;
 import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,14 +32,28 @@ public class CourseController extends HttpServlet {
      * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
             DAO.CourseDAO dao = new CourseDAO();
+            int totalCourse = dao.getTotalCourse();
+            int totalPage = totalCourse / Base.PAGE_SIZE;
+            if (totalCourse % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
             List<Course> listCourse = dao.getAllcourse();
-            request.setAttribute("listCourse", listCourse);
+            request.getSession().setAttribute("listCourse", listCourse);
+            List<Course> listCourseByPageing = dao.getAllcourseByPage(page, Base.PAGE_SIZE);
+            request.getSession().setAttribute("listCoursebyPageing", listCourseByPageing);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "courselist?");
             request.getRequestDispatcher("courselist.jsp").forward(request, response);
         }
     }
