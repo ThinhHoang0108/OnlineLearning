@@ -112,13 +112,22 @@
                         </div>
                         <div class="col-lg-9 mt-4 mt-lg-0">
                             <div class="tab-content">
-                                    <div class="row">
-                                        <div class="col-lg-8 details order-2 order-lg-1">
-                                            <h2>${requestScope.lessonGetByLessonID.description}</h2>
-                                            <p class="fst-italic"></p>
-                                            <iframe width="800" height="500" src="https://www.youtube.com/embed/${requestScope.lessonGetByLessonID.urlVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                <div class="row">
+                                    <div class="col-lg-8 details order-2 order-lg-1">
+                                        <h2>${requestScope.lessonGetByLessonID.description}</h2>
+                                        <p class="fst-italic"></p>
+                                        <iframe width="800" height="500" src="https://www.youtube.com/embed/${requestScope.lessonGetByLessonID.urlVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                        <div class="row mt-5">
+                                            <div class="card" style="width: 40%">
+                                                <div class="card-body">
+                                                    <h5 class="card-title">Card title</h5>
+                                                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                                                    <a href="#!" class="btn btn-primary">Button</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
+                                </div>
                             </div>
                         </div>
                     </div>
