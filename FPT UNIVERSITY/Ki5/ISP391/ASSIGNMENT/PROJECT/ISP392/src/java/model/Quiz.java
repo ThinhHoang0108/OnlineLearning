@@ -35,5 +35,7 @@ public class Quiz {
     private int attempt;
     private int lessonID;
     private int duration;
+    private QuizLevel quizlevel;
+    
 
 }

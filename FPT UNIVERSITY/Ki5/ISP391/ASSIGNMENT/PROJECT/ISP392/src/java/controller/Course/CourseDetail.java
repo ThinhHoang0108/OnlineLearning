@@ -55,9 +55,13 @@ public class CourseDetail extends HttpServlet {
                 lessonID = Integer.parseInt(request.getParameter("lessonID"));
                 Lesson lessonGetByLessonID = new LessonDAO().getLessonByLessonID(lessonID);
                 List<Lesson> listLesson = new LessonDAO().getAllLesson(courseID);
+                List<Quiz> listQuizByLessonID = new QuizDao().getAllQuizByLessonID(lessonID);
                 request.getSession().setAttribute("listLesson", listLesson);
                 request.getSession().setAttribute("lessonIDresult", lessonID);
                 request.getSession().setAttribute("courseIDresult", courseID);
+                request.setAttribute("lessonID", lessonID);
+                request.setAttribute("courseID", courseID);
+                request.setAttribute("listQuizByLessonId", listQuizByLessonID);
                 request.setAttribute("lessonGetByLessonID", lessonGetByLessonID);
             }
             request.getRequestDispatcher("coursedetail.jsp").forward(request, response);

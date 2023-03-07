@@ -1,0 +1,46 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
+ */
+package DAO;
+
+import java.util.ArrayList;
+import java.util.List;
+import model.Question;
+import util.MyDAO;
+
+/**
+ *
+ * @author ADMIN
+ */
+public class QuestionDAO extends MyDAO {
+
+    public List<Question> getAllQuestionByQuestionID(int quizzID) {
+        List<Question> t = new ArrayList<>();
+        String xSql = "SELECT * FROM dbo.Question WHERE IDquizz = ?";
+        Question x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizzID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = Question.builder()
+                        .questionID(rs.getInt("questionID"))
+                        .courseID(rs.getInt("courseID"))
+                        .lessonID(rs.getInt("lessonID"))
+                        .status(rs.getBoolean("Status"))
+                        .quizID(rs.getInt("IDquizz"))
+                        .content(rs.getString("content"))
+                        .isMultipleChoice(rs.getBoolean("isMultipleChoice"))
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+}

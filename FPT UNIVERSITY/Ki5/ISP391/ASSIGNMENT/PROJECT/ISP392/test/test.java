@@ -3,6 +3,8 @@ import Base.Base;
 import static Base.Base.PAGE_SIZE;
 import DAO.BlogDAO;
 import DAO.LessonDAO;
+import DAO.QuestionDAO;
+import DAO.QuizDao;
 import DAO.RoleDAO;
 import DAO.SubjectDAO;
 import DAO.TopicDAO;
@@ -11,6 +13,9 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Blog;
 import model.Lesson;
+import model.Question;
+import model.Quiz;
+import model.QuizPoint;
 import model.Role;
 import model.Subject;
 import model.User;
@@ -27,8 +32,11 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        Lesson lesson = new LessonDAO().getLessonByLessonID(2);
-        System.out.println(lesson);
+        Quiz quiz = new QuizDao().getQuizByID(2);
+        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
+        System.out.println(quiz);
+//        Lesson lesson = new LessonDAO().getLessonByLessonID(2);
+//        System.out.println(lesson);
 //        DAO.UserDAO userdao = new UserDAO();
 //        List<User> listuser = userdao.getAllUser();
 //        System.out.println(listuser);

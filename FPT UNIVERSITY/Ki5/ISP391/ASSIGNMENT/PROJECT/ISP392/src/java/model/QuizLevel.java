@@ -22,4 +22,12 @@ public class QuizLevel {
     private int quizLevelId;
     private String quizLevelName;
 
+    public QuizLevel() {
+    }
+
+    public QuizLevel(int quizLevelId, String quizLevelName) {
+        this.quizLevelId = quizLevelId;
+        this.quizLevelName = quizLevelName;
+    }
+
 }
