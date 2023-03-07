@@ -65,7 +65,7 @@
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h4>${l.createDate}</h4> 
                                         </div>
-                                        <h3><a href="coursedetail?courseID=${l.id}">${l.content}</a></h3>
+                                        <h3><a href="coursedetail?courseID=${l.id}&method=get">${l.content}</a></h3>
                                     </div>
                                 </div>
                             </div> <!-- End Course Item-->

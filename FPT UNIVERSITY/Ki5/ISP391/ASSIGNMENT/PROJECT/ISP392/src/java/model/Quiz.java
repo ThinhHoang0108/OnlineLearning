@@ -19,6 +19,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Quiz {
+
     private int quizID;
     private String content;
     private int levelID;
@@ -33,4 +34,6 @@ public class Quiz {
     private int totalQuestion;
     private int attempt;
     private int lessonID;
+    private int duration;
+
 }

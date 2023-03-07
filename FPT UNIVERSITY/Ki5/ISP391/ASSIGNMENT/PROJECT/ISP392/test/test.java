@@ -27,14 +27,16 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        DAO.UserDAO userdao = new UserDAO();
-        List<User> listuser = userdao.getAllUser();
-        System.out.println(listuser);
-        DAO.TopicDAO topicdao = new TopicDAO();
-        DAO.BlogDAO dao = new BlogDAO();
-        DAO.LessonDAO dao1 = new LessonDAO();
-        List<Lesson> list = dao1.getAllLesson(1);
-        System.out.println(list);
+        Lesson lesson = new LessonDAO().getLessonByLessonID(2);
+        System.out.println(lesson);
+//        DAO.UserDAO userdao = new UserDAO();
+//        List<User> listuser = userdao.getAllUser();
+//        System.out.println(listuser);
+//        DAO.TopicDAO topicdao = new TopicDAO();
+//        DAO.BlogDAO dao = new BlogDAO();
+//        DAO.LessonDAO dao1 = new LessonDAO();
+//        List<Lesson> list = dao1.getAllLesson(1);
+//        System.out.println(list);
 //        int t = userdao.getNumberUser();
 //        int t1 = topicdao.getNumberTopic();
 //        Blog blog = dao.getBlogById(3);
@@ -110,8 +112,8 @@ public class test {
 //                System.out.println("home guest");
 //            }
 //        }
-        List<Blog> listBlogByPageing = dao.getAllBlogByPage(1, Base.PAGE_SIZE);
-        int i = dao.getTotalBlog();
-        System.out.println(i);
+//        List<Blog> listBlogByPageing = dao.getAllBlogByPage(1, Base.PAGE_SIZE);
+//        int i = dao.getTotalBlog();
+//        System.out.println(i);
     }
 }

@@ -6,6 +6,7 @@ package controller.Course;
 
 import DAO.CourseDAO;
 import DAO.LessonDAO;
+import DAO.QuizDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Course;
 import model.Lesson;
+import model.Quiz;
 
 /**
  *
@@ -38,14 +40,26 @@ public class CourseDetail extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             int courseID = Integer.parseInt(request.getParameter("courseID"));
+            String method = request.getParameter("method");
             //Course course = new CourseDAO;
-            String xid = request.getParameter("id");
-            DAO.CourseDAO dao = new CourseDAO();
-            Course course = dao.getCourseById(courseID);
-            request.setAttribute("course", course);
-            LessonDAO dao1 = new LessonDAO();
-            List<Lesson> listLesson = dao1.getAllLesson(courseID);
-            request.setAttribute("listLesson", listLesson);
+//            String xid = request.getParameter("id");
+            int lessonID = 0;
+            if (method.equalsIgnoreCase("get")) {
+                DAO.CourseDAO dao = new CourseDAO();
+                Course course = dao.getCourseById(courseID);
+                LessonDAO dao1 = new LessonDAO();
+                List<Lesson> listLesson = dao1.getAllLesson(courseID);
+                request.getSession().setAttribute("course", course);
+                request.getSession().setAttribute("listLesson", listLesson);
+            } else if (method.equalsIgnoreCase("post")) {
+                lessonID = Integer.parseInt(request.getParameter("lessonID"));
+                Lesson lessonGetByLessonID = new LessonDAO().getLessonByLessonID(lessonID);
+                List<Lesson> listLesson = new LessonDAO().getAllLesson(courseID);
+                request.getSession().setAttribute("listLesson", listLesson);
+                request.getSession().setAttribute("lessonIDresult", lessonID);
+                request.getSession().setAttribute("courseIDresult", courseID);
+                request.setAttribute("lessonGetByLessonID", lessonGetByLessonID);
+            }
             request.getRequestDispatcher("coursedetail.jsp").forward(request, response);
         }
     }

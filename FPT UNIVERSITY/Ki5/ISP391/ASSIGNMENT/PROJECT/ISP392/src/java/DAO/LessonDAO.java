@@ -15,8 +15,9 @@ import util.MyDAO;
  *
  * @author ADMIN
  */
-public class LessonDAO extends MyDAO{
-     public List<Lesson> getAllLesson(int courseID) {
+public class LessonDAO extends MyDAO {
+
+    public List<Lesson> getAllLesson(int courseID) {
         List<Lesson> t = new ArrayList<>();
         String xSql = "  SELECT * FROM Lesson WHERE IDcourse = ?";
         Lesson x;
@@ -41,4 +42,29 @@ public class LessonDAO extends MyDAO{
         }
         return (t);
     }
+
+    public Lesson getLessonByLessonID(int lessonID) {
+        Lesson x = null;
+        xSql = "SELECT * FROM Lesson WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, lessonID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                x = Lesson.builder()
+                        .lessonID(rs.getInt("ID"))
+                        .urlVideo(rs.getString("urlVideo"))
+                        .content(rs.getString("Content"))
+                        .courseID(rs.getInt("IDcourse"))
+                        .description(rs.getString("Description"))
+                        .build();
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (x);
+    }
+
 }
