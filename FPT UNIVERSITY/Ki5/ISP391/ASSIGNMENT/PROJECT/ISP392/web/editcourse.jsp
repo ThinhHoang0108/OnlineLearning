@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -265,13 +265,20 @@
         </script>
         <script type="text/javascript">
             function confirmDelete(id) {
-                
+
                 if (confirm("Are you sure you want to delete?")) {
-                    window.location.href = 'deletecourse?id='+id;
+                    window.location.href = 'deletecourse?id=' + id;
+                }
+                return false;
+            }
+            function edit(id) {
+                {
+                    window.location.href = 'loadcourse?courseID=' + id;
                 }
                 return false;
             }
         </script>
+        
     </head>
     <body>
         <div class="container-xl">
@@ -305,22 +312,22 @@
                         </thead>
                         <tbody>
                             <c:forEach items="${listCourse}" var="l" >  					
-                            <tr>
-                                <td>
-                                    <span class="custom-checkbox">
-                                        <!--<input type="checkbox" id="checkbox5" name="options[]" value="1">-->
-                                        <!--<label for="checkbox5"></label>-->
-                                    </span>
-                                </td>
-                                <td>${l.id}</td>
-                                <td>${l.content}</td>
-                                <td>${l.createDate}</td>
-                                <td>${l.description}</td>
-                                <td>
-                                    <a href="loadCourse?id=${l.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
-                                    <i onclick="confirmDelete(${l.id})" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                                </td>
-                            </tr> 
+                                <tr>
+                                    <td>
+                                        <span class="custom-checkbox">
+                                            <!--<input type="checkbox" id="checkbox5" name="options[]" value="1">-->
+                                            <!--<label for="checkbox5"></label>-->
+                                        </span>
+                                    </td>
+                                    <td>${l.id}</td>
+                                    <td>${l.content}</td>
+                                    <td>${l.createDate}</td>
+                                    <td>${l.description}</td>
+                                    <td>         
+                                        <i onclick="edit(${l.id})" class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
+                                        <i onclick="confirmDelete(${l.id})" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
+                                    </td>
+                                </tr> 
                             </c:forEach>  
                         </tbody>
                     </table>
@@ -357,7 +364,7 @@
                                 <label>Content</label>
                                 <input name="content" type="text" class="form-control" required>
                             </div>
-                            
+
                             <div class="form-group">
                                 <label>Description</label>
                                 <textarea name="description" class="form-control" required></textarea>
@@ -370,7 +377,7 @@
                                 <label>Category</label>
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listCategories}" var="lc">
-                                       <option value="${lc.id}">${lc.name}</option>
+                                        <option value="${lc.id}">${lc.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
@@ -395,25 +402,25 @@
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Thumnail</label>
-                                <input name="thumnail" type="text" class="form-control" required>
+                                <input value= "${course.thumnailURL}" name="thumnail" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
-                                <input name="content" type="text" class="form-control" required>
+                                <input value= "${course.content}" name="content" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="description" class="form-control" required></textarea>
+                                <textarea value= "${course.description}" name="description" class="form-control" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Date Create</label>
-                                <input name="datecreate" type="text" class="form-control" required>
+                                <input value= "${course.createDate}" name="datecreate" type="text" class="form-control" required>
                             </div>	
                             <div class="form-group">
                                 <label>Category</label>
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listCategories}" var="lc">
-                                       <option value="${lc.id}">${lc.name}</option>
+                                        <option value="${lc.id}">${lc.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
