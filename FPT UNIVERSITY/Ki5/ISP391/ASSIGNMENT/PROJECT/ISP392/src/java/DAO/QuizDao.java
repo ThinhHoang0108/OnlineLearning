@@ -99,7 +99,6 @@ public class QuizDao extends MyDAO {
             ps.setInt(2, quizID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
                 x = QuizPoint.builder()
                         .id(rs.getInt("ID"))
                         .userID(rs.getInt("userID"))
