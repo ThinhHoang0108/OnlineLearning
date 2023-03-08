@@ -27,7 +27,7 @@ public class CourseDAO extends MyDAO {
                         .content(rs.getString(3))
                         .description(rs.getString(4))
                         .createDate(rs.getDate(5))
-                        .IDcategory(rs.getInt(6))                  
+                        .IDcategory(rs.getInt(6))
                         .build();
                 t.add(x);
             }
@@ -38,7 +38,7 @@ public class CourseDAO extends MyDAO {
         }
         return (t);
     }
-     public List<Course> getRandomcourse() {
+    public List<Course> getRandomcourse() {
         List<Course> t = new ArrayList<>();
         xSql = "SELECT * FROM dbo.[Course]";
         Course x;
@@ -51,7 +51,7 @@ public class CourseDAO extends MyDAO {
                         .content(rs.getString("Content"))
                         .description(rs.getString("Description"))
                         .createDate(rs.getDate("DateCreated"))
-                        .IDcategory(rs.getInt("IDcategory"))                  
+                        .IDcategory(rs.getInt("IDcategory"))
                         .build();
                 t.add(x);
             }
@@ -62,7 +62,7 @@ public class CourseDAO extends MyDAO {
         }
         return (t);
     }
-    
+
 
     public Course getCourseById(int courseID) {
         Course x = null;
@@ -77,7 +77,7 @@ public class CourseDAO extends MyDAO {
                         .content(rs.getString("Content"))
                         .description(rs.getString("Description"))
                         .createDate(rs.getDate("DateCreated"))
-                        .IDcategory(rs.getInt("IDcategory"))                  
+                        .IDcategory(rs.getInt("IDcategory"))
                         .build();
             }
             rs.close();
@@ -101,7 +101,7 @@ public class CourseDAO extends MyDAO {
     public void insertCourse(String thumnail, String content, String description, String datecreate, String category) {
         String sql = "INSERT INTO [dbo].[Course]\n"
                 + "           ([thumnail]\n"
-                + "           ,[content]\n"               
+                + "           ,[content]\n"
                 + "           ,[description]\n"
                 + "           ,[datecreated]\n"
                 + "           ,[IDcategory])\n"
@@ -114,6 +114,27 @@ public class CourseDAO extends MyDAO {
             ps.setString(3, description);
             ps.setString(4, datecreate);
             ps.setString(5, category);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
+    public void updateCourse(String thumnail, String content, String description, String datecreate, String category, String id) {
+        String sql = "UPDATE [Course]\n"
+                + "SET       [thumnail] = ?\n"
+                + ",[content] = ?\n"
+                + ",[description]= ?\n"
+                + ",[datecreated]= ?\n"
+                + ",[IDcategory]= ?\n"
+                + "WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, content);
+            ps.setString(2, thumnail);
+            ps.setString(3, description);
+            ps.setString(4, datecreate);
+            ps.setString(5, category);
+            ps.setString(6, id);
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
