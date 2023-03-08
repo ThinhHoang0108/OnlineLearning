@@ -27,4 +27,13 @@ public class Question {
     private String content;
     private boolean isMultipleChoice;
     private String level;
+
+    public boolean isIsMultipleChoice() {
+        return isMultipleChoice;
+    }
+
+    public void setIsMultipleChoice(boolean isMultipleChoice) {
+        this.isMultipleChoice = isMultipleChoice;
+    }
+    
 }

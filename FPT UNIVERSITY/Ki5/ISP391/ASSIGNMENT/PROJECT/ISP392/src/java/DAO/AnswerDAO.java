@@ -16,7 +16,7 @@ import util.MyDAO;
 public class AnswerDAO extends MyDAO{
     public List<Answer> getAllAnswerByAnswerID(int questionID) {
         List<Answer> t = new ArrayList<>();
-        String xSql = "SELECT * FROM dbo.Answer WHERE IDquizz = ?";
+        String xSql = "SELECT * FROM dbo.Answer WHERE quesId = ?";
         Answer x;
         try {
             ps = con.prepareStatement(xSql);

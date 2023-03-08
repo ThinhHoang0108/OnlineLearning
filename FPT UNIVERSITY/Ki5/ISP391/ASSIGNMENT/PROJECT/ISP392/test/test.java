@@ -1,6 +1,7 @@
 
 import Base.Base;
 import static Base.Base.PAGE_SIZE;
+import DAO.AnswerDAO;
 import DAO.BlogDAO;
 import DAO.LessonDAO;
 import DAO.QuestionDAO;
@@ -10,7 +11,9 @@ import DAO.SubjectDAO;
 import DAO.TopicDAO;
 import DAO.UserDAO;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import model.Answer;
 import model.Blog;
 import model.Lesson;
 import model.Question;
@@ -32,9 +35,10 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        Quiz quiz = new QuizDao().getQuizByID(2);
-        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
-        System.out.println(quiz);
+//        Quiz quiz = new QuizDao().getQuizByID(2);
+//        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
+//        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
+//        System.out.println(listQ);
 //        Lesson lesson = new LessonDAO().getLessonByLessonID(2);
 //        System.out.println(lesson);
 //        DAO.UserDAO userdao = new UserDAO();
@@ -123,5 +127,6 @@ public class test {
 //        List<Blog> listBlogByPageing = dao.getAllBlogByPage(1, Base.PAGE_SIZE);
 //        int i = dao.getTotalBlog();
 //        System.out.println(i);
+    } 
     }
-}
+

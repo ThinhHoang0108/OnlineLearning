@@ -72,8 +72,7 @@ public class DoQuizController extends HttpServlet {
         //So lan toi da khi lam quiz
         int maxAttempt = quiz.getAttempt();
         int lastAttempt = 0;
-        if (lastQuizPoint == null) { //Have not Attemp
-        } else {
+        if (lastQuizPoint != null){
             lastAttempt = lastQuizPoint.getAttempt(); //get The number user have been Attempt
         }
         if (lastAttempt < maxAttempt) {
@@ -110,7 +109,8 @@ public class DoQuizController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int answerCorrect = 0;
+        String [] questionIDarr = request.getParameterValues("questionID");
     }
 
     /**
