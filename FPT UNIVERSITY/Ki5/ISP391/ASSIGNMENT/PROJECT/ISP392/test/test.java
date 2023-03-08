@@ -35,6 +35,8 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
+        new QuizDao().insertQuizPoint(6,2,20,1,8,10);
+
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
@@ -127,6 +129,5 @@ public class test {
 //        List<Blog> listBlogByPageing = dao.getAllBlogByPage(1, Base.PAGE_SIZE);
 //        int i = dao.getTotalBlog();
 //        System.out.println(i);
-    } 
     }
-
+}

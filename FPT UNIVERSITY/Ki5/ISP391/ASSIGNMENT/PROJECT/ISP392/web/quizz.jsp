@@ -74,6 +74,7 @@
                             <ol class="text-left">
                                 <c:forEach items="${sessionScope.DOING_QUIZZ}" var="questionMap">
                                     <li class="ms-3"><h4 class="text-left" id="title" style="display: block;">${questionMap.key.content}</h4>
+                                        <input type="hidden" name="questionID" value="${questionMap.key.questionID}">
                                         <ol type="a" class="m-3">
                                             <c:if test="${questionMap.key.isIsMultipleChoice() eq 'true'}">
                                                 <c:forEach var="ans" items="${questionMap.value}">

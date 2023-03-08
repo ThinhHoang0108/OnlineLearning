@@ -43,4 +43,30 @@ public class QuestionDAO extends MyDAO {
         return (t);
     }
 
+    public Question getQuestionByID(int questionID) {
+        Question x = null;
+        xSql = "SELECT * FROM dbo.Question WHERE questionID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, questionID);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                x = Question.builder()
+                        .questionID(rs.getInt("questionID"))
+                        .courseID(rs.getInt("courseID"))
+                        .lessonID(rs.getInt("lessonID"))
+                        .status(rs.getBoolean("Status"))
+                        .quizID(rs.getInt("IDquizz"))
+                        .content(rs.getString("content"))
+                        .isMultipleChoice(rs.getBoolean("isMultipleChoice"))
+                        .build();
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (x);
+    }
+
 }
