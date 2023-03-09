@@ -6,6 +6,7 @@ import DAO.BlogDAO;
 import DAO.LessonDAO;
 import DAO.QuestionDAO;
 import DAO.QuizDao;
+import DAO.QuizPointDAO;
 import DAO.RoleDAO;
 import DAO.SubjectDAO;
 import DAO.TopicDAO;
@@ -19,6 +20,7 @@ import model.Lesson;
 import model.Question;
 import model.Quiz;
 import model.QuizPoint;
+import model.QuizPointHistory;
 import model.Role;
 import model.Subject;
 import model.User;
@@ -35,6 +37,9 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
+        List<QuizPointHistory> listQuizPointHistory = new QuizPointDAO().getListQuizPointHisByAccId(1, 3, 6);
+        System.out.println(listQuizPointHistory);
+
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
@@ -127,6 +132,7 @@ public class test {
 //        List<Blog> listBlogByPageing = dao.getAllBlogByPage(1, Base.PAGE_SIZE);
 //        int i = dao.getTotalBlog();
 //        System.out.println(i);
-    } 
+//        QuizPoint lastQuizPoint = new QuizDao().getQuizPointLast(6,2);
+//        System.out.println(lastQuizPoint);
     }
-
+}

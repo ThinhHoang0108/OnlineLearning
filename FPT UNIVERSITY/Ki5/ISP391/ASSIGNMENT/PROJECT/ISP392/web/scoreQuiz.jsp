@@ -50,9 +50,10 @@
                                 <div id="mainContent">
 
                                     <div id = "score">
-                                        <p>Your final score: ${requestScope.SCORE}</p>
+                                        <p>Your final score: ${requestScope.SCORE}/10</p>
                                         <div>
                                             <a href="home.jsp" class="btn bg-primary text-white rounded-pill mb-2" style="float: bottom"/>Home</a>
+                                            <a href="home.jsp" class="btn bg-primary text-white rounded-pill mb-2" style="float: bottom"/>Review</a>
                                         </div>
                                     </div>
                                 </div>

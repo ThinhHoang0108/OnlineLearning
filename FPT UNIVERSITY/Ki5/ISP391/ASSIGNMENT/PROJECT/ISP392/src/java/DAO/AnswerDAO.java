@@ -13,7 +13,8 @@ import util.MyDAO;
  *
  * @author ADMIN
  */
-public class AnswerDAO extends MyDAO{
+public class AnswerDAO extends MyDAO {
+
     public List<Answer> getAllAnswerByAnswerID(int questionID) {
         List<Answer> t = new ArrayList<>();
         String xSql = "SELECT * FROM dbo.Answer WHERE quesId = ?";
@@ -37,5 +38,38 @@ public class AnswerDAO extends MyDAO{
             e.printStackTrace();
         }
         return (t);
+    }
+
+    public int getAllCorrectAns(int questionID) {
+        int t = 0;
+        xSql = "SELECT COUNT(answerId) AS TotalCorrect FROM dbo.Answer WHERE quesId = ? AND correct = 1";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                t = rs.getInt("TotalCorrect");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public boolean checkAnswerIsCorrect(int answerID) {
+        xSql = "SELECT * FROM dbo.Answer WHERE answerId = ? AND correct = 1";
+
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, answerID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 }

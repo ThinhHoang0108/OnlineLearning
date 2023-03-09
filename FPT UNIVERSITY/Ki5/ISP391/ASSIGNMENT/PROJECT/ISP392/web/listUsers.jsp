@@ -41,7 +41,6 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>DOB</th>
-
                             <th>Username</th>
 
                         </tr>
