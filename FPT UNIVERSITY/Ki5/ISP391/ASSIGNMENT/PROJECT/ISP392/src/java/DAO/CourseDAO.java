@@ -164,4 +164,26 @@ public class CourseDAO extends MyDAO {
         }
         return 0;
     }
+    
+    public void updateCourse(String thumnail, String content, String description, String datecreate, String category, String id) {
+        String sql = "UPDATE [Course]\n"
+                + "SET       [thumnail] = ?\n"
+                + ",[content] = ?\n"
+                + ",[description]= ?\n"
+                + ",[datecreated]= ?\n"
+                + ",[IDcategory]= ?\n"
+                + "WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, content);
+            ps.setString(2, thumnail);
+            ps.setString(3, description);
+            ps.setString(4, datecreate);
+            ps.setString(5, category);
+            ps.setString(6, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }

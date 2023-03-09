@@ -1,13 +1,18 @@
-<!DOCTYPE html>
+<%-- 
+    Document   : updatecourse
+    Created on : Mar 1, 2023, 4:21:05 PM
+    Author     : vuxua
+--%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
-<html lang="en">
+<!DOCTYPE html>
+<html> 
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <title>Bootstrap CRUD Data Table for Database with Modal Form</title>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto|Varela+Round">-->
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+        <!--<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -238,7 +243,7 @@
                 font-weight: normal;
             }
         </style>
-        <script>
+<!--        <script>
             $(document).ready(function () {
                 // Activate tooltip
                 $('[data-toggle="tooltip"]').tooltip();
@@ -262,197 +267,56 @@
                     }
                 });
             });
-        </script>
-        <script type="text/javascript">
-            function confirmDelete(id) {
-
-                if (confirm("Are you sure you want to delete?")) {
-                    window.location.href = 'deletecourse?id=' + id;
-                }
-                return false;
-            }
-            function edit(id) {
-                {
-                    window.location.href = 'loadcourse?courseID=' + id;
-                }
-                return false;
-            }
-        </script>
-        
+        </script>-->
     </head>
     <body>
-        <div class="container-xl">
-            <div class="table-responsive">
-                <div class="table-wrapper">
-                    <div class="table-title">
-                        <div class="row">
-                            <div class="col-sm-6">
-                                <h2>Manage <b>Course</b></h2>
-                            </div>
-                            <div class="col-sm-6">
-                                <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"><i class="material-icons">&#xE147;</i> <span>Add new Course</span></a>
-                            </div>
-                        </div>
-                    </div>
-                    <table class="table table-striped table-hover">
-                        <thead>
-                            <tr>
-                                <th>
-                                    <span class="custom-checkbox">
-                                        <!--<input type="checkbox" id="selectAll">-->
-                                        <!--<label for="selectAll"></label>-->
-                                    </span>
-                                </th>
-                                <th>ID</th>
-                                <th>Content</th>
-                                <th>Create Date</th>
-                                <th>Description</th>
-                                <th>Actions</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <c:forEach items="${listCourse}" var="l" >  					
-                                <tr>
-                                    <td>
-                                        <span class="custom-checkbox">
-                                            <!--<input type="checkbox" id="checkbox5" name="options[]" value="1">-->
-                                            <!--<label for="checkbox5"></label>-->
-                                        </span>
-                                    </td>
-                                    <td>${l.id}</td>
-                                    <td>${l.content}</td>
-                                    <td>${l.createDate}</td>
-                                    <td>${l.description}</td>
-                                    <td>         
-                                        <i onclick="edit(${l.id})" class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
-                                        <i onclick="confirmDelete(${l.id})" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
-                                    </td>
-                                </tr> 
-                            </c:forEach>  
-                        </tbody>
-                    </table>
-                    <div class="clearfix">
-                        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
-                        <ul class="pagination">
-                            <li class="page-item disabled"><a href="#">Previous</a></li>
-                            <li class="page-item"><a href="#" class="page-link">1</a></li>
-                            <li class="page-item"><a href="#" class="page-link">2</a></li>
-                            <li class="page-item active"><a href="#" class="page-link">3</a></li>
-                            <li class="page-item"><a href="#" class="page-link">4</a></li>
-                            <li class="page-item"><a href="#" class="page-link">5</a></li>
-                            <li class="page-item"><a href="#" class="page-link">Next</a></li>
-                        </ul>
-                    </div>
-                </div>
-            </div>        
-        </div>
         <!-- Edit Modal HTML -->
-        <div id="addEmployeeModal" class="modal fade">
+        <h1>Edit Course</h1>
+        <div id="editEmployeeModal" >
             <div class="modal-dialog">
                 <div class="modal-content">
-                    <form action="addcourse" method="post">
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Add Course</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="form-group">
-                                <label>Thumnail</label>
-                                <input name="thumnail" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Content</label>
-                                <input name="content" type="text" class="form-control" required>
-                            </div>
-
-                            <div class="form-group">
-                                <label>Description</label>
-                                <textarea name="description" class="form-control" required></textarea>
-                            </div>
-                            <div class="form-group">
-                                <label>Date Create</label>
-                                <input name="datecreate" type="text" class="form-control" required>
-                            </div>
-                            <div class="form-group">
-                                <label>Category</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
-                                    <c:forEach items="${listCategories}" var="lc">
-                                        <option value="${lc.id}">${lc.name}</option>
-                                    </c:forEach>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-success" value="Add">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-        <!-- Edit Modal HTML -->
-        <div id="editEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
+                    <form action="updatecourse" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Edit Course</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
                         </div>
-                        <div class="modal-body">					
+                        <div class="modal-body">
+                            <div class="form-group">
+                                <label>ID</label>
+                                <input value= "${requestScope.course.id}" name="id" type="text" class="form-control" readonly required>
+                            </div>
                             <div class="form-group">
                                 <label>Thumnail</label>
-                                <input value= "${course.thumnailURL}" name="thumnail" type="text" class="form-control" required>
+                                <input value= "${requestScope.course.thumnailURL}" name="thumnail" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
-                                <input value= "${course.content}" name="content" type="text" class="form-control" required>
+                                <input value= "${requestScope.course.content}" name="content" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea value= "${course.description}" name="description" class="form-control" required></textarea>
+                                <textarea name="description" class="form-control" required>${requestScope.course.description}</textarea>
                             </div>
                             <div class="form-group">
                                 <label>Date Create</label>
-                                <input value= "${course.createDate}" name="datecreate" type="text" class="form-control" required>
+                                <input value= "${requestScope.course.createDate}" name="datecreate" type="text" class="form-control" required>
                             </div>	
                             <div class="form-group">
                                 <label>Category</label>
                                 <select name="category" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listCategories}" var="lc">
-                                        <option value="${lc.id}">${lc.name}</option>
+                                       <option value="${lc.id}">${lc.name}</option>
                                     </c:forEach>
                                 </select>
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
                             <input type="submit" class="btn btn-info" value="Save">
                         </div>
                     </form>
                 </div>
             </div>
         </div>
-        <!-- Delete Modal HTML -->
-        <div id="deleteEmployeeModal" class="modal fade">
-            <div class="modal-dialog">
-                <div class="modal-content">
-                    <form>
-                        <div class="modal-header">						
-                            <h4 class="modal-title">Delete Employee</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-                        </div>
-                        <div class="modal-body">					
-                            <p>Are you sure you want to delete these Records?</p>
-                            <p class="text-warning"><small>This action cannot be undone.</small></p>
-                        </div>
-                        <div class="modal-footer">
-                            <input type="button" class="btn btn-default" data-dismiss="modal" value="Cancel">
-                            <input type="submit" class="btn btn-danger" value="Delete">
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
+
     </body>
 </html>
