@@ -1,6 +1,6 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -271,7 +271,14 @@
                 }
                 return false;
             }
+            function edit(id) {
+                {
+                    window.location.href = 'loadcourse?courseID=' + id;
+                }
+                return false;
+            }
         </script>
+        
     </head>
     <body>
         <div class="container-xl">
@@ -304,7 +311,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${sessionScope.listCoursebyPageing}" var="l" >  					
+                            <c:forEach items="${listCourse}" var="l" >  					
                                 <tr>
                                     <td>
                                         <span class="custom-checkbox">
@@ -316,75 +323,26 @@
                                     <td>${l.content}</td>
                                     <td>${l.createDate}</td>
                                     <td>${l.description}</td>
-                                    <td>
-                                        <a href="loadCourse?id=${l.id}" class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <td>         
+                                        <i onclick="edit(${l.id})" class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i>
                                         <i onclick="confirmDelete(${l.id})" class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i>
                                     </td>
                                 </tr> 
                             </c:forEach>  
                         </tbody>
                     </table>
-                    <div class="container">
-                        <c:choose>
-                            <c:when test="${listCoursebyPageing == null || listCoursebyPageing.size() ==0}">
-                                Not have any Course
-                            </c:when>
-                            <c:when test="${totalPage < 2}">
-                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
-                                    <ul class="pagination">
-                                        <c:forEach begin="1" end="${totalPage}" var="i">
-                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                            </c:forEach>
-                                    </ul>
-                                </nav>
-                            </c:when>  
-                            <c:when test="${page < 2}">
-                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
-                                    <ul class="pagination">
-                                        <li class="page-item disabled">
-                                            <span class="page-link">Previous</span>
-                                        </li>
-                                        <c:forEach begin="1" end="${totalPage}" var="i">
-                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                            </c:forEach>
-                                        <li class="page-item">
-                                            <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </c:when>  
-                            <c:when test="${page + 1 > totalPage}">
-                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
-                                        </li>
-                                        <c:forEach begin="1" end="${totalPage}" var="i">
-                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                            </c:forEach>
-                                        <li class="page-item disabled">
-                                            <span class="page-link">Next</span>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </c:when>
-                            <c:otherwise>
-                                <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
-                                    <ul class="pagination">
-                                        <li class="page-item">
-                                            <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
-                                        </li>
-                                        <c:forEach begin="1" end="${totalPage}" var="i">
-                                            <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                            </c:forEach>
-                                        <li class="page-item">
-                                            <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
-                                        </li>
-                                    </ul>
-                                </nav>
-                            </c:otherwise>
-                        </c:choose>
-                    </div><
+                    <div class="clearfix">
+                        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
+                        <ul class="pagination">
+                            <li class="page-item disabled"><a href="#">Previous</a></li>
+                            <li class="page-item"><a href="#" class="page-link">1</a></li>
+                            <li class="page-item"><a href="#" class="page-link">2</a></li>
+                            <li class="page-item active"><a href="#" class="page-link">3</a></li>
+                            <li class="page-item"><a href="#" class="page-link">4</a></li>
+                            <li class="page-item"><a href="#" class="page-link">5</a></li>
+                            <li class="page-item"><a href="#" class="page-link">Next</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>        
         </div>
@@ -444,19 +402,19 @@
                         <div class="modal-body">					
                             <div class="form-group">
                                 <label>Thumnail</label>
-                                <input name="thumnail" type="text" class="form-control" required>
+                                <input value= "${course.thumnailURL}" name="thumnail" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
-                                <input name="content" type="text" class="form-control" required>
+                                <input value= "${course.content}" name="content" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Description</label>
-                                <textarea name="description" class="form-control" required></textarea>
+                                <textarea value= "${course.description}" name="description" class="form-control" required></textarea>
                             </div>
                             <div class="form-group">
                                 <label>Date Create</label>
-                                <input name="datecreate" type="text" class="form-control" required>
+                                <input value= "${course.createDate}" name="datecreate" type="text" class="form-control" required>
                             </div>	
                             <div class="form-group">
                                 <label>Category</label>
