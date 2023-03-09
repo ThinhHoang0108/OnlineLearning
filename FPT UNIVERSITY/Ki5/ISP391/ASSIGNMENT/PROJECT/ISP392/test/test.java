@@ -6,6 +6,7 @@ import DAO.BlogDAO;
 import DAO.LessonDAO;
 import DAO.QuestionDAO;
 import DAO.QuizDao;
+import DAO.QuizPointDAO;
 import DAO.RoleDAO;
 import DAO.SubjectDAO;
 import DAO.TopicDAO;
@@ -19,6 +20,7 @@ import model.Lesson;
 import model.Question;
 import model.Quiz;
 import model.QuizPoint;
+import model.QuizPointHistory;
 import model.Role;
 import model.Subject;
 import model.User;
@@ -35,7 +37,8 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        new QuizDao().insertQuizPoint(6, 2, 20, 1, 8, 10);
+        List<QuizPointHistory> listQuizPointHistory = new QuizPointDAO().getListQuizPointHisByAccId(1, 3, 6);
+        System.out.println(listQuizPointHistory);
 
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
