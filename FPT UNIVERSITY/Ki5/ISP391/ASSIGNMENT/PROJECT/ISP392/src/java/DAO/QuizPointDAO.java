@@ -16,10 +16,17 @@ import util.MyDAO;
  */
 public class QuizPointDAO extends MyDAO {
 
-    public int getTotalQuizHistory() {
+    public int getTotalQuizHistory(int userID) {
         try {
-            String sql = "SELECT COUNT(attempt) FROM dbo.Quiz_POINT";
+            String sql = "WITH T AS(SELECT QP.attempt, QP.point, QP.taken_date, QP.pointPercent, QP.numQuesTrue, Qz.content AS \"contentQuiz\", Qz.totalQuestion, Qz.duration, Qz.ID AS \"quizID\",COUNT(Q.questionID) AS \"TotalQuestion1\", C.ID AS \"courseID\", C.Content FROM dbo.Quiz_POINT QP \n"
+                    + "INNER JOIN dbo.Quizz Qz ON Qz.ID = QP.quizID \n"
+                    + "INNER JOIN dbo.Question Q ON Q.IDquizz = Qz.ID  \n"
+                    + "INNER JOIN dbo.Course C ON C.ID = Qz.courseID\n"
+                    + "WHERE QP.userID = ?\n"
+                    + "GROUP BY QP.attempt, QP.point, QP.taken_date, QP.pointPercent, QP.numQuesTrue, Qz.content, Qz.totalQuestion, Qz.duration, Qz.ID, C.ID, C.Content)\n"
+                    + "SELECT COUNT(attempt) FROM T ";
             ps = con.prepareStatement(sql);
+            ps.setInt(1, userID);
             rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);

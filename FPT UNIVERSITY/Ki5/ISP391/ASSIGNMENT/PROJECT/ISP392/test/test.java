@@ -37,9 +37,9 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        List<QuizPointHistory> listQuizPointHistory = new QuizPointDAO().getListQuizPointHisByAccId(1, 3, 6);
-        System.out.println(listQuizPointHistory);
 
+        int totalQuizHis = new QuizPointDAO().getTotalQuizHistory(6);
+        System.out.println(totalQuizHis);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
