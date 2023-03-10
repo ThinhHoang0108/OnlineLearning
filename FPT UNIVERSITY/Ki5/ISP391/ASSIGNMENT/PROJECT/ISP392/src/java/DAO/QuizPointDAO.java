@@ -39,12 +39,12 @@ public class QuizPointDAO extends MyDAO {
 
     public List<QuizPointHistory> getListQuizPointHisByAccId(int page, int PAGE_SIZE, int userID) {
         List<QuizPointHistory> t = new ArrayList<>();
-        xSql = "SELECT QP.attempt, QP.point, QP.taken_date, QP.pointPercent, QP.numQuesTrue, Qz.content, Qz.totalQuestion, Qz.duration, Qz.ID AS \"quizID\",COUNT(Q.questionID) AS \"TotalQuestion\", C.ID AS \"courseID\", C.Content FROM dbo.Quiz_POINT QP \n"
+        xSql = "SELECT QP.attempt, QP.point, QP.taken_date, QP.pointPercent, QP.numQuesTrue, Qz.content, Qz.totalQuestion, Qz.duration, Qz.ID AS \"quizID\",COUNT(Q.questionID) AS \"TotalQuestion\", C.ID AS \"courseID\", C.Content, Qz.ratePass FROM dbo.Quiz_POINT QP \n"
                 + "INNER JOIN dbo.Quizz Qz ON Qz.ID = QP.quizID \n"
                 + "INNER JOIN dbo.Question Q ON Q.IDquizz = Qz.ID  \n"
                 + "INNER JOIN dbo.Course C ON C.ID = Qz.courseID\n"
                 + "WHERE QP.userID = ?\n"
-                + "GROUP BY QP.attempt, QP.point, QP.taken_date, QP.pointPercent, QP.numQuesTrue, Qz.content, Qz.totalQuestion, Qz.duration, Qz.ID, C.ID, C.Content ORDER BY QP.attempt ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+                + "GROUP BY QP.attempt, QP.point, QP.taken_date, QP.pointPercent, QP.numQuesTrue, Qz.content, Qz.totalQuestion, Qz.duration, Qz.ID, C.ID, C.Content, Qz.ratePass ORDER BY QP.attempt ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
         QuizPointHistory x;
         try {
             ps = con.prepareStatement(xSql);
@@ -67,6 +67,7 @@ public class QuizPointDAO extends MyDAO {
                         .numOfQues(rs.getInt("TotalQuestion"))
                         .quizID(rs.getInt("quizID"))
                         .attempt(rs.getInt("attempt"))
+                        .ratePass(rs.getFloat("ratePass"))
                         .build();
                 t.add(x);
             }

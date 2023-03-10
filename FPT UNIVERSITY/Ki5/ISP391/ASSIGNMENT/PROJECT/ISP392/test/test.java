@@ -38,8 +38,8 @@ public class test {
 
     public static void main(String[] args) {
 
-        int totalQuizHis = new QuizPointDAO().getTotalQuizHistory(6);
-        System.out.println(totalQuizHis);
+        List<QuizPointHistory> listQuizPointHistory = new QuizPointDAO().getListQuizPointHisByAccId(1, Base.PAGE_SIZE, 6);
+        System.out.println(listQuizPointHistory);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);

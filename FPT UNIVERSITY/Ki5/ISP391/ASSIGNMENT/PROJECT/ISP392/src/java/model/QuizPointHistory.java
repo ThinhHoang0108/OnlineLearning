@@ -30,7 +30,9 @@ public class QuizPointHistory {
     private int numOfQues;
     private int attempt;
     private float pointPercent;
+    private float ratePass;
     private int numQuesTrue;
     private String courseContent;
     private int courseID;
+    
 }
