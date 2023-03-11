@@ -61,7 +61,7 @@ public class RegisterController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
+
         String user = request.getParameter("username");
         String pass = request.getParameter("password");
         String email = request.getParameter("email");
@@ -90,11 +90,12 @@ public class RegisterController extends HttpServlet {
                     + "    <h4>Thank you very much</h4>\n"
                     + "</body>\n"
                     + "</html>";
-            SendEmail.sendMail(email,subject,message, Base.USERNAME_EMAIL, Base.PASSWORD_EMAIL);
+            SendEmail.sendMail(email, subject, message, Base.USERNAME_EMAIL, Base.PASSWORD_EMAIL);
             request.setAttribute("error", "Verification link has been sent to your email");
             request.getRequestDispatcher("login.jsp").forward(request, response);
         } else {
-            // day ve login
+            // day ve register
+            request.setAttribute("error", "Account has already in system.Please try again!");
             response.sendRedirect("register.jsp");
         }
     }

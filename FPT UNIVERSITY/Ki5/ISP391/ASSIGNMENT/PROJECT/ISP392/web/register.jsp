@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
     <head>
         <meta charset="utf-8">
@@ -18,7 +19,7 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title">Register</h4>
-                                <form method="POST" class="my-login-validation" novalidate="" action="register">
+                                <form method="post" class="my-login-validation" novalidate="" action="register">
                                     <div class="form-group">
                                         <label for="username">User Name</label>
                                         <input id="username" type="text" class="form-control" name="username" required>
@@ -30,12 +31,12 @@
                                     </div>
                                     <div class="form-group">
                                         <label for="email">E-Mail Address</label>
-                                        <input id="email" type="email" class="form-control" name="email" required>
+                                        <input id="email" type="text" class="form-control" name="email" required>
                                         <div class="invalid-feedback">
                                             Your email is invalid
                                         </div>
                                     </div>
-                                     <div class="form-group">
+                                    <div class="form-group">
                                         <label for="phone">Phone Number</label>
                                         <input id="password" type="text" class="form-control" name="phone" required>
                                     </div>

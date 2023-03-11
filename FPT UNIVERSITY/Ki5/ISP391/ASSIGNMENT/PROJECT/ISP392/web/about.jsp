@@ -37,7 +37,7 @@
 </head>
 
 <body>
-
+    
   <!-- ======= Header ======= -->
         <%@ include file="component/nvabar.jsp" %>
         <!-- End Header -->
