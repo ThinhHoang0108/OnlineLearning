@@ -63,32 +63,33 @@
                                     </c:forEach>
                             </ul>
                         </li>
+                        <c:choose>
+                            <c:when test="${sessionScope.account != null}">
+                                <li class="dropdown">
+                                    <a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
+                                    <ul>
+                                        <li><a href="#"><i class="bi bi-person-circle">&nbsp;&nbsp;Your infomation</i></a></li> 
+                                        <li><a href="quiz-list"><i class="bi bi-journal-bookmark">&nbsp;&nbsp;My taken quiz</i></a></li> 
+                                        <li><a href="#"><i class="bi bi-basket">&nbsp;&nbsp;My Registration</i></a></li>
+                                            <c:if test="${sessionScope.account.roleID == 3}">
+                                            <li> <a href="#">
+                                                    <i class="bi bi-person-fill-lock">&nbsp;&nbsp;Dashbord</i>
+                                                </a></li>
+                                            </c:if>
+                                        <li>
+                                            <a href="logout"> 
+                                                <i class="bi bi-box-arrow-right">&nbsp;&nbsp;Logout</i> 
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </c:when>
+                            <c:otherwise>                
+                                <a href="login.jsp"">Login</a>
+                            </c:otherwise> 
+                        </c:choose>
+
                     </ul>
-                    <c:choose>
-                        <c:when test="${sessionScope.account != null}">
-                            <c:choose>
-                                <c:when test="${sessionScope.account.roleID == 2}">
-                                    <a href="userprofile"><span class="material-icons">
-                                            account_circle 
-                                        </span>
-                                    </a>
-                                </c:when>
-                                <c:otherwise>
-                                    <a href="dashboard">
-                                        Dashboard
-                                    </a>
-                                </c:otherwise>
-                            </c:choose>
-                            <a href="logout"> 
-                                <span class="material-icons">
-                                    logout
-                                </span>
-                            </a>
-                        </c:when>
-                        <c:otherwise>                
-                            <a href="login.jsp"">Login</a>
-                        </c:otherwise>
-                    </c:choose>
 
 
                 </nav><!-- .navbar -->
