@@ -71,13 +71,13 @@
                                                     <c:if test="${ans.correct eq  'true'}"><!-- La cau dung -->
                                                         <c:if test="${ans.userCheckQuestion eq 'true' }"><!-- La cau minh chon -->
                                                             <li class="d-flex mb-1 row">
-                                                                <input type="radio" checked="check" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <input type="radio" checked="check" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px" disabled>
                                                                 <p class="text-success">&nbsp;&nbsp;${ans.content}</p>
                                                             </li>
                                                         </c:if>
                                                         <c:if test="${ans.userCheckQuestion ne 'true' }"><!-- Khong phai cau minh chon -->
                                                             <li class="d-flex mb-1 row">
-                                                                <input type="radio" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <input type="radio" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px" disabled>
                                                                 <p class="text-success">&nbsp;&nbsp;${ans.content}</p>
                                                             </li>
                                                         </c:if>
@@ -85,13 +85,13 @@
                                                     <c:if test="${ans.correct ne 'true'}"><!-- La cau sai -->
                                                         <c:if test="${ans.userCheckQuestion eq 'true' }"><!-- La cau minh chon -->
                                                             <li class="d-flex mb-1 row">
-                                                                <input type="radio" checked="check" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <input type="radio" checked="check" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px" disabled>
                                                                 <p class="text-danger">&nbsp;&nbsp;${ans.content}</p>
                                                             </li>
                                                         </c:if>
                                                         <c:if test="${ans.userCheckQuestion ne 'true' }"><!-- Khong phai cau minh chon -->
                                                             <li class="d-flex mb-1 row">
-                                                                <input type="radio"  name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <input type="radio"  name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px" disabled>
                                                                 <p>&nbsp;&nbsp;${ans.content}</p>
                                                             </li>
                                                         </c:if>
