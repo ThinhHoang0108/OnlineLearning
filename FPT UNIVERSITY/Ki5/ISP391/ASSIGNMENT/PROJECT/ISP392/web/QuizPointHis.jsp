@@ -46,8 +46,8 @@
             <!-- ======= Breadcrumbs ======= -->
             <div class="breadcrumbs">
                 <div class="container">
-                    <h2>Courses</h2>
-                    <p>View all course we have </p>
+                    <h2>My Quiz Taken</h2>
+                    <p>View all quiz we have done </p>
                 </div>
             </div><!-- End Breadcrumbs -->
 
@@ -61,8 +61,9 @@
                                 <th scope="col">Attempt</th>
                                 <th scope="col">Quiz Name</th>
                                 <th scope="col">Point</th>
-                                <th scope="col">Point Percentage</th>
+                                <th scope="col">Date take</th>
                                 <th scope="col">Duration</th>
+                                <th scope="col">Status</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -70,8 +71,19 @@
                             <c:forEach items="${sessionScope.listQuizPointHistory}" var="l">
                                 <tr>
                                     <td>${l.attempt}</td>
-                                    <td>Otto</td>
-                                    <td>@mdo</td>
+                                    <td>${l.quizContent}</td>
+                                    <td>${l.point}/10 (${l.pointPercent}%)</td>
+                                    <td>${l.taken_date}</td>
+                                    <td>${l.duration} (mins)</td>
+                                    <c:choose>
+                                        <c:when test="${l.pointPercent >= l.ratePass}">
+                                            <td><a class="text-success">Passed</a></td>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <td><a class="text-danger">Not Passed</a></td>
+                                        </c:otherwise>
+                                    </c:choose>
+                                    <td><a href="ReviewQuizController?quizzID=${l.quizID}&attempt=${l.attempt}&courseID=${l.courseID}" class="btn bg-primary text-white rounded-pill mb-2" style="float: bottom"/>Detail</a><td>
                                 </tr>
                             </c:forEach>
                         </tbody>

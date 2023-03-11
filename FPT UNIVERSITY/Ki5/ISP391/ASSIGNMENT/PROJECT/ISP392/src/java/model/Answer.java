@@ -18,9 +18,10 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Answer {
+
     private int answerID;
     private String content;
     private boolean correct;
     private int questionID;
-    
+    private boolean userCheckQuestion;
 }

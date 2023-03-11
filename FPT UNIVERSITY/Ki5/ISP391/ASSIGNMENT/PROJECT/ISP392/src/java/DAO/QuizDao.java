@@ -127,12 +127,12 @@ public class QuizDao extends MyDAO {
             ps.setInt(2, quizID);
             rs = ps.executeQuery();
             while (rs.next()) {
-                return false;
+                return true;
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return true;
+        return false;
     }
 
     public void insertAnswerDetail(int questionID, int answerID, int userID, int quizID, int attempt) {
@@ -186,6 +186,25 @@ public class QuizDao extends MyDAO {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public boolean checkUserIsChoosen(int answerId, int quizId, int userid, int attempt) {
+        xSql = "SELECT * FROM dbo.answerDetail WHERE answerId = ? AND quizId = ? AND userId = ? AND attempt = ?";
+
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, answerId);
+            ps.setInt(2, quizId);
+            ps.setInt(3, userid);
+            ps.setInt(4, attempt);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
     }
 
 }

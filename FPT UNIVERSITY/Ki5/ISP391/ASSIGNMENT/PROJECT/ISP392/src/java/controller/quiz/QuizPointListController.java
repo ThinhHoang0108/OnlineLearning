@@ -64,15 +64,15 @@ public class QuizPointListController extends HttpServlet {
             throws ServletException, IOException {
         int page = 1;
         String pageIndex = request.getParameter("page");
+        User account = (User) request.getSession().getAttribute("account");
         if (pageIndex != null) {
             page = Integer.parseInt(pageIndex);
         }
-        int totalQuizHis = new QuizPointDAO().getTotalQuizHistory();
+        int totalQuizHis = new QuizPointDAO().getTotalQuizHistory(account.getUserID());
         int totalPage = totalQuizHis / Base.PAGE_SIZE;
         if (totalQuizHis % Base.PAGE_SIZE != 0) {
             totalPage += 1;
         }
-        User account = (User) request.getSession().getAttribute("account");
         List<QuizPointHistory> listQuizPointHistory = new QuizPointDAO().getListQuizPointHisByAccId(page, Base.PAGE_SIZE, account.getUserID());
         request.getSession().setAttribute("listQuizPointHistory", listQuizPointHistory);
         request.setAttribute("page", page);
