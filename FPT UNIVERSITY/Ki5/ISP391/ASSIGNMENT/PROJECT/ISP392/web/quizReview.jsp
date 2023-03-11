@@ -53,24 +53,49 @@
                             <input type="hidden" name="courseID" value="${requestScope.courseID}" />
                             <input type="hidden" name="attempt" value="${requestScope.attempt}" />
                             <ol class="text-left">
-                                <c:forEach items="${sessionScope.DOING_QUIZZ}" var="questionMap">
+                                <c:forEach items="${sessionScope.REVIEW_QUIZZ}" var="questionMap">
                                     <li class="ms-3"><h4 class="text-left" id="title" style="display: block;">${questionMap.key.content}</h4>
                                         <input type="hidden" name="questionID" value="${questionMap.key.questionID}">
                                         <ol type="a" class="m-3">
                                             <c:if test="${questionMap.key.isIsMultipleChoice() eq 'true'}">
                                                 <c:forEach var="ans" items="${questionMap.value}">
                                                     <li class="d-flex mb-1">
-                                                        <input type="checkbox" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                        <input type="checkbox" checked="check" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
                                                         <span class="col-11"><input type="text" name="name" value="${ans.content}" style="length:30px" readonly ></span>
                                                     </li>
                                                 </c:forEach>
                                             </c:if>
-                                            <c:if test="${questionMap.key.isIsMultipleChoice() ne 'true'}">
+
+                                            <c:if test="${questionMap.key.isIsMultipleChoice() ne 'true'}"><!-- Cau 1 dap an -->
                                                 <c:forEach var="ans" items="${questionMap.value}">
-                                                    <li class="d-flex mb-1 row">
-                                                        <input type="radio" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
-                                                        <p>&nbsp;&nbsp;${ans.content}</p>
-                                                    </li>
+                                                    <c:if test="${ans.correct eq  'true'}"><!-- La cau dung -->
+                                                        <c:if test="${ans.userCheckQuestion eq 'true' }"><!-- La cau minh chon -->
+                                                            <li class="d-flex mb-1 row">
+                                                                <input type="radio" checked="check" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <p class="text-success">&nbsp;&nbsp;${ans.content}</p>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${ans.userCheckQuestion ne 'true' }"><!-- Khong phai cau minh chon -->
+                                                            <li class="d-flex mb-1 row">
+                                                                <input type="radio" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <p class="text-success">&nbsp;&nbsp;${ans.content}</p>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:if>
+                                                    <c:if test="${ans.correct ne 'true'}"><!-- La cau sai -->
+                                                        <c:if test="${ans.userCheckQuestion eq 'true' }"><!-- La cau minh chon -->
+                                                            <li class="d-flex mb-1 row">
+                                                                <input type="radio" checked="check" name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <p class="text-danger">&nbsp;&nbsp;${ans.content}</p>
+                                                            </li>
+                                                        </c:if>
+                                                        <c:if test="${ans.userCheckQuestion ne 'true' }"><!-- Khong phai cau minh chon -->
+                                                            <li class="d-flex mb-1 row">
+                                                                <input type="radio"  name="answer_${questionMap.key.questionID}" value="${ans.answerID}" class="btn btn-primary rounded-pill mb-2" style="width: 14px">
+                                                                <p>&nbsp;&nbsp;${ans.content}</p>
+                                                            </li>
+                                                        </c:if>
+                                                    </c:if>
                                                 </c:forEach>
                                             </c:if>
                                         </ol>
@@ -80,8 +105,7 @@
                             </ol>
                             <div class="col-12">
                                 <div class="d-flex justify-content-center">
-                                    <!--<button type="submit" class="btn btn-primary px-4 py-2 fw-bold">check</button>-->
-                                    <button type="submit" name="btnAction" value="submitQuizz" class="btn btn-primary px-4 py-2 fw-bold">Submit</button> 
+                                    <a href="home.jsp" class="btn bg-primary text-white rounded-pill mb-2" style="float: bottom"/>Home</a>
                                 </div>
                             </div>     
                         </form>
