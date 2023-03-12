@@ -33,15 +33,14 @@ public class UpdateSliderController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet UpdateSliderController</title>");  
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet UpdateSliderController at " + request.getContextPath () + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+         String id_raw = request.getParameter("id");
+        String sliderUrl_raw = request.getParameter("sliderUrl");
+        String title_raw = request.getParameter("title");
+        String content_raw = request.getParameter("content");
+        String notes_raw = request.getParameter("notes");
+        SliderDAO s = new SliderDAO();
+        s.updateSlider(title_raw, true, id_raw, content_raw, notes_raw, 0);
+        request.getRequestDispatcher("sliderList").forward(request, response);
         }
     } 
 
@@ -56,14 +55,7 @@ public class UpdateSliderController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        String id_raw = request.getParameter("id");
-        String sliderUrl_raw = request.getParameter("sliderUrl");
-        String title_raw = request.getParameter("title");
-        String content_raw = request.getParameter("content");
-        String notes_raw = request.getParameter("notes");
-        SliderDAO s = new SliderDAO();
-        s.updateSlider(title_raw, true, id_raw, content_raw, notes_raw, 0);
-        request.getRequestDispatcher("sliderList").forward(request, response);
+       processRequest(request, response);
         
     } 
 
