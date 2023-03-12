@@ -10,6 +10,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 import model.Slider;
+import util.DBContext;
 import util.MyDAO;
 
 /**
@@ -122,6 +123,33 @@ public class SliderDAO extends MyDAO {
             e.printStackTrace();
         }
         return (x);
+    }
+    
+        public int getTotalSlider() {
+        try {
+           
+            if (con != null) {
+                String sql = "select distinct count(S.subjectId)\n"
+                        + "from Slider AS Sl inner join Subject AS S\n"
+                        + "on Sl.subId = S.subjectId";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
     }
 
 }
