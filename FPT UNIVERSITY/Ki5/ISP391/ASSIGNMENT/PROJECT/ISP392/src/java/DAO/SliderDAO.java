@@ -151,5 +151,31 @@ public class SliderDAO extends MyDAO {
         }
         return 0;
     }
+            public int getTotalSliderShow() {
+        try {
+          
+            if (con != null) {
+                String sql = "select distinct count(S.subjectId)\n"
+                        + "from Slider AS Sl inner join Subject AS S\n"
+                        + "on Sl.subId = S.subjectId and Sl.status = 1";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 
 }
