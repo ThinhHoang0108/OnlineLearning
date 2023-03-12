@@ -39,27 +39,15 @@ public class BlgDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             int blogID = Integer.parseInt(request.getParameter("blogID"));
-            int page = 1;
-            String pageIndex = request.getParameter("page");
-            if (pageIndex != null) {
-                page = Integer.parseInt(pageIndex);
-            }
             DAO.CommentDAO dao = new CommentDAO();
-            int totalComment = new CommentDAO().getTotalComment(blogID);
-            int totalPage = totalComment / Base.PAGE_SIZE;
-            if (totalComment % Base.PAGE_SIZE != 0) {
-                totalPage += 1;
-            }
             HttpSession session = request.getSession();
             Blog blog = new BlogDAO().getBlogById(blogID);
-            List<Comment> listCommentByPageing = new CommentDAO().getAllCommentByPage(blogID, page, Base.PAGE_SIZE);
-            request.getSession().setAttribute("listCommentByPageing", listCommentByPageing);
+            int totalComment = dao.getTotalComment(blogID);
+            List<Comment> listComment = new CommentDAO().getCommentByBlogID(blogID);
+            request.getSession().setAttribute("listComment", listComment);
             session.setAttribute("totalComment", totalComment);
             session.setAttribute("blog", blog);
             request.setAttribute("blogID", blogID);
-            request.setAttribute("page", page);
-            request.setAttribute("totalPage", totalPage);
-            request.setAttribute("pagination_url", "blogdetail?");
             request.getRequestDispatcher("blog.jsp").forward(request, response);
         }
     }
@@ -101,6 +89,7 @@ public class BlgDetailController extends HttpServlet {
         int totalComment = new CommentDAO().getTotalComment(blogID);
         session.setAttribute("listComment", listComment);
         session.setAttribute("totalComment", totalComment);
+        request.setAttribute("blogID", blogID);
         request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 

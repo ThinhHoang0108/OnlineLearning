@@ -69,9 +69,6 @@ public class CommentDAO extends MyDAO {
                 + "     VALUES\n"
                 + "           (?,?,?)";
         try {
-            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd HH-mm-ss");
-            ZonedDateTime zdt = ZonedDateTime.now();
-            String today = dtf.format(zdt);
             ps = con.prepareStatement(xSql);
             ps.setInt(1, userID);
             ps.setInt(2, blogID);

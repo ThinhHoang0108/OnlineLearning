@@ -41,8 +41,7 @@ public class test {
     public static void main(String[] args) {
         CommentDAO dao = new CommentDAO();
         List<Comment> listComment = dao.getCommentByBlogID(1);
-        dao.insertComment(7, 1, "That great~!");
-        
+        dao.insertComment(1, 4, "That great~!123123");
         System.out.println(listComment);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
