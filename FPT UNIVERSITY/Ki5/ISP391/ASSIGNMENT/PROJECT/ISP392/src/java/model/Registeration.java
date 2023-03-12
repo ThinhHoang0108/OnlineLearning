@@ -18,10 +18,18 @@ import lombok.ToString;
 @Setter
 @ToString
 public class Registeration {
-    private int regisID;
-    private String regis_Date;
-    private String statis;
-    private int courseID;
-    private int priceID;
-    private int usedID;
+    private int regisId;
+    private String regisDate;
+    private boolean status;
+    //private Subject subject;
+    private int subjectId;
+    private String subName;
+    private PricePackage pricePackage;
+    private int pricePackageId;
+    //private Account account;
+    private int accountId;
+    private int year;
+    private String priceName;
+    private int price;
+    private String email;
 }
