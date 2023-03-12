@@ -93,7 +93,7 @@
                     </div>
 
                 </div>
-            </section><!-- End Counts Section (huggbjuhu8tuyhu) -->
+            </section><!-- End Counts Section  -->
 
             <!-- ======= Why Us Section ======= -->
             <section id="why-us" class="why-us">
