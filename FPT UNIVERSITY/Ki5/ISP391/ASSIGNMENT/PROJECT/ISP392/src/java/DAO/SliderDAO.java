@@ -177,5 +177,32 @@ public class SliderDAO extends MyDAO {
         }
         return 0;
     }
-
+                public int getTotalSlider(String keyword) {
+        try {
+            
+            if (con != null) {
+                String sql = "select distinct count(Sl.sliderId)\n"
+                        + "from Slider AS Sl inner join Subject AS S\n"
+                        + "on Sl.subId = S.subjectId\n"
+                        + "and Sl.title like ? ";
+                PreparedStatement ps = con.prepareStatement(sql);
+                ps.setString(1, "%" + keyword + "%");
+                ResultSet rs = ps.executeQuery();
+                while (rs.next()) {
+                    return rs.getInt(1);
+                }
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            try {
+                if (con != null) {
+                    con.close();
+                }
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        return 0;
+    }
 }
