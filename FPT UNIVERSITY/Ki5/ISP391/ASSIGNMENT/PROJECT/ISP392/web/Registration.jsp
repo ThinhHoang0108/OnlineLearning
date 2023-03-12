@@ -41,7 +41,7 @@
         <script type="text/javascript"></script>
     </head>
 
-<!--    <body class="sb-sidenav-toggled">
+    <body class="sb-sidenav-toggled">
         <%@include file="components/navBarComponent.jsp" %>
 
         <div id="layoutSidenav" class="mb-4">
@@ -127,5 +127,5 @@
 
 
 
-    </body>-->
+    </body>
 </html>
