@@ -40,7 +40,7 @@
     </servlet>
     <servlet>
         <servlet-name>BlogController</servlet-name>
-        <servlet-class>controller.BlogController</servlet-class>
+        <servlet-class>controller.blog.BlogController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>PostController</servlet-name>
@@ -64,7 +64,7 @@
     </servlet>
     <servlet>
         <servlet-name>BlgDetailController</servlet-name>
-        <servlet-class>controller.BlgDetailController</servlet-class>
+        <servlet-class>controller.blog.BlgDetailController</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>HomeController</servlet-name>

@@ -2,10 +2,10 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.blog;
 
-import Base.Base;
 import DAO.BlogDAO;
+import DAO.CommentDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -15,12 +15,14 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Blog;
+import model.Comment;
+import model.User;
 
 /**
  *
  * @author ADMIN
  */
-public class BlogController extends HttpServlet {
+public class BlgDetailController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -28,32 +30,23 @@ public class BlogController extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occursasdasdasd
+     * @throws ServletException if a servlet-specific error occurs
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            int page = 1;
-            String pageIndex = request.getParameter("page");
-            if (pageIndex != null) {
-                page = Integer.parseInt(pageIndex);
-            }
-            DAO.BlogDAO dao = new BlogDAO();
-            int totalBlog = dao.getTotalBlog();
-            int totalPage = totalBlog / Base.PAGE_SIZE;
-            if (totalBlog % Base.PAGE_SIZE != 0) {
-                totalPage += 1;
-            }
-            List<Blog> listBlog = dao.getAllBlog();
-            request.getSession().setAttribute("listBlog", listBlog);
-            List<Blog> listBlogByPageing = dao.getAllBlogByPage(page, Base.PAGE_SIZE);
-            request.getSession().setAttribute("listBlogByPageing", listBlogByPageing);
-            request.setAttribute("page", page);
-            request.setAttribute("totalPage", totalPage);
-            request.setAttribute("pagination_url", "blog?");
-            request.getRequestDispatcher("bloglist.jsp").forward(request, response);
+            int blogID = Integer.parseInt(request.getParameter("blogID"));
+            Blog blog = new BlogDAO().getBlogById(blogID);
+            List<Comment> listComment = new CommentDAO().getCommentByBlogID(blogID);
+            int totalComment = new CommentDAO().getTotalComment(blogID);
+            HttpSession session = request.getSession();
+            session.setAttribute("listComment", listComment);
+            session.setAttribute("totalComment", totalComment);
+            session.setAttribute("blog", blog);
+            request.setAttribute("blogID", blogID);
+            request.getRequestDispatcher("blog.jsp").forward(request, response);
         }
     }
 
@@ -83,7 +76,18 @@ public class BlogController extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int blogID = Integer.parseInt(request.getParameter("blogID"));
+        String content = request.getParameter("content");
+        HttpSession session = request.getSession();
+        User account = (User) session.getAttribute("account");
+        int userID = account.getUserID();
+        CommentDAO dao = new CommentDAO();
+        dao.insertComment(userID, blogID, content);
+        List<Comment> listComment = new CommentDAO().getCommentByBlogID(blogID);
+        int totalComment = new CommentDAO().getTotalComment(blogID);
+        session.setAttribute("listComment", listComment);
+        session.setAttribute("totalComment", totalComment);
+        request.getRequestDispatcher("blog.jsp").forward(request, response);
     }
 
     /**

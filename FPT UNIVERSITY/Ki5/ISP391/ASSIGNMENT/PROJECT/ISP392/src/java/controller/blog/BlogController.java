@@ -2,8 +2,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller;
+package controller.blog;
 
+import Base.Base;
 import DAO.BlogDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -11,13 +12,15 @@ import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
+import java.util.List;
 import model.Blog;
 
 /**
  *
  * @author ADMIN
  */
-public class BlgDetailController extends HttpServlet {
+public class BlogController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -25,17 +28,32 @@ public class BlgDetailController extends HttpServlet {
      *
      * @param request servlet request
      * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
+     * @throws ServletException if a servlet-specific error occursasdasdasd
      * @throws IOException if an I/O error occurs
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            int blogID = Integer.parseInt(request.getParameter("blogID"));
-            Blog blog = new BlogDAO().getBlogById(blogID);
-            request.setAttribute("blog", blog);
-            request.getRequestDispatcher("blog.jsp").forward(request, response);
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
+            DAO.BlogDAO dao = new BlogDAO();
+            int totalBlog = dao.getTotalBlog();
+            int totalPage = totalBlog / Base.PAGE_SIZE;
+            if (totalBlog % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
+            List<Blog> listBlog = dao.getAllBlog();
+            request.getSession().setAttribute("listBlog", listBlog);
+            List<Blog> listBlogByPageing = dao.getAllBlogByPage(page, Base.PAGE_SIZE);
+            request.getSession().setAttribute("listBlogByPageing", listBlogByPageing);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "blog?");
+            request.getRequestDispatcher("bloglist.jsp").forward(request, response);
         }
     }
 

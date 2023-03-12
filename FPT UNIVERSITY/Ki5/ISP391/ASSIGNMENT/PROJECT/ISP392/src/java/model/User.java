@@ -28,4 +28,32 @@ public class User {
     private String email;
     private int roleID;
     private Role role;
+
+    public User() {
+    }
+
+    public User(int userID, String name, Date dob, String phone, String username, String password, String email, int roleID, Role role) {
+        this.userID = userID;
+        this.name = name;
+        this.dob = dob;
+        this.phone = phone;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.roleID = roleID;
+        this.role = role;
+    }
+    public User(int userID, String name, Date dob, String phone, String username, String password, String email, int roleID) {
+        this.userID = userID;
+        this.name = name;
+        this.dob = dob;
+        this.phone = phone;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.roleID = roleID;
+        this.role = role;
+    }
+    
+    
 }

@@ -3,6 +3,7 @@ import Base.Base;
 import static Base.Base.PAGE_SIZE;
 import DAO.AnswerDAO;
 import DAO.BlogDAO;
+import DAO.CommentDAO;
 import DAO.LessonDAO;
 import DAO.QuestionDAO;
 import DAO.QuizDao;
@@ -16,6 +17,7 @@ import java.util.HashMap;
 import java.util.List;
 import model.Answer;
 import model.Blog;
+import model.Comment;
 import model.Lesson;
 import model.Question;
 import model.Quiz;
@@ -37,9 +39,11 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-
-        List<QuizPointHistory> listQuizPointHistory = new QuizPointDAO().getListQuizPointHisByAccId(1, Base.PAGE_SIZE, 6);
-        System.out.println(listQuizPointHistory);
+        CommentDAO dao = new CommentDAO();
+        List<Comment> listComment = dao.getCommentByBlogID(1);
+        dao.insertComment(7, 1, "That great~!");
+        
+        System.out.println(listComment);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
