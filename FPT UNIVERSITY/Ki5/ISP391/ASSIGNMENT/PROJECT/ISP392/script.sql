@@ -6,6 +6,21 @@ CREATE TABLE [Role] (
   PRIMARY KEY ([ID])
 );
 
+CREATE TABLE [User] (
+  [ID] int IDENTITY(1,1),
+  [Name] varchar(50),
+  [Dateofbirth] date,
+  [Username] varchar(50),
+  [Password] varchar(50),
+  [PhoneNumber] varchar(10),
+  [IDrole] [int],
+  [email] varchar(50),
+  PRIMARY KEY ([ID]),
+  CONSTRAINT [FK_User.IDrole]
+    FOREIGN KEY ([IDrole])
+      REFERENCES [Role]([ID])
+);
+
 CREATE TABLE [Category] (
   [ID] int IDENTITY(1,1),
   [Name] VARCHAR(50),
@@ -37,43 +52,10 @@ CREATE TABLE [Lesson] (
       REFERENCES [Course]([ID])
 );
 
-CREATE TABLE [Question] (
-  [questionID] [int] IDENTITY(1,1),
-  [courseID] [int],
-  [lessonID] [int],
-  [Status] [bit],
-  [IDquizz] [int],
-  [content] varchar(255),
-  [isMultipleChoice] [bit],
-  [level] [nvarchar](255),
-  PRIMARY KEY ([questionID]),
-  CONSTRAINT [FK_Question.lessonID]
-    FOREIGN KEY ([lessonID])
-      REFERENCES [Lesson]([ID]),
-  CONSTRAINT [FK_Question.courseID]
-    FOREIGN KEY ([courseID])
-      REFERENCES [Course]([ID])
-);
-
 CREATE TABLE [QuizLevel] (
   [QuizLevelID] [int] IDENTITY(1,1),
   [QuizLevelName] nvarchar(63),
   PRIMARY KEY ([QuizLevelID])
-);
-
-CREATE TABLE [User] (
-  [ID] int IDENTITY(1,1),
-  [Name] varchar(50),
-  [Dateofbirth] date,
-  [Username] varchar(50),
-  [Password] varchar(50),
-  [PhoneNumber] varchar(10),
-  [IDrole] [int],
-  [email] varchar(50),
-  PRIMARY KEY ([ID]),
-  CONSTRAINT [FK_User.IDrole]
-    FOREIGN KEY ([IDrole])
-      REFERENCES [Role]([ID])
 );
 
 CREATE TABLE [Quizz] (
@@ -93,6 +75,9 @@ CREATE TABLE [Quizz] (
   [duration] [INT],
   [IDLesson] [int],
   PRIMARY KEY ([ID]),
+  CONSTRAINT [FK_Quizz.courseID]
+    FOREIGN KEY ([courseID])
+      REFERENCES [Course]([ID]),
   CONSTRAINT [FK_Quizz.IDLesson]
     FOREIGN KEY ([IDLesson])
       REFERENCES [Lesson]([ID]),
@@ -101,22 +86,11 @@ CREATE TABLE [Quizz] (
       REFERENCES [QuizLevel]([QuizLevelID]),
   CONSTRAINT [FK_Quizz.userID]
     FOREIGN KEY ([userID])
-      REFERENCES [User]([ID]),
-  CONSTRAINT [FK_Quizz.courseID]
-    FOREIGN KEY ([courseID])
-      REFERENCES [Course]([ID])
-);
-
-CREATE TABLE [PricePackage] (
-  [priceId] [int] IDENTITY(1,1),
-  [name] [nvarchar](255),
-  [acessDuration] [int],
-  [description] [nvarchar](255),
-  PRIMARY KEY ([priceId])
+      REFERENCES [User]([ID])
 );
 
 CREATE TABLE [Register] (
-   [regisId] [int] IDENTITY(1,1),
+  [regisId] [int] IDENTITY(1,1),
   [regis_Date] DATETIME DEFAULT  (getdate()),
   [status] [varchar](255),
   [courseId] [int],
@@ -128,56 +102,23 @@ CREATE TABLE [Register] (
       REFERENCES [User]([ID]),
   CONSTRAINT [FK_Register.courseId]
     FOREIGN KEY ([courseId])
-      REFERENCES [Course]([ID]),
-  CONSTRAINT [FK_Register.priceId]
-    FOREIGN KEY ([priceId])
-      REFERENCES [PricePackage]([priceId])
+      REFERENCES [Course]([ID])
 );
 
-CREATE TABLE [Blog] (
-  [ID] int IDENTITY(1,1),
-  [Thumnail] VARCHAR(MAX),
-  [content] varchar(MAX),
-  [Description] varchar(MAX),
-  [created_date] DATETIME DEFAULT  (getdate()),
-  [IDuser] [int],
-  [IDcategory] [int],
-  PRIMARY KEY ([ID]),
-  CONSTRAINT [FK_Blog.IDcategory]
-    FOREIGN KEY ([IDcategory])
-      REFERENCES [Category]([ID]),
-  CONSTRAINT [FK_Blog.IDuser]
-    FOREIGN KEY ([IDuser])
-      REFERENCES [User]([ID])
-);
-
-CREATE TABLE [Comment] (
-  [ID] [int] IDENTITY(1,1),
-  [IDuser] [int],
-  [IDblog] [int],
-  [Content] varchar(MAX),
-  [createDate] DATETIME DEFAULT  (getdate()),
-  PRIMARY KEY ([ID]),
-  CONSTRAINT [FK_Comment.ID]
-    FOREIGN KEY ([ID])
-      REFERENCES [User]([ID]),
-  CONSTRAINT [FK_Comment.IDblog]
-    FOREIGN KEY ([IDblog])
-      REFERENCES [Blog]([ID])
-);
-
-CREATE TABLE [Slide] (
-  [sliderId]  [int] IDENTITY(1,1),
-  [slider_url] [varchar](255),
-  [status] [bit],
-  [title] [varchar](255),
-  [content] [varchar](255),
-  [backlink] [varchar](255),
-  [notes] [varchar](255),
-  [isShow] [bit],
+CREATE TABLE [Question] (
+  [questionID] [int] IDENTITY(1,1),
   [courseID] [int],
-  PRIMARY KEY ([sliderId]),
-  CONSTRAINT [FK_Slide.courseID]
+  [lessonID] [int],
+  [Status] [bit],
+  [IDquizz] [int],
+  [content] varchar(255),
+  [isMultipleChoice] [bit],
+  [level] [nvarchar](255),
+  PRIMARY KEY ([questionID]),
+  CONSTRAINT [FK_Question.lessonID]
+    FOREIGN KEY ([lessonID])
+      REFERENCES [Lesson]([ID]),
+  CONSTRAINT [FK_Question.courseID]
     FOREIGN KEY ([courseID])
       REFERENCES [Course]([ID])
 );
@@ -186,12 +127,12 @@ CREATE TABLE [Quiz-Question] (
   [quesId] [int],
   [quizId] [int],
   PRIMARY KEY ([quesId], [quizId]),
-  CONSTRAINT [FK_Quiz-Question.quizId]
-    FOREIGN KEY ([quizId])
-      REFERENCES [Quizz]([ID]),
   CONSTRAINT [FK_Quiz-Question.quesId]
     FOREIGN KEY ([quesId])
-      REFERENCES [Question]([questionID])
+      REFERENCES [Question]([questionID]),
+  CONSTRAINT [FK_Quiz-Question.quizId]
+    FOREIGN KEY ([quizId])
+      REFERENCES [Quizz]([ID])
 );
 
 CREATE TABLE [Answer] (
@@ -220,12 +161,12 @@ CREATE TABLE [AnswerDetail] (
   CONSTRAINT [FK_AnswerDetail.questionId]
     FOREIGN KEY ([questionId])
       REFERENCES [Question]([questionID]),
-  CONSTRAINT [FK_AnswerDetail.userId]
-    FOREIGN KEY ([userId])
-      REFERENCES [User]([ID]),
   CONSTRAINT [FK_AnswerDetail.quizId]
     FOREIGN KEY ([quizId])
-      REFERENCES [Quizz]([ID])
+      REFERENCES [Quizz]([ID]),
+  CONSTRAINT [FK_AnswerDetail.userId]
+    FOREIGN KEY ([userId])
+      REFERENCES [User]([ID])
 );
 
 CREATE TABLE [Quiz_POINT] (
@@ -246,17 +187,53 @@ CREATE TABLE [Quiz_POINT] (
       REFERENCES [User]([ID])
 );
 
-CREATE TABLE [SubjectPrice] (
-  [priceId] [int],
-  [courseId] [int],
-  CONSTRAINT [FK_SubjectPrice.courseId]
-    FOREIGN KEY ([courseId])
-      REFERENCES [Course]([ID]),
-  CONSTRAINT [FK_SubjectPrice.priceId]
-    FOREIGN KEY ([priceId])
-      REFERENCES [PricePackage]([priceId])
+CREATE TABLE [Slide] (
+  [sliderId]  [int] IDENTITY(1,1),
+  [slider_url] [varchar](255),
+  [status] [bit],
+  [title] [varchar](255),
+  [content] [varchar](255),
+  [backlink] [varchar](255),
+  [notes] [varchar](255),
+  [isShow] [bit],
+  [courseID] [int],
+  PRIMARY KEY ([sliderId]),
+  CONSTRAINT [FK_Slide.courseID]
+    FOREIGN KEY ([courseID])
+      REFERENCES [Course]([ID])
 );
 
+CREATE TABLE [Blog] (
+  [ID] int IDENTITY(1,1),
+  [Thumnail] VARCHAR(MAX),
+  [content] varchar(MAX),
+  [Description] varchar(MAX),
+  [created_date] DATETIME DEFAULT  (getdate()),
+  [IDuser] [int],
+  [IDcategory] [int],
+  PRIMARY KEY ([ID]),
+  CONSTRAINT [FK_Blog.IDcategory]
+    FOREIGN KEY ([IDcategory])
+      REFERENCES [Category]([ID]),
+  CONSTRAINT [FK_Blog.IDuser]
+    FOREIGN KEY ([IDuser])
+      REFERENCES [User]([ID])
+);
+
+CREATE TABLE [Comment] (
+  [ID] [int] IDENTITY(1,1),
+  [IDuser] [int],
+  [IDblog] [int],
+  [Content] varchar(MAX),
+  [createDate] DATETIME DEFAULT  (getdate()),
+  PRIMARY KEY ([ID]),
+  CONSTRAINT [FK_Comment.IDblog]
+    FOREIGN KEY ([IDblog])
+      REFERENCES [Blog]([ID]),
+  CONSTRAINT [FK_Comment.IDuser]
+    FOREIGN KEY ([IDuser])
+      REFERENCES [User]([ID])
+);
 ---------------------Role----------------------
 INSERT INTO dbo.Role (Position) VALUES ('Guest')
 INSERT INTO dbo.Role (Position) VALUES ('User')
@@ -301,3 +278,4 @@ insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com
 insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/dddddd/000000', 'University College of Borås', 'Dilation of Left Internal Mammary Artery with Intraluminal Device, Percutaneous Approach');
 insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/dddddd/000000', 'Anambra State University of Science and Technology', 'Bypass Left Common Iliac Vein to Lower Vein with Nonautologous Tissue Substitute, Percutaneous Endoscopic Approach');
 insert into Blog (Thumnail, content, Description) values ('http://dummyimage.com/800x533.png/dddddd/000000', 'Tata Institute of Social Sciences', 'Reposition Right Temporal Bone, External Approach');
+
