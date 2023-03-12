@@ -4,6 +4,7 @@
  */
 package controller.blog;
 
+import Base.Base;
 import DAO.BlogDAO;
 import DAO.CommentDAO;
 import java.io.IOException;
@@ -38,14 +39,27 @@ public class BlgDetailController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             int blogID = Integer.parseInt(request.getParameter("blogID"));
-            Blog blog = new BlogDAO().getBlogById(blogID);
-            List<Comment> listComment = new CommentDAO().getCommentByBlogID(blogID);
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
+            DAO.CommentDAO dao = new CommentDAO();
             int totalComment = new CommentDAO().getTotalComment(blogID);
+            int totalPage = totalComment / Base.PAGE_SIZE;
+            if (totalComment % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
             HttpSession session = request.getSession();
-            session.setAttribute("listComment", listComment);
+            Blog blog = new BlogDAO().getBlogById(blogID);
+            List<Comment> listCommentByPageing = new CommentDAO().getAllCommentByPage(blogID, page, Base.PAGE_SIZE);
+            request.getSession().setAttribute("listCommentByPageing", listCommentByPageing);
             session.setAttribute("totalComment", totalComment);
             session.setAttribute("blog", blog);
             request.setAttribute("blogID", blogID);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "blogdetail?");
             request.getRequestDispatcher("blog.jsp").forward(request, response);
         }
     }

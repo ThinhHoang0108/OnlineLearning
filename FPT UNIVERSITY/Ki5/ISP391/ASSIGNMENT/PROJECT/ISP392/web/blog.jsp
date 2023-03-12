@@ -104,7 +104,7 @@
                             <div class="comments">
 
                                 <h4 class="comments-count">${sessionScope.totalComment} Comments</h4>
-                                <c:forEach items="${sessionScope.listComment}" var="c">
+                                <c:forEach items="${sessionScope.listCommentByPageing}" var="c">
                                     <div id="comment-1" class="comment">
                                         <div class="d-flex">
                                             <div class="comment-img"></div>
@@ -119,6 +119,73 @@
                                         <hr class="line">
                                     </div><!-- End comment #1 -->
                                 </c:forEach>
+                                <div class="container">
+                                    <c:choose>
+                                        <c:when test="${listCommentByPageing == null || listCommentByPageing.size() ==0}">
+                                            Not have any Comment
+                                        </c:when>
+                                        <c:when test="${totalPage < 2}">
+                                            <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled">
+                                                        <span class="page-link">Previous</span>
+                                                    </li>
+                                                    <c:forEach begin="1" end="${totalPage}" var="i">
+                                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                                        </c:forEach>
+                                                    <li class="page-item disabled">
+                                                        <span class="page-link">Next</span>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </c:when>  
+                                        <c:when test="${page < 2}">
+                                            <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                <ul class="pagination">
+                                                    <li class="page-item disabled">
+                                                        <span class="page-link">Previous</span>
+                                                    </li>
+                                                    <c:forEach begin="1" end="${totalPage}" var="i">
+                                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}&blogID=${requestScope.blogID}">${i}</a></li>
+                                                        </c:forEach>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pagination_url}page=${page+1}&blogID=${requestScope.blogID}">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </c:when>  
+                                        <c:when test="${page + 1 > totalPage}">
+                                            <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                <ul class="pagination">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pagination_url}page=${page-1}&blogID=${requestScope.blogID}">Previous</a>
+                                                    </li>
+                                                    <c:forEach begin="1" end="${totalPage}" var="i">
+                                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}&blogID=${requestScope.blogID}">${i}</a></li>
+                                                        </c:forEach>
+                                                    <li class="page-item disabled">
+                                                        <span class="page-link">Next</span>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                <ul class="pagination">
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pagination_url}page=${page-1}&blogID=${requestScope.blogID}">Previous</a>
+                                                    </li>
+                                                    <c:forEach begin="1" end="${totalPage}" var="i">
+                                                        <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}&blogID=${requestScope.blogID}">${i}</a></li>
+                                                        </c:forEach>
+                                                    <li class="page-item">
+                                                        <a class="page-link" href="${pagination_url}page=${page+1}&blogID=${requestScope.blogID}">Next</a>
+                                                    </li>
+                                                </ul>
+                                            </nav>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </div>
                                 <c:choose>
                                     <c:when test="${sessionScope.account == null}">
                                         <div class="reply-form">
@@ -142,6 +209,7 @@
                                         </div>
                                     </c:otherwise>
                                 </c:choose>
+
                             </div><!-- End blog comments -->
                         </div>
 

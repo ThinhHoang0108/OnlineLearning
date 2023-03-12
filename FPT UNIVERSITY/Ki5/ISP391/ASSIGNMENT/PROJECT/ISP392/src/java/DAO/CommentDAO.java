@@ -83,4 +83,35 @@ public class CommentDAO extends MyDAO {
         }
 
     }
+
+    public List<Comment> getAllCommentByPage(int blogID,int page, int PAGE_SIZE) {
+        List<Comment> t = new ArrayList<>();
+        xSql = "SELECT c.*,u.Name,u.Dateofbirth, u.Username,u.PhoneNumber,u.Username,u.Password, u.email, u.IDrole FROM dbo.Comment c INNER JOIN dbo.[User] u ON u.ID = c.IDuser WHERE c.IDblog = ? ORDER BY ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        Comment x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, blogID);
+            ps.setInt(2, page);
+            ps.setInt(3, PAGE_SIZE);
+            ps.setInt(4, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt("IDuser"), rs.getString("Name"), rs.getDate("Dateofbirth"), rs.getString("PhoneNumber"), rs.getString("Username"), rs.getString("Password"), rs.getString("email"), rs.getInt("IDrole"));
+                x = Comment.builder()
+                        .id(rs.getInt("ID"))
+                        .blogID(rs.getInt("IDblog"))
+                        .userID(rs.getInt("IDuser"))
+                        .content(rs.getString("Content"))
+                        .createDate(rs.getString("createDate"))
+                        .user(user)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
 }
