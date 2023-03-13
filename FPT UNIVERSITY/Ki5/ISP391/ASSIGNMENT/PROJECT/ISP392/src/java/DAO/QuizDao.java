@@ -299,4 +299,22 @@ public class QuizDao extends MyDAO {
         return (t);
     }
 
+    public int getTotalSearch2side(String keyword) {
+        try {
+            String sql = "SELECT DISTINCT COUNT(q.ID) FROM dbo.Quizz q INNER JOIN dbo.Lesson l ON q.IDLesson = l.ID WHERE q.content LIKE '%" + keyword +"%'";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getTotalSearchByLevelID(String keyword, int levelID) {
+        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+    }
+
 }

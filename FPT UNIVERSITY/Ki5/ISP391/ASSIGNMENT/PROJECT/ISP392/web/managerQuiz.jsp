@@ -43,19 +43,19 @@
                                 <div class="card">
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <form action="search-quiz" method="POST" style="width: 900px; float: right !important">
-
                                             <div class="input-group">
-
-                                                <select class="form-control form-control-sm mb-auto" style="width: 40%">
-                                                    <c:forEach items="${listCourse}" var="c">
-                                                        <option>${c.content}</option>
+                                                <select name="courseID" class="form-control form-control-sm mb-auto" style="width: 40%">
+                                                    <option value="0">All course</option>
+                                                    <c:forEach items="${sessionScope.listCourse}" var="c">
+                                                        <option value="${c.id}">${c.content}</option>
                                                     </c:forEach>
                                                 </select>
 
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <select class="form-control form-control-sm mb-1" style="width: 1px">
-                                                    <c:forEach items="${listQuizLevel}" var="lv">
-                                                        <option>${lv.quizLevelName}</option>
+                                                <select name="levelID" class="form-control form-control-sm mb-1" style="width: 1px">
+                                                    <option value="0">All</option>
+                                                    <c:forEach items="${sessionScope.listQuizLevel}" var="lv">
+                                                        <option value="${lv.quizLevelId}">${lv.quizLevelName}</option>
                                                     </c:forEach>
                                                 </select>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;

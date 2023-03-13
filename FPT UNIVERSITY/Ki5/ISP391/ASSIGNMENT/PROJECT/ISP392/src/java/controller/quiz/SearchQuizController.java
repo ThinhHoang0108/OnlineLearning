@@ -5,25 +5,19 @@
 package controller.quiz;
 
 import Base.Base;
-import DAO.CourseDAO;
 import DAO.QuizDao;
-import DAO.QuizLevelDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.util.List;
-import model.Course;
-import model.Quiz;
-import model.QuizLevel;
 
 /**
  *
  * @author ADMIN
  */
-public class QuizListController extends HttpServlet {
+public class SearchQuizController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -38,16 +32,34 @@ public class QuizListController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet QuizListController</title>");
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet QuizListController at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+            int courseID = Integer.parseInt(request.getParameter("courseID"));
+            int levelID = Integer.parseInt(request.getParameter("levelID"));
+            String keyword = request.getParameter("keyword");
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
+//            int totalQuiz = dao.getTotalQuiz();
+//            int totalPage = totalQuiz / Base.PAGE_SIZE;
+//            if (totalQuiz % Base.PAGE_SIZE != 0) {
+//                totalPage += 1;
+//            }
+            int totalSearchItems = 0;
+            int totalPage = 0;
+            if (courseID == 0 && levelID == 0) {
+                totalSearchItems = new QuizDao().getTotalSearch2side(keyword);
+                totalPage = totalSearchItems / Base.PAGE_SIZE;
+                if (totalSearchItems % Base.PAGE_SIZE != 0) {
+//                totalPage += 1;
+                }
+            }else if (courseID == 0 && levelID != 0) {
+                totalSearchItems = new QuizDao().getTotalSearchByLevelID(keyword,levelID);
+                
+            }
+            request.setAttribute("keyword", keyword);
+            request.getRequestDispatcher("managerQuiz.jsp").forward(request, response);
+
         }
     }
 
@@ -63,29 +75,7 @@ public class QuizListController extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        int page = 1;
-        String pageIndex = request.getParameter("page");
-        if (pageIndex != null) {
-            page = Integer.parseInt(pageIndex);
-        }
-        DAO.QuizDao dao = new QuizDao();
-        int totalQuiz = dao.getTotalQuiz();
-        int totalPage = totalQuiz / Base.PAGE_SIZE;
-        if (totalQuiz % Base.PAGE_SIZE != 0) {
-            totalPage += 1;
-        }
-        List<Quiz> listQuiz = dao.getAllQuiz();
-        List<Course> listCourse = new CourseDAO().getAllcourse();
-        List<QuizLevel> listQuizLevel = new QuizLevelDAO().getAllQuizLevel();
-        request.getSession().setAttribute("listQuiz", listQuiz);
-        List<Quiz> listQuizByPageing = dao.getAllQuizByPage(page, Base.PAGE_SIZE);
-        request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
-        request.getSession().setAttribute("listCourse", listCourse);
-        request.getSession().setAttribute("listQuizLevel", listQuizLevel);
-        request.setAttribute("page", page);
-        request.setAttribute("totalPage", totalPage);
-        request.setAttribute("pagination_url", "QuizListController?");
-        request.getRequestDispatcher("managerQuiz.jsp").forward(request, response);
+        processRequest(request, response);
     }
 
     /**
