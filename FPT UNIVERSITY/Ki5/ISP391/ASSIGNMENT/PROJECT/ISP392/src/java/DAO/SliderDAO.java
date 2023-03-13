@@ -72,26 +72,26 @@ public class SliderDAO extends MyDAO {
         }
     }
 
-    public void updateSlider(String title, boolean status, String image, String content, String notes, int courseId) {
+    public void updateSlider(String slider_url, boolean status, String title, String content, String notes, int courseID, int slideID) {
         try {
             String sql = "UPDATE [dbo].[Slide]\n"
                     + "   SET [slider_url] = ?\n"
                     + "      ,[status] = ?\n"
                     + "      ,[title] = ?\n"
-                    + "      ,[content] = ?\n"
-                    + "      ,[backlink] = ?\n"
+                    + "      ,[content] = ?\n"                   
                     + "      ,[notes] = ?\n"
                     + "      ,[courseID] = ?\n"
                     + " WHERE sliderId=?";
             PreparedStatement st = connection.prepareStatement(sql);
 
             ps = con.prepareStatement(sql);
-            ps.setString(1, image);
+            ps.setString(1, slider_url);
             ps.setBoolean(2, status);
             ps.setString(3, title);
             ps.setString(4, content);
             ps.setString(5, notes);
-            ps.setInt(6, courseId);
+            ps.setInt(6, courseID);
+            ps.setInt(7, slideID);
             ps.executeUpdate();
             st.executeUpdate();
         } catch (SQLException e) {
@@ -101,7 +101,7 @@ public class SliderDAO extends MyDAO {
 
     public Slider getSliderById(int sliderId) {
         Slider x = null;
-        xSql = "SELECT * FROM dbo.[slider] WHERE sliderId = ?";
+        xSql = "SELECT * FROM dbo.[slide] WHERE sliderId = ?";
         try {
             ps = con.prepareStatement(xSql);
             ps.setInt(1, sliderId);
