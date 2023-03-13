@@ -7,7 +7,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <meta name="description" content="">
         <meta name="author" content="">
-        <title>RuangAdmin - Dashboard</title>
+        <title>Admin - Dashboard</title>
         <link href="dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
         <link href="dashboard/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" type="text/css">
         <link href="dashboard/css/ruang-admin.min.css" rel="stylesheet">
@@ -16,70 +16,7 @@
     <body id="page-top">
         <div id="wrapper">
             <!-- Sidebar -->
-            <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
-                <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-                    <div class="sidebar-brand-text mx-3">Admin</div>
-                </a>
-                <hr class="sidebar-divider my-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="home">
-                        <i class="fas fa-fw fa-tachometer-alt"></i>
-                        <span>Home</span></a>
-                </li>
-                <hr class="sidebar-divider">
-                <div class="sidebar-heading">
-                    Features
-                </div>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseBootstrap"
-                       aria-expanded="true" aria-controls="collapseBootstrap">
-                        <i class="far fa-fw fa-window-maximize"></i>
-                        <span>Course</span>
-                    </a>
-                    <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="#">Manage Course</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseForm" aria-expanded="true"
-                       aria-controls="collapseForm">
-                        <i class="fab fa-fw fa-wpforms"></i>
-                        <span>User</span>
-                    </a>
-                    <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="form_basics.html">Manage User</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable" aria-expanded="true"
-                       aria-controls="collapseTable">
-                        <i class="fas fa-fw fa-table"></i>
-                        <span>Lesson</span>
-                    </a>
-                    <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="datatables.html">Manage Lesson</a>
-                        </div>
-                    </div>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTable1" aria-expanded="true"
-                       aria-controls="collapseTable">
-                        <i class="fas fa-fw fa-warehouse"></i>
-                        <span>Slide</span>
-                    </a>
-                    <div id="collapseTable1" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
-                        <div class="bg-white py-2 collapse-inner rounded">
-                            <a class="collapse-item" href="datatables.html">Manage Slide</a>
-                        </div>
-                    </div>
-                </li>
-                <hr class="sidebar-divider">
-            </ul>
+            <%@ include file="component/adminNvabar.jsp" %>
             <!-- Sidebar -->
             <div id="content-wrapper" class="d-flex flex-column">
                 <div id="content">
