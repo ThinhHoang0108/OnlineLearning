@@ -77,7 +77,7 @@
                 </a>
                 <div id="collapseTable1" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Manage Slide</a>
+                        <a class="collapse-item" href="sliderList">Manage Slide</a>
                     </div>
                 </div>
             </li>
