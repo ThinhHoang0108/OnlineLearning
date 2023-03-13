@@ -41,7 +41,7 @@
                 </a>
                 <div id="collapseBootstrap" class="collapse" aria-labelledby="headingBootstrap" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Manage Course</a>
+                        <a class="collapse-item" href="editcourse">Manage Course</a>
                     </div>
                 </div>
             </li>
@@ -53,7 +53,7 @@
                 </a>
                 <div id="collapseForm" class="collapse" aria-labelledby="headingForm" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Manage User</a>
+                        <a class="collapse-item" href="manageUser">Manage User</a>
                     </div>
                 </div>
             </li>
@@ -65,7 +65,7 @@
                 </a>
                 <div id="collapseTable" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="#">Manage Lesson</a>
+                        <a class="collapse-item" href="managelesson">Manage Lesson</a>
                     </div>
                 </div>
             </li>
