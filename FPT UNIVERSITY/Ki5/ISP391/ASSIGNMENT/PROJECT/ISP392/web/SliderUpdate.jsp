@@ -23,8 +23,6 @@
             }
         </style>
     <body>
-
-
         <form action="updateSlider" method="post">
             <div class="modal-header">						
                 <h4 class="modal-title">Edit Slider</h4>
