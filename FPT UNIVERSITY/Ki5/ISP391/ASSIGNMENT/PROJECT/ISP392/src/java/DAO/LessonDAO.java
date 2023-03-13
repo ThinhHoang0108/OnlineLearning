@@ -134,6 +134,18 @@ public class LessonDAO extends MyDAO {
         return 0;
     }
     
+    public void deleteLesson(String id) {
+        xSql = "Delete FROM dbo.Lesson WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    
     public void insertLesson(String urlVideo, String content, String description, String courseID) {
         String sql = "INSERT INTO [dbo].[Lesson]\n"
                 + "           ([urlVideo]\n"
