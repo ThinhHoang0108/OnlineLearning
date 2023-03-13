@@ -38,8 +38,8 @@ public class SliderListController extends HttpServlet {
             /* TODO output your page here. You may use following sample code. */
             SliderDAO d = new SliderDAO();
             List<Slider> listSliders = new SliderDAO().getAllSlider();
-            request.setAttribute("listSliders", listSliders);
-            request.getRequestDispatcher("Slider/SliderList.jsp").forward(request, response);
+            request.getSession().setAttribute("listSliders", listSliders);
+            request.getRequestDispatcher("SliderList.jsp").forward(request, response);
         }
     }
 
