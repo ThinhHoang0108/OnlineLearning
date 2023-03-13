@@ -333,7 +333,6 @@
                         </tbody>
                     </table>
                     <div class="clearfix">
-                        <div class="hint-text">Showing <b>5</b> out of <b>25</b> entries</div>
                     </div>
                 </div>
             </div>        
