@@ -134,25 +134,25 @@ public class LessonDAO extends MyDAO {
         return 0;
     }
     
-//    public void insertLesson(String urlVideo, String content, String description, String courseID) {
-//        String sql = "INSERT INTO [dbo].[Lesson]\n"
-//                + "           ([urlVideo]\n"
-//                + "           ,[content]\n"
-//                + "           ,[description]\n"
-//                + "           ,[IDcourse])\n"
-//                + "     VALUES\n"
-//                + "           (?,?,?,?,?)";
-//        try {
-//            ps = con.prepareStatement(sql);
-//            ps.setString(1, urlVideo);
-//            ps.setString(2, content);
-//            ps.setString(3, description);
-//            ps.setString(4, courseID);
-//            ps.executeUpdate();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
+    public void insertLesson(String urlVideo, String content, String description, String courseID) {
+        String sql = "INSERT INTO [dbo].[Lesson]\n"
+                + "           ([urlVideo]\n"
+                + "           ,[content]\n"
+                + "           ,[description]\n"
+                + "           ,[IDcourse])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?)";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, urlVideo);
+            ps.setString(2, content);
+            ps.setString(3, description);
+            ps.setString(4, courseID);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 //    
 //    public void updateLesson(String urlVideo, String content, String description, String courseID, String id) {
 //        String sql = "UPDATE [Lesson]\n"
