@@ -332,8 +332,6 @@
                             </c:forEach>  
                         </tbody>
                     </table>
-                    <div class="clearfix">
-                    </div>
                 </div>
             </div>        
         </div>
