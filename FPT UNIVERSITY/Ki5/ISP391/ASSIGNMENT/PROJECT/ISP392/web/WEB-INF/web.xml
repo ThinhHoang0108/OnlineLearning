@@ -130,6 +130,10 @@
         <servlet-name>QuizPointListController</servlet-name>
         <servlet-class>controller.quiz.QuizPointListController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>manageLesson</servlet-name>
+        <servlet-class>controller.lesson.manageLesson</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -225,6 +229,10 @@
     <servlet-mapping>
         <servlet-name>QuizPointListController</servlet-name>
         <url-pattern>/quiz-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>manageLesson</servlet-name>
+        <url-pattern>/managelesson</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
