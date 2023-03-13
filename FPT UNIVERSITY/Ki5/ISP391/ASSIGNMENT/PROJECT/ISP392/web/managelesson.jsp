@@ -265,16 +265,16 @@
         </script>
         <!--        javascrip delete-->
         <script type="text/javascript">
-            function confirmDelete(id) {
+            function confirmDelete(lessonID) {
 
                 if (confirm("Are you sure you want to delete?")) {
-                    window.location.href = 'deletelesson?id=' + id;
+                    window.location.href = 'deletelesson?lessonID=' + lessonID;
                 }
                 return false;
             }
-            function edit(id) {
+            function edit(lessonID) {
                 {
-                    window.location.href = 'loadlesson?lessonID=' + id;
+                    window.location.href = 'loadlesson?lessonID=' + lessonID;
                 }
                 return false;
             }
