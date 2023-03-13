@@ -166,23 +166,23 @@ public class LessonDAO extends MyDAO {
         }
     }
 //    
-//    public void updateLesson(String urlVideo, String content, String description, String courseID, String id) {
-//        String sql = "UPDATE [Lesson]\n"
-//                + "SET       [urlVideo] = ?\n"
-//                + ",[content] = ?\n"
-//                + ",[description]= ?\n"
-//                + ",[IDcourse]= ?\n"
-//                + "WHERE ID = ?";
-//        try {
-//            ps = con.prepareStatement(sql);
-//            ps.setString(1, urlVideo);
-//            ps.setString(2, content);
-//            ps.setString(3, description);
-//            ps.setString(4, courseID);
-//            ps.setString(5, id);
-//            ps.executeUpdate();
-//        } catch (Exception e) {
-//            System.out.println(e);
-//        }
-//    }
+    public void updateLesson(String urlVideo, String content, String description, String courseID, String id) {
+        String sql = "UPDATE [Lesson]\n"
+                + "SET       [urlVideo] = ?\n"
+                + ",[content] = ?\n"
+                + ",[description]= ?\n"
+                + ",[IDcourse]= ?\n"
+                + "WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(sql);
+            ps.setString(1, urlVideo);
+            ps.setString(2, content);
+            ps.setString(3, description);
+            ps.setString(4, courseID);
+            ps.setString(5, id);
+            ps.executeUpdate();
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+    }
 }
