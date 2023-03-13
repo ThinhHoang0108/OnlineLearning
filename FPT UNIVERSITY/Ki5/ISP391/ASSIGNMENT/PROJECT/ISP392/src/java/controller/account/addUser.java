@@ -3,8 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.account;
 
+import controller.*;
 import DAO.UserDAO;
 import com.oracle.wls.shaded.org.apache.bcel.generic.AALOAD;
 import java.io.IOException;
