@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.AnswerDetail;
+import model.Course;
 import model.Quiz;
 import model.QuizLevel;
 import model.QuizPoint;
@@ -205,6 +206,97 @@ public class QuizDao extends MyDAO {
             e.printStackTrace();
         }
         return false;
+    }
+
+    public int getTotalQuiz() {
+        try {
+            String sql = "SELECT COUNT(ID) FROM dbo.Quizz";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Quiz> getAllQuiz() {
+        List<Quiz> t = new ArrayList<>();
+        xSql = "SELECT a.*,b.QuizLevelName,c.Thumnail, c.Content, c.Description, c.DateCreated, c.IDcategory FROM dbo.Quizz a  INNER JOIN dbo.QuizLevel b ON b.QuizLevelID = a.LevelID INNER JOIN dbo.Course c ON c.ID = a.courseID";
+        Quiz x;
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                x = Quiz.builder()
+                        .quizID(rs.getInt("ID"))
+                        .content(rs.getString("content"))
+                        .levelID(rs.getInt("LevelID"))
+                        .status(rs.getBoolean("status"))
+                        .ratePass(rs.getFloat("ratePass"))
+                        .lessonID(rs.getInt("IDLesson"))
+                        .courseID(rs.getInt("courseID"))
+                        .duration(rs.getInt("duration"))
+                        .description(rs.getString("description"))
+                        .attempt(rs.getInt("attempt"))
+                        .totalQuestion(rs.getInt("totalQuestion"))
+                        .userID(rs.getInt("userID"))
+                        .questionID(rs.getInt("questionID"))
+                        .quizlevel(quizlevel)
+                        .course(course)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public List<Quiz> getAllQuizByPage(int page, int PAGE_SIZE) {
+        List<Quiz> t = new ArrayList<>();
+        xSql = "SELECT a.*,b.QuizLevelName,c.Thumnail, c.Content, c.Description, c.DateCreated, c.IDcategory FROM dbo.Quizz a  INNER JOIN dbo.QuizLevel b ON b.QuizLevelID = a.LevelID INNER JOIN dbo.Course c ON c.ID = a.courseID ORDER BY a.ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        Quiz x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE);
+            ps.setInt(3, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                x = Quiz.builder()
+                        .quizID(rs.getInt("ID"))
+                        .content(rs.getString("content"))
+                        .levelID(rs.getInt("LevelID"))
+                        .status(rs.getBoolean("status"))
+                        .ratePass(rs.getFloat("ratePass"))
+                        .lessonID(rs.getInt("IDLesson"))
+                        .courseID(rs.getInt("courseID"))
+                        .duration(rs.getInt("duration"))
+                        .description(rs.getString("description"))
+                        .attempt(rs.getInt("attempt"))
+                        .totalQuestion(rs.getInt("totalQuestion"))
+                        .userID(rs.getInt("userID"))
+                        .questionID(rs.getInt("questionID"))
+                        .quizlevel(quizlevel)
+                        .course(course)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
     }
 
 }

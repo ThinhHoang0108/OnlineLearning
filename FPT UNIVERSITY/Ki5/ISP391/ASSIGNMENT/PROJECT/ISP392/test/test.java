@@ -41,8 +41,8 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        Slider slide = new SliderDAO().getSliderById(9);
-        System.out.println(slide);
+        List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPage(1, Base.PAGE_SIZE);
+        System.out.println(listQuizByPageing);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);

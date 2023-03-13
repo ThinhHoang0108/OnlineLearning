@@ -26,4 +26,14 @@ public class Course {
     private String description;
     private Date createDate;
     private int IDcategory;
+
+    public Course(int id, String thumnailURL, String content, String description, Date createDate, int IDcategory) {
+        this.id = id;
+        this.thumnailURL = thumnailURL;
+        this.content = content;
+        this.description = description;
+        this.createDate = createDate;
+        this.IDcategory = IDcategory;
+    }
+    
 }
