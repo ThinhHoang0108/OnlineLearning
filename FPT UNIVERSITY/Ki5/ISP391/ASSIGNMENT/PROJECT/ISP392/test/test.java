@@ -9,6 +9,7 @@ import DAO.QuestionDAO;
 import DAO.QuizDao;
 import DAO.QuizPointDAO;
 import DAO.RoleDAO;
+import DAO.SliderDAO;
 import DAO.SubjectDAO;
 import DAO.TopicDAO;
 import DAO.UserDAO;
@@ -24,6 +25,7 @@ import model.Quiz;
 import model.QuizPoint;
 import model.QuizPointHistory;
 import model.Role;
+import model.Slider;
 import model.Subject;
 import model.User;
 import util.SendEmail;
@@ -39,10 +41,8 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        CommentDAO dao = new CommentDAO();
-        List<Comment> listComment = dao.getCommentByBlogID(1);
-        dao.insertComment(1, 4, "That great~!123123");
-        System.out.println(listComment);
+        Slider slide = new SliderDAO().getSliderById(9);
+        System.out.println(slide);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
