@@ -7,6 +7,7 @@ import DAO.CommentDAO;
 import DAO.LessonDAO;
 import DAO.QuestionDAO;
 import DAO.QuizDao;
+import DAO.QuizLevelDAO;
 import DAO.QuizPointDAO;
 import DAO.RoleDAO;
 import DAO.SliderDAO;
@@ -22,6 +23,7 @@ import model.Comment;
 import model.Lesson;
 import model.Question;
 import model.Quiz;
+import model.QuizLevel;
 import model.QuizPoint;
 import model.QuizPointHistory;
 import model.Role;
@@ -41,7 +43,7 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPage(1, Base.PAGE_SIZE);
+        List<QuizLevel> listQuizLv = new QuizLevelDAO().getAllQuizLevel();
         System.out.println(listQuizByPageing);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
