@@ -360,7 +360,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Course</label>
-                                <select name="category" class="form-select" aria-label="Default select example">
+                                <select name="course" class="form-select" aria-label="Default select example">
                                     <c:forEach items="${listCourse}" var="lc">
                                         <option value="${lc.id}">${lc.content}</option>
                                     </c:forEach>
