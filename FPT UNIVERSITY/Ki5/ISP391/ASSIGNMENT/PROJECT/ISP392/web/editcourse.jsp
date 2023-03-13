@@ -338,7 +338,6 @@
                             <li class="page-item disabled"><a href="#">Previous</a></li>
                             <li class="page-item"><a href="#" class="page-link">1</a></li>
                             <li class="page-item"><a href="#" class="page-link">4</a></li>
-                            <li class="page-item"><a href="#" class="page-link">5</a></li>
                         </ul>
                     </div>
                 </div>
