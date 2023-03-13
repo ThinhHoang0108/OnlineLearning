@@ -301,7 +301,7 @@ public class QuizDao extends MyDAO {
 
     public int getTotalSearch2side(String keyword) {
         try {
-            String sql = "SELECT DISTINCT COUNT(q.ID) FROM dbo.Quizz q INNER JOIN dbo.Lesson l ON q.IDLesson = l.ID WHERE q.content LIKE '%" + keyword +"%'";
+            String sql = "SELECT DISTINCT COUNT(q.ID) FROM dbo.Quizz q INNER JOIN dbo.Lesson l ON q.IDLesson = l.ID WHERE q.content LIKE '%" + keyword + "%'";
             ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
@@ -314,7 +314,92 @@ public class QuizDao extends MyDAO {
     }
 
     public int getTotalSearchByLevelID(String keyword, int levelID) {
-        throw new UnsupportedOperationException("Not supported yet."); // Generated from nbfs://nbhost/SystemFileSystem/Templates/Classes/Code/GeneratedMethodBody
+        try {
+            String sql = "SELECT DISTINCT COUNT(q.ID) FROM dbo.Quizz q INNER JOIN dbo.Lesson l ON q.IDLesson = l.ID INNER JOIN dbo.QuizLevel lv ON lv.QuizLevelID = q.LevelID WHERE q.content LIKE '%" + keyword + "%' AND lv.QuizLevelID = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, levelID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getTotalSearchByCourseID(String keyword, int courseID) {
+        try {
+            String sql = "SELECT DISTINCT COUNT(q.ID) FROM dbo.Quizz q INNER JOIN dbo.Lesson l ON q.IDLesson = l.ID INNER JOIN dbo.Course c ON c.ID = l.IDcourse WHERE q.content LIKE '%" + keyword + "%' AND c.ID = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public int getTotalSearchByCourseIDandLevelID(String keyword, int courseID, int levelID) {
+        try {
+            String sql = "SELECT DISTINCT COUNT(q.ID) FROM dbo.Quizz q INNER JOIN dbo.Lesson l ON q.IDLesson = l.ID INNER JOIN dbo.Course c ON c.ID = l.IDcourse INNER JOIN dbo.QuizLevel lv ON lv.QuizLevelID = q.LevelID WHERE q.content LIKE '%" + keyword + "%' AND c.ID = ? AND lv.QuizLevelID = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            ps.setInt(2, levelID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Quiz> getAllQuizByPageAndSearch(int page, int PAGE_SIZE, String keyword) {
+        List<Quiz> t = new ArrayList<>();
+        xSql = "with t as (select ROW_NUMBER() over (order by Q.ID asc) as r,\n"
+                + "Q.ID, Q.content AS \"Quiz name\", Q.LevelID, Q.status, Q.ratePass, Q.IDLesson, Q.courseID, \n"
+                + "Q.duration, Q.description, Q.totalQuestion,Q.attempt, T.QuizLevelName, S.Content, S.Thumnail,S.Description AS \"Description Course\",S.DateCreated,S.IDcategory from dbo.Quizz Q left join dbo.Lesson AS L\n"
+                + "ON Q.IDLesson = L.ID inner join dbo.Course S on L.IDcourse = S.ID\n"
+                + "INNER join dbo.QuizLevel T on Q.LevelID = T.QuizLevelID where Q.content like '%" + keyword + "%')\n"
+                + "select * from t ORDER BY r ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        Quiz x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE);
+            ps.setInt(3, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                x = Quiz.builder()
+                        .quizID(rs.getInt("ID"))
+                        .content(rs.getString("Quiz name"))
+                        .levelID(rs.getInt("LevelID"))
+                        .status(rs.getBoolean("status"))
+                        .ratePass(rs.getFloat("ratePass"))
+                        .lessonID(rs.getInt("IDLesson"))
+                        .courseID(rs.getInt("courseID"))
+                        .duration(rs.getInt("duration"))
+                        .description(rs.getString("description"))
+                        .attempt(rs.getInt("attempt"))
+                        .totalQuestion(rs.getInt("totalQuestion"))
+                        .quizlevel(quizlevel)
+                        .course(course)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
     }
 
 }

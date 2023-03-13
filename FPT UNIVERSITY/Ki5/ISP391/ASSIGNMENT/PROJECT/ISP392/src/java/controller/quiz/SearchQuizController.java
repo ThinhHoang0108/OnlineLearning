@@ -5,13 +5,19 @@
 package controller.quiz;
 
 import Base.Base;
+import DAO.CourseDAO;
 import DAO.QuizDao;
+import DAO.QuizLevelDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Course;
+import model.Quiz;
+import model.QuizLevel;
 
 /**
  *
@@ -40,24 +46,57 @@ public class SearchQuizController extends HttpServlet {
             if (pageIndex != null) {
                 page = Integer.parseInt(pageIndex);
             }
-//            int totalQuiz = dao.getTotalQuiz();
-//            int totalPage = totalQuiz / Base.PAGE_SIZE;
-//            if (totalQuiz % Base.PAGE_SIZE != 0) {
-//                totalPage += 1;
-//            }
             int totalSearchItems = 0;
             int totalPage = 0;
             if (courseID == 0 && levelID == 0) {
                 totalSearchItems = new QuizDao().getTotalSearch2side(keyword);
                 totalPage = totalSearchItems / Base.PAGE_SIZE;
                 if (totalSearchItems % Base.PAGE_SIZE != 0) {
-//                totalPage += 1;
+                    totalPage += 1;
                 }
-            }else if (courseID == 0 && levelID != 0) {
-                totalSearchItems = new QuizDao().getTotalSearchByLevelID(keyword,levelID);
-                
+                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearch(page, Base.PAGE_SIZE, keyword);
+                request.setAttribute("page", page);
+                request.setAttribute("totalPage", totalPage);
+                request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
+            } else if (courseID == 0 && levelID != 0) {
+                totalSearchItems = new QuizDao().getTotalSearchByLevelID(keyword, levelID);
+                totalPage = totalSearchItems / Base.PAGE_SIZE;
+                if (totalSearchItems % Base.PAGE_SIZE != 0) {
+                    totalPage += 1;
+                }
+                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearch(page, Base.PAGE_SIZE,keyword);
+                request.setAttribute("page", page);
+                request.setAttribute("totalPage", totalPage);
+                request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
+            } else if (courseID != 0 && levelID == 0) {
+                totalSearchItems = new QuizDao().getTotalSearchByCourseID(keyword, courseID);
+                totalPage = totalSearchItems / Base.PAGE_SIZE;
+                if (totalSearchItems % Base.PAGE_SIZE != 0) {
+                    totalPage += 1;
+                }
+                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearch(page, Base.PAGE_SIZE, keyword);
+                request.setAttribute("page", page);
+                request.setAttribute("totalPage", totalPage);
+                request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
+            } else if (courseID != 0 && levelID != 0) {
+                totalSearchItems = new QuizDao().getTotalSearchByCourseIDandLevelID(keyword, courseID, levelID);
+                totalPage = totalSearchItems / Base.PAGE_SIZE;
+                if (totalSearchItems % Base.PAGE_SIZE != 0) {
+                    totalPage += 1;
+                }
+                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearch(page, Base.PAGE_SIZE, keyword);
+                request.setAttribute("page", page);
+                request.setAttribute("totalPage", totalPage);
+                request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
             }
+            List<Course> listCourse = new CourseDAO().getAllcourse();
+            List<QuizLevel> listQuizLevel = new QuizLevelDAO().getAllQuizLevel();
+            request.setAttribute("levelID", levelID);
+            request.setAttribute("courseID", courseID);
             request.setAttribute("keyword", keyword);
+            request.setAttribute("listCourse", listCourse);
+            request.setAttribute("listQuizLevel", listQuizLevel);
+            request.setAttribute("pagination_url", "search-quiz?levelID=" + levelID + "&courseID=" + courseID + "&keyword=" + keyword + "&");
             request.getRequestDispatcher("managerQuiz.jsp").forward(request, response);
 
         }

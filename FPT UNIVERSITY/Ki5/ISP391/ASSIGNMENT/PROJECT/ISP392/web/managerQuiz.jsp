@@ -42,7 +42,7 @@
                                 <!-- Simple Tables -->
                                 <div class="card">
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <form action="search-quiz" method="POST" style="width: 900px; float: right !important">
+                                        <form action="search-quiz" method="get" style="width: 900px; float: right !important">
                                             <div class="input-group">
                                                 <select name="courseID" class="form-control form-control-sm mb-auto" style="width: 40%">
                                                     <option value="0">All course</option>
