@@ -94,8 +94,8 @@ public class SearchQuizController extends HttpServlet {
             request.setAttribute("levelID", levelID);
             request.setAttribute("courseID", courseID);
             request.setAttribute("keyword", keyword);
-            request.setAttribute("listCourse", listCourse);
-            request.setAttribute("listQuizLevel", listQuizLevel);
+            request.getSession().setAttribute("listCourse", listCourse);
+            request.getSession().setAttribute("listQuizLevel", listQuizLevel);
             request.setAttribute("pagination_url", "search-quiz?levelID=" + levelID + "&courseID=" + courseID + "&keyword=" + keyword + "&");
             request.getRequestDispatcher("managerQuiz.jsp").forward(request, response);
 
