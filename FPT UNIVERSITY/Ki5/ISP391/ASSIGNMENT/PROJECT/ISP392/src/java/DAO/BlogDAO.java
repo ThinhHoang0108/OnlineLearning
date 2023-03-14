@@ -108,4 +108,47 @@ public class BlogDAO extends MyDAO {
         }
         return (t);
     }
+
+    public List<Blog> getAllBlogByPageKeyword(int page, int PAGE_SIZE, String keyword) {
+        List<Blog> t = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.Blog WHERE content LIKE '%" + keyword + "%' ORDER BY ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        Blog x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE);
+            ps.setInt(3, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = Blog.builder().id(rs.getInt(1))
+                        .thumnailURL(rs.getString(2))
+                        .content(rs.getString(3))
+                        .description(rs.getString(4))
+                        .uID(rs.getInt(6))
+                        .cID(rs.getInt(7))
+                        .createDate(rs.getDate(5))
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public int getTotalBlogByKeyword(String keyword) {
+        try {
+            String sql = "SELECT COUNT(ID) FROM dbo.Blog WHERE content LIKE '%" + keyword + "%'";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
 }
