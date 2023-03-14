@@ -45,7 +45,7 @@
                                         <form action="search-quiz" method="get" style="width: 900px; float: right !important">
                                             <div class="input-group">
                                                 <select name="courseID" class="form-control form-control-sm mb-auto" style="width: 40%">
-                                                    <option value="0">All course</option>
+                                                    <option value="0">Filter by Course</option>
                                                     <c:forEach items="${sessionScope.listCourse}" var="c">
                                                         <option value="${c.id}">${c.content}</option>
                                                     </c:forEach>
@@ -53,7 +53,7 @@
 
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
                                                 <select name="levelID" class="form-control form-control-sm mb-1" style="width: 1px">
-                                                    <option value="0">All</option>
+                                                    <option value="0">Filter by Level</option>
                                                     <c:forEach items="${sessionScope.listQuizLevel}" var="lv">
                                                         <option value="${lv.quizLevelId}">${lv.quizLevelName}</option>
                                                     </c:forEach>
