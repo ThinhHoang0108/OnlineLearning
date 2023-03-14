@@ -64,7 +64,7 @@ public class SearchQuizController extends HttpServlet {
                 if (totalSearchItems % Base.PAGE_SIZE != 0) {
                     totalPage += 1;
                 }
-                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearch(page, Base.PAGE_SIZE,keyword);
+                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearchLevelID(page, Base.PAGE_SIZE,keyword, levelID);
                 request.setAttribute("page", page);
                 request.setAttribute("totalPage", totalPage);
                 request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
@@ -74,7 +74,7 @@ public class SearchQuizController extends HttpServlet {
                 if (totalSearchItems % Base.PAGE_SIZE != 0) {
                     totalPage += 1;
                 }
-                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearch(page, Base.PAGE_SIZE, keyword);
+                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearchCourseID(page, Base.PAGE_SIZE, keyword,courseID);
                 request.setAttribute("page", page);
                 request.setAttribute("totalPage", totalPage);
                 request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
@@ -84,7 +84,7 @@ public class SearchQuizController extends HttpServlet {
                 if (totalSearchItems % Base.PAGE_SIZE != 0) {
                     totalPage += 1;
                 }
-                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearch(page, Base.PAGE_SIZE, keyword);
+                List<Quiz> listQuizByPageing = new QuizDao().getAllQuizByPageAndSearchCourseIDLevelID(page, Base.PAGE_SIZE, keyword, courseID, levelID);
                 request.setAttribute("page", page);
                 request.setAttribute("totalPage", totalPage);
                 request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);

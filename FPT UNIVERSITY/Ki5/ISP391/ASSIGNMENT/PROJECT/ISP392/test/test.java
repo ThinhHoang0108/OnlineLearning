@@ -43,8 +43,8 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        int list1side = new QuizDao().getTotalSearchByLevelID("Day 2", 2);
-        System.out.println(list1side);
+        List<Quiz> list = new QuizDao().getAllQuizByPageAndSearch(1, PAGE_SIZE, "Day 1");
+        System.out.println(list);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
