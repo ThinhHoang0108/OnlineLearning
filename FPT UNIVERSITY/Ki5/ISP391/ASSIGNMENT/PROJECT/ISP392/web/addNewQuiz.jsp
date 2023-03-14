@@ -44,11 +44,11 @@
                     <!-- Container Fluid-->
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Manager Quiz</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Quiz</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="QuizListController">Manage Quiz</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Add Quiz</li>
+                                <li class="breadcrumb-item active" aria-current="page">Quiz Detail</li>
                             </ol>
                         </div>
                         <div class="row">
@@ -58,10 +58,10 @@
                                         <h6 class="m-0 font-weight-bold text-primary">Add new Quiz</h6>
                                     </div>
                                     <div class="card-body">
-                                        <form>
+                                        <form action="${sessionScope.action}" method="post">
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Quiz name</label>
-                                                <input type="text" class="form-control" name="content" id="exampleFormControlInput1">
+                                                <input type="text" class="form-control" name="content" id="exampleFormControlInput1" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Quiz Level</label>
@@ -73,7 +73,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Course Name</label>
-                                                <select class="form-control" name="courseID" id="exampleFormControlSelect1">
+                                                <select class="form-control" name="courseID" id="exampleFormControlSelect1" >
                                                     <c:forEach items="${sessionScope.listCourse}" var="c">
                                                         <option value="${c.id}">${c.content}</option>
                                                     </c:forEach>
@@ -81,7 +81,7 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Lesson Name</label>
-                                                <select class="form-control" name="courseID" id="exampleFormControlSelect1">
+                                                <select class="form-control" name="lessonID" id="exampleFormControlSelect1">
                                                     <c:forEach items="${sessionScope.listLesson}" var="l">
                                                         <option value="${l.lessonID}">${l.content}</option>
                                                     </c:forEach>
@@ -108,19 +108,19 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Rate Pass</label>
-                                                <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" style="width: 50%">
+                                                <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" style="width: 50%" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Total Question</label>
-                                                <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%">
+                                                <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Attempt</label>
-                                                <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%">
+                                                <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Duration</label>
-                                                <input type="number" class="form-control" name="Duration" id="exampleFormControlInput1" style="width: 50%">
+                                                <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Description</label>
