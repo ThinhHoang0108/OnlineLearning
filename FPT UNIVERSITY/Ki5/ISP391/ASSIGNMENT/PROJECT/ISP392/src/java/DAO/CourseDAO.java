@@ -164,7 +164,7 @@ public class CourseDAO extends MyDAO {
         }
         return 0;
     }
-    
+
     public void updateCourse(String thumnail, String content, String description, String datecreate, String category, String id) {
         String sql = "UPDATE [Course]\n"
                 + "SET       [thumnail] = ?\n"
@@ -185,5 +185,47 @@ public class CourseDAO extends MyDAO {
         } catch (Exception e) {
             System.out.println(e);
         }
+    }
+
+    public int getTotalCourseByKeyword(String keyword) {
+        try {
+            String sql = "SELECT DISTINCT COUNT(c.ID) FROM dbo.Course c WHERE c.Content LIKE '%" + keyword + "%'";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Course> getAllcourseByPageByKeyword(int page, int PAGE_SIZE, String keyword) {
+        List<Course> t = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.Course WHERE Content LIKE '%" + keyword + "%' ORDER BY ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        Course x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE);
+            ps.setInt(3, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = Course.builder().id(rs.getInt("ID"))
+                        .thumnailURL(rs.getString("Thumnail"))
+                        .content(rs.getString("Content"))
+                        .description(rs.getString("Description"))
+                        .createDate(rs.getDate("DateCreated"))
+                        .IDcategory(rs.getInt("IDcategory"))
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
     }
 }

@@ -4,6 +4,7 @@ import static Base.Base.PAGE_SIZE;
 import DAO.AnswerDAO;
 import DAO.BlogDAO;
 import DAO.CommentDAO;
+import DAO.CourseDAO;
 import DAO.LessonDAO;
 import DAO.QuestionDAO;
 import DAO.QuizDao;
@@ -20,6 +21,7 @@ import java.util.List;
 import model.Answer;
 import model.Blog;
 import model.Comment;
+import model.Course;
 import model.Lesson;
 import model.Question;
 import model.Quiz;
@@ -43,8 +45,10 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        List<Quiz> list = new QuizDao().getAllQuizByPageAndSearch(1, PAGE_SIZE, "Day 1");
+        int total = new CourseDAO().getTotalCourseByKeyword("O");
+        List<Course> list = new CourseDAO().getAllcourseByPageByKeyword(1, PAGE_SIZE, "O");
         System.out.println(list);
+        System.out.println(total);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);

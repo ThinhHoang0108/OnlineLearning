@@ -98,7 +98,7 @@
                                     <div class="card-footer"> <div class="container">
                                             <c:choose>
                                                 <c:when test="${listQuizByPageing == null || listQuizByPageing.size() ==0}">
-                                                    Not have any Course
+                                                    Not have any Quiz
                                                 </c:when>
                                                 <c:when test="${totalPage < 2}">
                                                     <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
