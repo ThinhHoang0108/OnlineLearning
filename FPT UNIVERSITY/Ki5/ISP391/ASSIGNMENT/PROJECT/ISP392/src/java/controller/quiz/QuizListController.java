@@ -6,6 +6,7 @@ package controller.quiz;
 
 import Base.Base;
 import DAO.CourseDAO;
+import DAO.LessonDAO;
 import DAO.QuizDao;
 import DAO.QuizLevelDAO;
 import java.io.IOException;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Course;
+import model.Lesson;
 import model.Quiz;
 import model.QuizLevel;
 
@@ -77,6 +79,8 @@ public class QuizListController extends HttpServlet {
         List<Quiz> listQuiz = dao.getAllQuiz();
         List<Course> listCourse = new CourseDAO().getAllcourse();
         List<QuizLevel> listQuizLevel = new QuizLevelDAO().getAllQuizLevel();
+        List<Lesson> listLesson = new LessonDAO().getAll();
+        request.getSession().setAttribute("listLesson", listLesson);
         request.getSession().setAttribute("listQuiz", listQuiz);
         List<Quiz> listQuizByPageing = dao.getAllQuizByPage(page, Base.PAGE_SIZE);
         request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
