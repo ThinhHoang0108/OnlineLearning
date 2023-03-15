@@ -78,7 +78,7 @@ public class SliderDAO extends MyDAO {
                     + "   SET [slider_url] = ?\n"
                     + "      ,[status] = ?\n"
                     + "      ,[title] = ?\n"
-                    + "      ,[content] = ?\n"                   
+                    + "      ,[content] = ?\n"
                     + "      ,[notes] = ?\n"
                     + "      ,[courseID] = ?\n"
                     + " WHERE sliderId=?";
@@ -124,10 +124,10 @@ public class SliderDAO extends MyDAO {
         }
         return (x);
     }
-    
-        public int getTotalSlider() {
+
+    public int getTotalSlider() {
         try {
-           
+
             if (con != null) {
                 String sql = "select distinct count(S.subjectId)\n"
                         + "from Slider AS Sl inner join Subject AS S\n"
@@ -151,9 +151,10 @@ public class SliderDAO extends MyDAO {
         }
         return 0;
     }
-            public int getTotalSliderShow() {
+
+    public int getTotalSliderShow() {
         try {
-          
+
             if (con != null) {
                 String sql = "select distinct count(S.subjectId)\n"
                         + "from Slider AS Sl inner join Subject AS S\n"
@@ -177,9 +178,10 @@ public class SliderDAO extends MyDAO {
         }
         return 0;
     }
-                public int getTotalSlider(String keyword) {
+
+    public int getTotalSlider(String keyword) {
         try {
-            
+
             if (con != null) {
                 String sql = "select distinct count(Sl.sliderId)\n"
                         + "from Slider AS Sl inner join Subject AS S\n"
@@ -204,5 +206,22 @@ public class SliderDAO extends MyDAO {
             }
         }
         return 0;
+    }
+
+    public int getfirstSliderId() {
+        int t = 0;
+        xSql = "select MIN(sliderId) from Slide where status = 1";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                t = rs.getInt(1);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
     }
 }

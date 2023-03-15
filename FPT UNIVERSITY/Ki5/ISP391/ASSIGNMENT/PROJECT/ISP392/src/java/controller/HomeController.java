@@ -5,6 +5,7 @@
 package controller;
 
 import DAO.CategoryDAO;
+import DAO.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -14,6 +15,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Category;
+import model.Slider;
 
 /**
  *
@@ -35,8 +37,12 @@ public class HomeController extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
             List<Category> listCategories = new CategoryDAO().getAllCategory();
+            List<Slider> listSliders = new SliderDAO().getAllSlider();
+            int firstSliderId = new SliderDAO().getfirstSliderId();
             HttpSession session = request.getSession();
             session.setAttribute("listCategories", listCategories);
+            request.getSession().setAttribute("listSliders", listSliders);
+            request.setAttribute("firstSliderId", firstSliderId);
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }
