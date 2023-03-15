@@ -44,7 +44,7 @@
                     <!-- Container Fluid-->
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Quiz</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Manager Quiz</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="QuizListController">Manage Quiz</a></li>
@@ -55,7 +55,12 @@
                             <div class="col-lg-12 mb-4">
                                 <div class="card mb-4">
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <c:if test="${sessionScope.action == 'AddNewQuizz'}">
                                         <h6 class="m-0 font-weight-bold text-primary">Add new Quiz</h6>
+                                        </c:if>
+                                        <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                        <h6 class="m-0 font-weight-bold text-primary">Edit Quiz</h6>
+                                        </c:if>
                                     </div>
                                     <div class="card-body">
                                         <form action="${sessionScope.action}" method="post">
@@ -66,7 +71,7 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Quiz Level</label>
                                                 <select class="form-control" name="levelID" id="exampleFormControlSelect1">
-                                                    <c:forEach items="${sessionScope.listQuizLevel}" var="lv">
+                                                    <c:forEach items="${listQuizLevel}" var="lv">
                                                         <option value="${lv.quizLevelId}">${lv.quizLevelName}</option>
                                                     </c:forEach>
                                                 </select>
@@ -74,7 +79,7 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Course Name</label>
                                                 <select class="form-control" name="courseID" id="exampleFormControlSelect1" >
-                                                    <c:forEach items="${sessionScope.listCourse}" var="c">
+                                                    <c:forEach items="${listCourse}" var="c">
                                                         <option value="${c.id}">${c.content}</option>
                                                     </c:forEach>
                                                 </select>
@@ -82,7 +87,7 @@
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Lesson Name</label>
                                                 <select class="form-control" name="lessonID" id="exampleFormControlSelect1">
-                                                    <c:forEach items="${sessionScope.listLesson}" var="l">
+                                                    <c:forEach items="${listLesson}" var="l">
                                                         <option value="${l.lessonID}">${l.content}</option>
                                                     </c:forEach>
                                                 </select>

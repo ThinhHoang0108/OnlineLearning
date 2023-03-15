@@ -65,7 +65,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <a href="QuizDetailController?action=" class="btn btn-primary ms-5 pt-2" />Add New</a>
+                                        <a href="QuizDetailController?action=AddNewQuizz&message=0" class="btn btn-primary ms-5 pt-2" />Add New</a>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-flush">

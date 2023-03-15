@@ -4,6 +4,7 @@
  */
 package controller.quiz;
 
+import DAO.QuizDao;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -41,9 +42,8 @@ public class AddNewQuizz extends HttpServlet {
             int attempt = Integer.parseInt(request.getParameter("attempt"));
             int duration = Integer.parseInt(request.getParameter("duration"));
             String description = request.getParameter("description");
-            
-            
-
+            new QuizDao().insertQuiz(quizName, levelID, courseID, lessonID, start_time, end_time, ratePass, totalQuestion, attempt, duration, description);
+            response.sendRedirect("QuizListController");
         }
     }
 
