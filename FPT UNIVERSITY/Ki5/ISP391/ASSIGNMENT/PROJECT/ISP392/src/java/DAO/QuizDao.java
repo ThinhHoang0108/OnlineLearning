@@ -46,6 +46,8 @@ public class QuizDao extends MyDAO {
                         .userID(rs.getInt("userID"))
                         .questionID(rs.getInt("questionID"))
                         .quizlevel(quizlevel)
+                        .start_time(rs.getTime("start_time"))
+                        .end_time(rs.getTime("end_time"))
                         .build();
                 t.add(x);
             }
