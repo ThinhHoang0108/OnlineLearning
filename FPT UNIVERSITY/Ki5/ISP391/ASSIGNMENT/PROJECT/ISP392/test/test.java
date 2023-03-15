@@ -4,9 +4,11 @@ import static Base.Base.PAGE_SIZE;
 import DAO.AnswerDAO;
 import DAO.BlogDAO;
 import DAO.CommentDAO;
+import DAO.CourseDAO;
 import DAO.LessonDAO;
 import DAO.QuestionDAO;
 import DAO.QuizDao;
+import DAO.QuizLevelDAO;
 import DAO.QuizPointDAO;
 import DAO.RoleDAO;
 import DAO.SliderDAO;
@@ -19,9 +21,11 @@ import java.util.List;
 import model.Answer;
 import model.Blog;
 import model.Comment;
+import model.Course;
 import model.Lesson;
 import model.Question;
 import model.Quiz;
+import model.QuizLevel;
 import model.QuizPoint;
 import model.QuizPointHistory;
 import model.Role;
@@ -41,8 +45,10 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        Slider slide = new SliderDAO().getSliderById(9);
-        System.out.println(slide);
+        int totalSearchItems = new BlogDAO().getTotalBlogByKeyword("O");
+        List<Blog> listBlogByPageing = new BlogDAO().getAllBlogByPageKeyword(1, Base.PAGE_SIZE, "Meji");
+        System.out.println(totalSearchItems);
+        System.out.println(listBlogByPageing);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);

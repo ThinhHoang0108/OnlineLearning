@@ -24,6 +24,7 @@
         <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
         <link href="assets/vendor/remixicon/remixicon.css" rel="stylesheet">
         <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+        <link href="dashboard/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
 
         <!-- Template Main CSS File -->
         <link href="assets/css/style.css" rel="stylesheet">
@@ -55,7 +56,16 @@
             <!-- ======= Courses Section ======= -->
             <section id="courses" class="courses">
                 <div class="container" data-aos="fade-up">
-
+                    <div class="col-lg-4 col-md-6 d-flex align-items-start">
+                        <form action="search-course" method="post">
+                            <div class="input-group">
+                                <input type="search" name="keyword" id="form1" value="${requestScope.keyword}" class="form-control ms-2 mb-2 py-3" style="height: 38px !important;" placeholder="Search"/>
+                                <button id="search-button" type="submit" class="btn btn-primary mb-5">
+                                    <i class="fas fa-search"></i>
+                                </button>
+                            </div>
+                        </form>  
+                    </div>
                     <div class="row" data-aos="zoom-in" data-aos-delay="100">    
                         <c:forEach items="${sessionScope.listCoursebyPageing}" var="l" >
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">

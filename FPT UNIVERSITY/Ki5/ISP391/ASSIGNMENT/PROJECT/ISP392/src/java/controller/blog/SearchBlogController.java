@@ -2,20 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.quiz;
+package controller.blog;
 
+import Base.Base;
+import DAO.BlogDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Blog;
 
 /**
  *
  * @author ADMIN
  */
-public class AddNewQuizz extends HttpServlet {
+public class SearchBlogController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,20 +34,26 @@ public class AddNewQuizz extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String quizName = request.getParameter("content");
-            int levelID = Integer.parseInt(request.getParameter("levelID"));
-            int courseID = Integer.parseInt(request.getParameter("courseID"));
-            int lessonID = Integer.parseInt(request.getParameter("lessonID"));
-            String start_time = request.getParameter("start_time");
-            String end_time = request.getParameter("end_time");
-            Float ratePass = Float.parseFloat(request.getParameter("ratePass"));
-            int totalQuestion = Integer.parseInt(request.getParameter("totalQuestion"));
-            int attempt = Integer.parseInt(request.getParameter("attempt"));
-            int duration = Integer.parseInt(request.getParameter("duration"));
-            String description = request.getParameter("description");
-            
-            
-
+            String keyword = request.getParameter("keyword");
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
+            int totalSearchItems = 0;
+            int totalPage = 0;
+            totalSearchItems = new BlogDAO().getTotalBlogByKeyword(keyword);
+            totalPage = totalSearchItems / Base.PAGE_SIZE;
+            if (totalSearchItems % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
+            List<Blog> listBlogByPageing = new BlogDAO().getAllBlogByPageKeyword(page, Base.PAGE_SIZE, keyword);
+            request.getSession().setAttribute("listBlogByPageing", listBlogByPageing);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "search-blog?keyword=" + keyword + "&");
+            request.setAttribute("keyword", keyword);
+            request.getRequestDispatcher("bloglist.jsp").forward(request, response);
         }
     }
 

@@ -9,6 +9,7 @@ package model;
  * @author vuxua
  */
 import java.sql.Date;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -18,6 +19,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
 public class Course {
 
     private int id;
@@ -26,4 +28,6 @@ public class Course {
     private String description;
     private Date createDate;
     private int IDcategory;
+
+
 }

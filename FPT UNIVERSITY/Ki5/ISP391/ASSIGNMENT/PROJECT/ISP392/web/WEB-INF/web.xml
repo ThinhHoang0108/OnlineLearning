@@ -150,6 +150,22 @@
         <servlet-name>updateLesson</servlet-name>
         <servlet-class>controller.lesson.updateLesson</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuizListController</servlet-name>
+        <servlet-class>controller.quiz.QuizListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchQuizController</servlet-name>
+        <servlet-class>controller.quiz.SearchQuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchCourseController</servlet-name>
+        <servlet-class>controller.Course.SearchCourseController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchBlogController</servlet-name>
+        <servlet-class>controller.blog.SearchBlogController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -265,6 +281,22 @@
     <servlet-mapping>
         <servlet-name>updateLesson</servlet-name>
         <url-pattern>/updatelesson</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuizListController</servlet-name>
+        <url-pattern>/QuizListController</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchQuizController</servlet-name>
+        <url-pattern>/search-quiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchCourseController</servlet-name>
+        <url-pattern>/search-course</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchBlogController</servlet-name>
+        <url-pattern>/search-blog</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
