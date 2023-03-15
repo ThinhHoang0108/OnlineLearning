@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
     <head>
@@ -36,67 +37,134 @@
                                 <li class="breadcrumb-item active" aria-current="page">Manager Quiz</li>
                             </ol>
                         </div>
-                            <div class="row">
-                                <div class="col-lg-12 mb-4">
-                                    <!-- Simple Tables -->
-                                    <div class="card">
-                                        <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                            <h6 class="m-0 font-weight-bold text-primary">Simple Tables</h6>
-                                        </div>
-                                        <div class="table-responsive">
-                                            <table class="table align-items-center table-flush">
-                                                <thead class="thead-light">
-                                                    <tr>
-                                                        <th>Order ID</th>
-                                                        <th>Customer</th>
-                                                        <th>Item</th>
-                                                        <th>Status</th>
-                                                        <th>Action</th>
-                                                    </tr>
-                                                </thead>
-                                                <tbody>
-                                                    <tr>
-                                                        <td><a href="#">RA0449</a></td>
-                                                        <td>Udin Wayang</td>
-                                                        <td>Nasi Padang</td>
-                                                        <td><span class="badge badge-success">Delivered</span></td>
-                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="#">RA5324</a></td>
-                                                        <td>Jaenab Bajigur</td>
-                                                        <td>Gundam 90' Edition</td>
-                                                        <td><span class="badge badge-warning">Shipping</span></td>
-                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="#">RA8568</a></td>
-                                                        <td>Rivat Mahesa</td>
-                                                        <td>Oblong T-Shirt</td>
-                                                        <td><span class="badge badge-danger">Pending</span></td>
-                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="#">RA1453</a></td>
-                                                        <td>Indri Junanda</td>
-                                                        <td>Hat Rounded</td>
-                                                        <td><span class="badge badge-info">Processing</span></td>
-                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                                    </tr>
-                                                    <tr>
-                                                        <td><a href="#">RA1998</a></td>
-                                                        <td>Udin Cilok</td>
-                                                        <td>Baby Powder</td>
-                                                        <td><span class="badge badge-success">Delivered</span></td>
-                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
-                                                    </tr>
-                                                </tbody>
-                                            </table>
-                                        </div>
-                                        <div class="card-footer"></div>
+                        <div class="row">
+                            <div class="col-lg-12 mb-4">
+                                <!-- Simple Tables -->
+                                <div class="card">
+                                    <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                        <form action="search-quiz" method="get" style="width: 900px; float: right !important">
+                                            <div class="input-group">
+                                                <select name="courseID" class="form-control form-control-sm mb-auto" style="width: 40%">
+                                                    <option value="0">Filter by Course</option>
+                                                    <c:forEach items="${sessionScope.listCourse}" var="c">
+                                                        <option value="${c.id}">${c.content}</option>
+                                                    </c:forEach>
+                                                </select>
+
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <select name="levelID" class="form-control form-control-sm mb-1" style="width: 1px">
+                                                    <option value="0">Filter by Level</option>
+                                                    <c:forEach items="${sessionScope.listQuizLevel}" var="lv">
+                                                        <option value="${lv.quizLevelId}">${lv.quizLevelName}</option>
+                                                    </c:forEach>
+                                                </select>
+                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                <input type="search" name="keyword" id="form1" value="${requestScope.keyword}" class="form-control ms-2 mb-2 py-3" style="height: 38px !important;" placeholder="Search"/>
+                                                <button type="submit" class="btn btn-primary mb-2">
+                                                    <i class="fas fa-search"></i>
+                                                </button>
+                                            </div>
+                                        </form>
+                                        <a href="QuizDetailController?action=" class="btn btn-primary ms-5 pt-2" />Add New</a>
                                     </div>
+                                    <div class="table-responsive">
+                                        <table class="table align-items-center table-flush">
+                                            <thead class="thead-light">
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Quiz name</th>
+                                                    <th>Level</th>
+                                                    <th>Course name</th>
+                                                    <th>Duration</th>
+                                                    <th>Pass rate</th>
+                                                    <th>Action</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <c:forEach items="${sessionScope.listQuizByPageing}" var="l">
+                                                    <tr>
+                                                        <td>${l.quizID}</td>
+                                                        <td>${l.content}</td>
+                                                        <td>${l.quizlevel.quizLevelName}</td>
+                                                        <td>${l.course.content}</td>
+                                                        <td>${l.duration}</td>
+                                                        <td>${l.ratePass}%</td>
+                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                                    </tr>
+                                                </c:forEach>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="card-footer"> <div class="container">
+                                            <c:choose>
+                                                <c:when test="${listQuizByPageing == null || listQuizByPageing.size() ==0}">
+                                                    Not have any Quiz
+                                                </c:when>
+                                                <c:when test="${totalPage < 2}">
+                                                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                        <ul class="pagination">
+                                                            <li class="page-item disabled">
+                                                                <span class="page-link">Previous</span>
+                                                            </li>
+                                                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                                                </c:forEach>
+                                                            <li class="page-item disabled">
+                                                                <span class="page-link">Next</span>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </c:when>  
+                                                <c:when test="${page < 2}">
+                                                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                        <ul class="pagination">
+                                                            <li class="page-item disabled">
+                                                                <span class="page-link">Previous</span>
+                                                            </li>
+                                                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                                                </c:forEach>
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </c:when>  
+                                                <c:when test="${page + 1 > totalPage}">
+                                                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                        <ul class="pagination">
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
+                                                            </li>
+                                                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                                                </c:forEach>
+                                                            <li class="page-item disabled">
+                                                                <span class="page-link">Next</span>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                                                        <ul class="pagination">
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
+                                                            </li>
+                                                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                                                </c:forEach>
+                                                            <li class="page-item">
+                                                                <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
+                                                            </li>
+                                                        </ul>
+                                                    </nav>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </div></div>
                                 </div>
                             </div>
+                        </div>
                         <!--Row-->
                     </div>
                     <!---Container Fluid-->

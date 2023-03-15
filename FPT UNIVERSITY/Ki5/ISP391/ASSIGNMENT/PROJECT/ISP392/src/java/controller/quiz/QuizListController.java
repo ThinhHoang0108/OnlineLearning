@@ -4,18 +4,28 @@
  */
 package controller.quiz;
 
+import Base.Base;
+import DAO.CourseDAO;
+import DAO.LessonDAO;
+import DAO.QuizDao;
+import DAO.QuizLevelDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Course;
+import model.Lesson;
+import model.Quiz;
+import model.QuizLevel;
 
 /**
  *
  * @author ADMIN
  */
-public class AddNewQuizz extends HttpServlet {
+public class QuizListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -30,20 +40,16 @@ public class AddNewQuizz extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String quizName = request.getParameter("content");
-            int levelID = Integer.parseInt(request.getParameter("levelID"));
-            int courseID = Integer.parseInt(request.getParameter("courseID"));
-            int lessonID = Integer.parseInt(request.getParameter("lessonID"));
-            String start_time = request.getParameter("start_time");
-            String end_time = request.getParameter("end_time");
-            Float ratePass = Float.parseFloat(request.getParameter("ratePass"));
-            int totalQuestion = Integer.parseInt(request.getParameter("totalQuestion"));
-            int attempt = Integer.parseInt(request.getParameter("attempt"));
-            int duration = Integer.parseInt(request.getParameter("duration"));
-            String description = request.getParameter("description");
-            
-            
-
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet QuizListController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet QuizListController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -59,7 +65,31 @@ public class AddNewQuizz extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int page = 1;
+        String pageIndex = request.getParameter("page");
+        if (pageIndex != null) {
+            page = Integer.parseInt(pageIndex);
+        }
+        DAO.QuizDao dao = new QuizDao();
+        int totalQuiz = dao.getTotalQuiz();
+        int totalPage = totalQuiz / Base.PAGE_SIZE;
+        if (totalQuiz % Base.PAGE_SIZE != 0) {
+            totalPage += 1;
+        }
+        List<Quiz> listQuiz = dao.getAllQuiz();
+        List<Course> listCourse = new CourseDAO().getAllcourse();
+        List<QuizLevel> listQuizLevel = new QuizLevelDAO().getAllQuizLevel();
+        List<Lesson> listLesson = new LessonDAO().getAll();
+        request.getSession().setAttribute("listLesson", listLesson);
+        request.getSession().setAttribute("listQuiz", listQuiz);
+        List<Quiz> listQuizByPageing = dao.getAllQuizByPage(page, Base.PAGE_SIZE);
+        request.getSession().setAttribute("listQuizByPageing", listQuizByPageing);
+        request.getSession().setAttribute("listCourse", listCourse);
+        request.getSession().setAttribute("listQuizLevel", listQuizLevel);
+        request.setAttribute("page", page);
+        request.setAttribute("totalPage", totalPage);
+        request.setAttribute("pagination_url", "QuizListController?");
+        request.getRequestDispatcher("managerQuiz.jsp").forward(request, response);
     }
 
     /**
