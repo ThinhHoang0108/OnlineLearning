@@ -45,10 +45,8 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        int totalSearchItems = new BlogDAO().getTotalBlogByKeyword("O");
-        List<Blog> listBlogByPageing = new BlogDAO().getAllBlogByPageKeyword(1, Base.PAGE_SIZE, "Meji");
-        System.out.println(totalSearchItems);
-        System.out.println(listBlogByPageing);
+        List<Lesson> listLesson = new LessonDAO().getAllLesson(1);
+        System.out.println(listLesson);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);

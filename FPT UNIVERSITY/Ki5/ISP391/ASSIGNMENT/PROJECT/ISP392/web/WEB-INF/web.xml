@@ -166,6 +166,10 @@
         <servlet-name>SearchBlogController</servlet-name>
         <servlet-class>controller.blog.SearchBlogController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewQuizController</servlet-name>
+        <servlet-class>controller.asyn.AddNewQuizController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -297,6 +301,10 @@
     <servlet-mapping>
         <servlet-name>SearchBlogController</servlet-name>
         <url-pattern>/search-blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewQuizController</servlet-name>
+        <url-pattern>/AddNewQuiz-async</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

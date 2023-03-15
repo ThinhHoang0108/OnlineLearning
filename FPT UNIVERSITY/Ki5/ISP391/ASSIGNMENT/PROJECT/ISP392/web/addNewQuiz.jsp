@@ -56,10 +56,10 @@
                                 <div class="card mb-4">
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <c:if test="${sessionScope.action == 'AddNewQuizz'}">
-                                        <h6 class="m-0 font-weight-bold text-primary">Add new Quiz</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Add new Quiz</h6>
                                         </c:if>
                                         <c:if test="${sessionScope.action == 'EditQuizController'}">
-                                        <h6 class="m-0 font-weight-bold text-primary">Edit Quiz</h6>
+                                            <h6 class="m-0 font-weight-bold text-primary">Edit Quiz</h6>
                                         </c:if>
                                     </div>
                                     <div class="card-body">
@@ -78,15 +78,15 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Course Name</label>
-                                                <select class="form-control" name="courseID" id="exampleFormControlSelect1" >
+                                                <select class="form-control" name="courseID" id="exampleFormControlSelect1" onchange="CourseToLessonAsync(this.value)">
                                                     <c:forEach items="${listCourse}" var="c">
                                                         <option value="${c.id}">${c.content}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" id="update_lesson" >
                                                 <label for="exampleFormControlSelect1">Lesson Name</label>
-                                                <select class="form-control" name="lessonID" id="exampleFormControlSelect1">
+                                                <select class="form-control" name="lessonID" >
                                                     <c:forEach items="${listLesson}" var="l">
                                                         <option value="${l.lessonID}">${l.content}</option>
                                                     </c:forEach>
@@ -170,6 +170,19 @@
         <script src="dashboard/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js"></script>
         <!-- ClockPicker -->
         <script src="davendor/clock-picker/clockpicker.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <script>
+                                                    function CourseToLessonAsync(courseID) {
+                                                        axios.get('AddNewQuiz-async', {
+                                                            params: {
+                                                                courseID: courseID
+                                                            }
+                                                        }).then((response) => {
+//                                                            console.log(response);
+                                                            document.getElementById("update_lesson").innerHTML = response.data;
+                                                        })
+                                                    }
+        </script>
         <script>
             $(document).ready(function () {
 
