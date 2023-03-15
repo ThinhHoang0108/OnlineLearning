@@ -68,7 +68,7 @@
                                 <li class="dropdown">
                                     <a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                                     <ul>
-                                        <li><a href="#"><i class="bi bi-person-circle">&nbsp;&nbsp;Your infomation</i></a></li> 
+                                        <li><a href="profile"><i class="bi bi-person-circle">&nbsp;&nbsp;Your infomation</i></a></li> 
                                         <li><a href="quiz-list"><i class="bi bi-journal-bookmark">&nbsp;&nbsp;My taken quiz</i></a></li> 
                                         <li><a href="#"><i class="bi bi-basket">&nbsp;&nbsp;My Registration</i></a></li>
                                             <c:if test="${sessionScope.account.roleID == 3}">

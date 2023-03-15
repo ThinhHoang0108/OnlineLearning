@@ -23,7 +23,7 @@
             }
         </style>
     <body>
-       
+
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -96,8 +96,12 @@
                                 <input name="notes" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
-                                <label>Course ID</label>
-                                <input name="Course" type="text" class="form-control" required>
+                                <label>Course</label>
+                                <select name="course" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${sessionScope.listCourse}" var="lc">
+                                        <option value="${lc.id}">${lc.content}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
 
                         </div>
@@ -109,8 +113,8 @@
                 </div>
             </div>
         </div>
-        
-        
-    <script src="js/manager.js" type="text/javascript"></script>
-</body>
+
+
+        <script src="js/manager.js" type="text/javascript"></script>
+    </body>
 </html>

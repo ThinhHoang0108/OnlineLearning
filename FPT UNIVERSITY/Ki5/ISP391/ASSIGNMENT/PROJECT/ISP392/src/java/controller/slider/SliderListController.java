@@ -4,6 +4,7 @@
  */
 package controller.slider;
 
+import DAO.CourseDAO;
 import DAO.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -13,6 +14,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
+import model.Course;
 import model.Slider;
 
 /**
@@ -39,6 +41,8 @@ public class SliderListController extends HttpServlet {
             SliderDAO d = new SliderDAO();
             List<Slider> listSliders = new SliderDAO().getAllSlider();
             request.getSession().setAttribute("listSliders", listSliders);
+            List<Course> listCourse = new CourseDAO().getAllcourse();
+            request.getSession().setAttribute("listCourse", listCourse);
             request.getRequestDispatcher("SliderList.jsp").forward(request, response);
         }
     }

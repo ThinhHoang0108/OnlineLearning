@@ -27,7 +27,7 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title">Change Password</h4>
-                                <form method="POST" class="my-login-validation" novalidate="">
+                                <form method="POST" class="my-login-validation" novalidate="" action="ChangePasswordController">
                                     <div class="form-group">
                                         <label for="new-password">Old Password</label>
                                         <input  type="password" class="form-control" name="oldPassword" required autofocus data-eye>

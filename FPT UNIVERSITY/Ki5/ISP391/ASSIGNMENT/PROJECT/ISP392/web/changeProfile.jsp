@@ -21,13 +21,12 @@
                 height: 120px;
             }
         </style>
-    <body>
-        <h1>${sessionScope.user.getUsername()}</h1>
+    <body>       
         
         <form action="editprofile" method="post">
             <div class="modal-header">						
                 <h4 class="modal-title">My Profile</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <a href="home"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></a>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -37,23 +36,23 @@
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input value="${sessionScope.account.name}" name="balance" type="text" class="form-control" readonly required>
+                    <input value="${sessionScope.account.name}" name="balance" type="text" class="form-control"  >
                 </div>
                 <div class="form-group">
                     <label>Date of birth</label>
-                    <input value="${sessionScope.account.dob}" name="address" type="text" class="form-control" required>
+                    <input value="${sessionScope.account.dob}" name="address" type="text" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input value=${sessionScope.account.phone} name="phone" type="text" class="form-control" required>
+                    <input value=${sessionScope.account.phone} name="phone" type="text" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>User Name</label>
-                    <input value=${sessionScope.account.username} name="phone" type="text" class="form-control" required>
+                    <input value=${sessionScope.account.username} name="phone" type="text" class="form-control" readonly >
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input value=${sessionScope.account.password} name="phone" type="password" class="form-control" required>
+                    <input value=${sessionScope.account.password} name="phone" type="password" class="form-control" >
                     <a href="change.jsp"/> Change password
                 </div>
             </div>
