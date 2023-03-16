@@ -130,7 +130,7 @@
                                                                 <p class="card-text">Total question: ${q.totalQuestion}</p>
                                                                 <p class="card-text">Start Time: ${q.start_time}</p>
                                                                 <p class="card-text">End Time ${q.end_time}</p>
-                                                                <a href="DoQuiz?quizzID=${q.quizID}&courseID=${requestScope.courseID}&method=get" class="btn btn-primary">Do Quiz</a>
+                                                                <a href="DoQuiz?quizzID=${q.quizID}&courseID=${requestScope.courseID}&method=get" class="btn btn-primary  ${q.status == "false"?"disabled":""}"  >Do Quiz</a>
                                                             </div>
                                                         </div>
                                                     </c:forEach>

@@ -32,6 +32,12 @@
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Manager Quiz</h1>
+                            <c:if test="${sessionScope.checkSuccess == 'false'}">
+                                <p class="text-danger">${sessionScope.messageStatus}</p>
+                            </c:if>
+                            <c:if test="${sessionScope.checkSuccess == 'true'}">
+                                <p class="text-success">${sessionScope.messageStatus}</p>
+                            </c:if>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Manager Quiz</li>
@@ -91,12 +97,14 @@
                                                         <td>${l.ratePass}%</td>
                                                         <td class="d-flex justify-content-center">  
                                                             <c:if test="${l.status == 'true'}">
-                                                            <a href="#" class="btn btn-danger btn-primary">Deactive</a>
+                                                                <a href="hide-quiz?quizzID=${l.quizID}" class="btn btn-danger btn-primary">Deactive</a>
+                                                                &nbsp;&nbsp;
                                                             </c:if>
-                                                            &nbsp;&nbsp;
                                                             <c:if test="${l.status == 'false'}">
-                                                            <a href="#" class="btn btn-success btn-primary">Active</a>
+                                                                <a href="status-quiz?quizzID=${l.quizID}" class="btn btn-success btn-primary">Active</a>
+                                                                &nbsp;&nbsp;
                                                             </c:if>
+
                                                             <a href="QuizDetailController?quizzID=${l.quizID}&action=EditQuizController&message=0" class="btn btn-primary">Detail</a>  
                                                         </td>                                         
                                                     </tr>

@@ -139,6 +139,21 @@ public class QuizDao extends MyDAO {
         }
         return false;
     }
+    public boolean checkDoQuizz(int quizID) {
+        xSql = "SELECT * FROM dbo.Quiz_POINT WHERE quizID = ?";
+
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
 
     public void insertAnswerDetail(int questionID, int answerID, int userID, int quizID, int attempt) {
         xSql = "INSERT INTO [dbo].[AnswerDetail]\n"
@@ -604,6 +619,33 @@ public class QuizDao extends MyDAO {
             ps.setInt(10, lessonID);
             ps.setInt(11, duration);
             ps.setInt(12, quizzID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void activeQuiz(int quizzID) {
+        xSql = " UPDATE dbo.Quizz\n"
+                + " SET [status] = 1\n"
+                + " WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizzID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void deactiveQuiz(int quizzID) {
+        xSql = " UPDATE dbo.Quizz\n"
+                + " SET [status] = 0\n"
+                + " WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizzID);
             ps.executeUpdate();
             ps.close();
         } catch (Exception e) {
