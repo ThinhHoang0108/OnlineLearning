@@ -6,6 +6,7 @@ package controller.quiz;
 
 import DAO.CourseDAO;
 import DAO.LessonDAO;
+import DAO.QuizDao;
 import DAO.QuizLevelDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,6 +17,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.util.List;
 import model.Course;
 import model.Lesson;
+import model.Quiz;
 import model.QuizLevel;
 
 /**
@@ -45,6 +47,10 @@ public class QuizDetailController extends HttpServlet {
                     break;
                 case "EditQuizController":
                     int quizzID = Integer.parseInt(request.getParameter("quizzID"));
+                    Quiz quizByID = new QuizDao().getQuizByID(quizzID);
+                    request.setAttribute("quizByID", quizByID);
+                    request.getSession().setAttribute("quizzID", quizzID);
+                    request.getSession().setAttribute("action", action);
                     break;
             }
             List<Course> listCourse = new CourseDAO().getAllcourse();

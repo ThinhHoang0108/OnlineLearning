@@ -69,4 +69,19 @@ public class QuestionDAO extends MyDAO {
         return (x);
     }
 
+    public int getTotalQuestionByQuizID(int quizzID) {
+        try {
+            String sql = "SELECT COUNT(questionID) FROM dbo.Question WHERE IDquizz = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, quizzID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

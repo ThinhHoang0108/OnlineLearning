@@ -66,13 +66,18 @@
                                         <form action="${sessionScope.action}" method="post">
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Quiz name</label>
-                                                <input type="text" class="form-control" name="content" id="exampleFormControlInput1" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="text" class="form-control" name="content" id="exampleFormControlInput1" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="text" class="form-control" name="content" id="exampleFormControlInput1" value="${requestScope.quizByID.content}">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Quiz Level</label>
                                                 <select class="form-control" name="levelID" id="exampleFormControlSelect1">
                                                     <c:forEach items="${listQuizLevel}" var="lv">
-                                                        <option value="${lv.quizLevelId}">${lv.quizLevelName}</option>
+                                                        <option value="${lv.quizLevelId}" ${lv.quizLevelId == requestScope.quizByID.levelID?"selected":""}>${lv.quizLevelName}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -80,7 +85,7 @@
                                                 <label for="exampleFormControlSelect1">Course Name</label>
                                                 <select class="form-control" name="courseID" id="exampleFormControlSelect1" onchange="CourseToLessonAsync(this.value)">
                                                     <c:forEach items="${listCourse}" var="c">
-                                                        <option value="${c.id}">${c.content}</option>
+                                                        <option value="${c.id}" ${c.id == requestScope.quizByID.courseID?"selected":""}>${c.content}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -88,7 +93,7 @@
                                                 <label for="exampleFormControlSelect1">Lesson Name</label>
                                                 <select class="form-control" name="lessonID" >
                                                     <c:forEach items="${listLesson}" var="l">
-                                                        <option value="${l.lessonID}">${l.content}</option>
+                                                        <option value="${l.lessonID}" ${l.lessonID == requestScope.quizByID.lessonID?"selected":""}>${l.content}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -96,7 +101,7 @@
                                             <div class="form-group">
                                                 <label for="clockPicker1">Start time</label>
                                                 <div class="input-group clockpicker" id="clockPicker1">
-                                                    <input type="text" class="form-control" value="06:30" name="start_time">                     
+                                                    <input type="text" class="form-control" value="${requestScope.quizByID.start_time}" name="start_time">                     
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                     </div>                      
@@ -105,7 +110,7 @@
                                             <div class="form-group">
                                                 <label for="clockPicker2">End tiem</label>
                                                 <div class="input-group clockpicker" id="clockPicker2">
-                                                    <input type="text" class="form-control" value="12:30" name="end_time">                     
+                                                    <input type="text" class="form-control" value="${requestScope.quizByID.end_time}" name="end_time">                     
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                     </div>                      
@@ -113,23 +118,23 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Rate Pass</label>
-                                                <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" value="${requestScope.quizByID.ratePass}" style="width: 50%" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Total Question</label>
-                                                <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.totalQuestion}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Attempt</label>
-                                                <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}"  required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Duration</label>
-                                                <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}" required>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Description</label>
-                                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" >${requestScope.quizByID.description}</textarea>
                                             </div>
                                             <div class="col-12">
                                                 <div class="d-flex justify-content-center">

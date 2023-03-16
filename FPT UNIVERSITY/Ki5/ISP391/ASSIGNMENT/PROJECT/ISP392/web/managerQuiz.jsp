@@ -77,7 +77,7 @@
                                                     <th>Course name</th>
                                                     <th>Duration</th>
                                                     <th>Pass rate</th>
-                                                    <th>Action</th>
+                                                    <th class="d-flex justify-content-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -89,7 +89,16 @@
                                                         <td>${l.course.content}</td>
                                                         <td>${l.duration}</td>
                                                         <td>${l.ratePass}%</td>
-                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                                        <td class="d-flex justify-content-center">  
+                                                            <c:if test="${l.status == 'true'}">
+                                                            <a href="#" class="btn btn-danger btn-primary">Deactive</a>
+                                                            </c:if>
+                                                            &nbsp;&nbsp;
+                                                            <c:if test="${l.status == 'false'}">
+                                                            <a href="#" class="btn btn-success btn-primary">Active</a>
+                                                            </c:if>
+                                                            <a href="QuizDetailController?quizzID=${l.quizID}&action=EditQuizController&message=0" class="btn btn-primary">Detail</a>  
+                                                        </td>                                         
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>
