@@ -40,7 +40,7 @@
                             </c:if>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Manager Quiz</li>
+                                <li class="breadcrumb-item active" aria-current="page">Manager Question</li>
                             </ol>
                         </div>
                         <div class="row">
@@ -71,7 +71,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <a href="QuizDetailController?action=AddNewQuizz&message=0" class="btn btn-primary ms-5 pt-2" />Add New</a>
+                                        <a href="QuizListController" class="btn btn-primary ms-5 pt-2" />Chose quiz to Add</a>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-flush">

@@ -104,8 +104,9 @@
                                                                 <a href="status-quiz?quizzID=${l.quizID}" class="btn btn-success btn-primary">Active</a>
                                                                 &nbsp;&nbsp;
                                                             </c:if>
-
                                                             <a href="QuizDetailController?quizzID=${l.quizID}&action=EditQuizController&message=0" class="btn btn-primary">Detail</a>  
+                                                            &nbsp;&nbsp;
+                                                            <a href="question-listAd?quizID=${l.quizID}&courseID=${l.courseID}&lessonID=${l.lessonID}" class="btn btn-info btn-primary">Question</a>
                                                         </td>                                         
                                                     </tr>
                                                 </c:forEach>

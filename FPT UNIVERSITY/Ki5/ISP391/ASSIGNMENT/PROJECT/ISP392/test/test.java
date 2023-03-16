@@ -47,9 +47,8 @@ public class test {
 
     public static void main(String[] args) {
         ArrayList<QuestionDetail> listQuestionByPageing = new QuestionDAO().getAllQuestionByPage(1, 3);
-        List<Lesson> listLesson = new LessonDAO().getAll();
-
-        System.out.println(listQuestionByPageing);
+        boolean test = new QuestionDAO().insertQuestion(1, 1, 2, "Mock Test Final");
+        System.out.println(test);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);

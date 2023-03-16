@@ -359,4 +359,52 @@ public class QuestionDAO extends MyDAO {
         return (t);
     }
 
+    public boolean insertQuestion(int courseID, int lessonID, int quizID, String content) {
+        boolean check = false;
+        xSql = "INSERT INTO [dbo].[Question]\n"
+                + "           ([courseID]\n"
+                + "           ,[lessonID]\n"
+                + "           ,[Status]\n"
+                + "           ,[IDquizz]\n"
+                + "           ,[content])\n"
+                + "     VALUES\n"
+                + "           (?,?,1,?,?)";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, courseID);
+            ps.setInt(2, lessonID);
+            ps.setInt(3, quizID);
+            ps.setString(4, content);
+            check = ps.executeUpdate() > 0 ? true : false;
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return check;
+    }
+
+    public Question getLastQues() {
+        Question x = null;
+        xSql = "SELECT TOP(1) * FROM dbo.Question ORDER BY questionID DESC";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            if (rs.next()) {
+                x = Question.builder()
+                        .questionID(rs.getInt("questionID"))
+                        .courseID(rs.getInt("courseID"))
+                        .lessonID(rs.getInt("lessonID"))
+                        .status(rs.getBoolean("Status"))
+                        .quizID(rs.getInt("IDquizz"))
+                        .content(rs.getString("content"))
+                        .isMultipleChoice(rs.getBoolean("isMultipleChoice"))
+                        .build();
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (x);
+    }
+
 }
