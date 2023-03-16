@@ -80,7 +80,14 @@ public class EditQuizController extends HttpServlet {
         Quiz quizByID = new QuizDao().getQuizByID(quizzID);
 //        boolean checkDoQuiz = new QuizDao().checkDoQuizz(quizzID);
         int totalQuestionByQuizID = new QuestionDAO().getTotalQuestionByQuizID(quizzID);
-        
+        if (totalQuestionByQuizID > totalQuestion) {
+            request.getSession().setAttribute("messageError", "Total Question must more than " + totalQuestionByQuizID + "!");
+            response.sendRedirect("QuizDetailController?quizzID=" + quizzID + "&action=EditQuizController&message=1");
+        } else {
+            new QuizDao().updateQuiz(quizName, levelID, courseID, lessonID, start_time, end_time, ratePass, totalQuestion, attempt, duration, description, quizzID);
+            request.getSession().setAttribute("messageError", "Add successfuly!");
+            response.sendRedirect("QuizDetailController?quizzID=" + quizzID + "&action=EditQuizController&message=1");
+        }
     }
 
     /**

@@ -53,12 +53,16 @@ public class QuizDetailController extends HttpServlet {
                     request.getSession().setAttribute("action", action);
                     break;
             }
+            if (message == 0) {
+                request.getSession().setAttribute("messageError", "");
+            }
             List<Course> listCourse = new CourseDAO().getAllcourse();
             List<QuizLevel> listQuizLevel = new QuizLevelDAO().getAllQuizLevel();
             List<Lesson> listLesson = new LessonDAO().getAll();
             request.setAttribute("listCourse", listCourse);
             request.setAttribute("listQuizLevel", listQuizLevel);
             request.setAttribute("listLesson", listLesson);
+
             request.getRequestDispatcher("addNewQuiz.jsp").forward(request, response);
 
         }

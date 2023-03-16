@@ -575,4 +575,40 @@ public class QuizDao extends MyDAO {
         }
     }
 
+    public void updateQuiz(String quizName, int levelID, int courseID, int lessonID, String start_time, String end_time, Float ratePass, int totalQuestion, int attempt, int duration, String description, int quizzID) {
+        xSql = "UPDATE [dbo].[Quizz]\n"
+                + "   SET [content] = ?\n"
+                + "      ,[LevelID] = ?\n"
+                + "      ,[start_time] = ?\n"
+                + "      ,[end_time] = ?\n"
+                + "      ,[status] = 1\n"
+                + "      ,[ratePass] = ?\n"
+                + "      ,[courseID] = ?\n"
+                + "      ,[description] = ?\n"
+                + "      ,[totalQuestion] = ?\n"
+                + "      ,[attempt] = ?\n"
+                + "      ,[IDLesson] = ?\n"
+                + "      ,[duration] = ?\n"
+                + " WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, quizName);
+            ps.setInt(2, levelID);
+            ps.setString(3, start_time);
+            ps.setString(4, end_time);
+            ps.setFloat(5, ratePass);
+            ps.setInt(6, courseID);
+            ps.setString(7, description);
+            ps.setInt(8, totalQuestion);
+            ps.setInt(9, attempt);
+            ps.setInt(10, lessonID);
+            ps.setInt(11, duration);
+            ps.setInt(12, quizzID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }

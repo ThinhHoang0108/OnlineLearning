@@ -57,9 +57,11 @@
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <c:if test="${sessionScope.action == 'AddNewQuizz'}">
                                             <h6 class="m-0 font-weight-bold text-primary">Add new Quiz</h6>
+                                            <p class="text-success">${sessionScope.messageError}</p>
                                         </c:if>
                                         <c:if test="${sessionScope.action == 'EditQuizController'}">
                                             <h6 class="m-0 font-weight-bold text-primary">Edit Quiz</h6>
+                                            <p class="text-danger">${sessionScope.messageError}</p>
                                         </c:if>
                                     </div>
                                     <div class="card-body">
