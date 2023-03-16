@@ -6,7 +6,11 @@ package DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Course;
+import model.Lesson;
 import model.Question;
+import model.QuestionDetail;
+import model.Quiz;
 import util.MyDAO;
 
 /**
@@ -82,6 +86,81 @@ public class QuestionDAO extends MyDAO {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public int getTotalQuestion() {
+        try {
+            String sql = "SELECT COUNT(questionID) FROM dbo.Question";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public List<Question> getAllQuestion() {
+        List<Question> t = new ArrayList<>();
+        String xSql = "SELECT * FROM dbo.Question";
+        Question x;
+        try {
+            ps = con.prepareStatement(xSql);
+
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = Question.builder()
+                        .questionID(rs.getInt("questionID"))
+                        .courseID(rs.getInt("courseID"))
+                        .lessonID(rs.getInt("lessonID"))
+                        .status(rs.getBoolean("Status"))
+                        .quizID(rs.getInt("IDquizz"))
+                        .content(rs.getString("content"))
+                        .isMultipleChoice(rs.getBoolean("isMultipleChoice"))
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public ArrayList<QuestionDetail> getAllQuestionByPage(int page, int PAGE_SIZE) {
+        ArrayList<QuestionDetail> t = new ArrayList<>();
+        String xSql = "SELECT * FROM dbo.Question a ORDER BY a.questionId ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        QuestionDetail x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, page);
+            ps.setInt(2, PAGE_SIZE);
+            ps.setInt(3, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Quiz quiz = new QuizDao().getQuizByID(rs.getInt("IDquizz"));
+                Lesson lesson = new LessonDAO().getLessonByLessonID(rs.getInt("lessonID"));
+                Course course = new CourseDAO().getCourseById(rs.getInt("courseID"));
+                x = QuestionDetail.builder()
+                        .questionID(rs.getInt("questionID"))
+                        .quizzID(rs.getInt("IDquizz"))
+                        .content(rs.getString("content"))
+                        .course(course)
+                        .status(rs.getBoolean("Status"))
+                        .lesson(lesson)
+                        .quiz(quiz)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
     }
 
 }

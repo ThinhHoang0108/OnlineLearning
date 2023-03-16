@@ -178,6 +178,10 @@
         <servlet-name>HideQuizController</servlet-name>
         <servlet-class>controller.quiz.HideQuizController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>QuestionListController</servlet-name>
+        <servlet-class>controller.question.QuestionListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -321,6 +325,10 @@
     <servlet-mapping>
         <servlet-name>HideQuizController</servlet-name>
         <url-pattern>/hide-quiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionListController</servlet-name>
+        <url-pattern>/question-list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -24,6 +24,7 @@ import model.Comment;
 import model.Course;
 import model.Lesson;
 import model.Question;
+import model.QuestionDetail;
 import model.Quiz;
 import model.QuizLevel;
 import model.QuizPoint;
@@ -45,8 +46,10 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        List<Lesson> listLesson = new LessonDAO().getAllLesson(1);
-        System.out.println(listLesson);
+        ArrayList<QuestionDetail> listQuestionByPageing = new QuestionDAO().getAllQuestionByPage(1, 3);
+        List<Lesson> listLesson = new LessonDAO().getAll();
+
+        System.out.println(listQuestionByPageing);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
