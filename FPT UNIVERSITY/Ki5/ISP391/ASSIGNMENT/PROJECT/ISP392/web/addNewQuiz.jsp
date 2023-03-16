@@ -118,19 +118,39 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Rate Pass</label>
-                                                <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" value="${requestScope.quizByID.ratePass}" style="width: 50%" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" value="${requestScope.quizByID.ratePass}" style="width: 50%" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" value="${requestScope.quizByID.ratePass}" style="width: 50%">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Total Question</label>
-                                                <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.totalQuestion}" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.totalQuestion}" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.totalQuestion}">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Attempt</label>
-                                                <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}"  required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}"  required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Duration</label>
-                                                <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}" required>
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Description</label>
