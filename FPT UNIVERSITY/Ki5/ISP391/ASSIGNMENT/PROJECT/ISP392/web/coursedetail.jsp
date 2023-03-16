@@ -48,7 +48,7 @@
             <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
                     <h2>Course Details</h2>
-                    <h4>${error}</h4>
+                    <h4>${requestScope.error}</h4>
                 </div>
             </div><!-- End Breadcrumbs -->
 

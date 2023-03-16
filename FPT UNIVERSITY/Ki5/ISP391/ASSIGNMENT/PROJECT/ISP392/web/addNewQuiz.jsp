@@ -159,7 +159,12 @@
                                             <div class="col-12">
                                                 <div class="d-flex justify-content-center">
                                                     <!--<button type="submit" class="btn btn-primary px-4 py-2 fw-bold">check</button>-->
-                                                    <button type="submit" name="btnAction" value="submitQuizz" class="btn btn-primary px-4 py-2 fw-bold">Submit</button> 
+                                                    <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                        <button type="submit" name="btnAction" value="submitQuizz" class="btn btn-primary px-4 py-2 fw-bold">Add</button> 
+                                                    </c:if>
+                                                    <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                        <button type="submit" name="btnAction" value="submitQuizz" class="btn btn-primary px-4 py-2 fw-bold">Save</button> 
+                                                    </c:if>
                                                 </div>
                                             </div>    
                                         </form>

@@ -263,7 +263,7 @@
                 });
             });
         </script>
-<!--        javascrip delete-->
+        <!--        javascrip delete-->
         <script type="text/javascript">
             function confirmDelete(id) {
 
@@ -279,7 +279,7 @@
                 return false;
             }
         </script>
-        
+
     </head>
     <body>
         <div class="container-xl">
@@ -312,7 +312,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${listCourse}" var="l" >  					
+                            <c:forEach items="${listCoursebyPageing}" var="l" >  					
                                 <tr>
                                     <td>
                                         <span class="custom-checkbox">
@@ -442,6 +442,73 @@
                     </form>
                 </div>
             </div>
+        </div>
+        <div class="container">
+            <c:choose>
+                <c:when test="${listCoursebyPageing == null || listCoursebyPageing.size() ==0}">
+                    Not have any Course
+                </c:when>
+                <c:when test="${totalPage < 2}">
+                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                            <li class="page-item disabled">
+                                <span class="page-link">Next</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </c:when>  
+                <c:when test="${page < 2}">
+                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item disabled">
+                                <span class="page-link">Previous</span>
+                            </li>
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                            <li class="page-item">
+                                <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </c:when>  
+                <c:when test="${page + 1 > totalPage}">
+                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
+                            </li>
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                            <li class="page-item disabled">
+                                <span class="page-link">Next</span>
+                            </li>
+                        </ul>
+                    </nav>
+                </c:when>
+                <c:otherwise>
+                    <nav aria-label="Page nvarbar" class="d-flex justify-content-center">
+                        <ul class="pagination">
+                            <li class="page-item">
+                                <a class="page-link" href="${pagination_url}page=${page-1}">Previous</a>
+                            </li>
+                            <c:forEach begin="1" end="${totalPage}" var="i">
+                                <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
+                                </c:forEach>
+                            <li class="page-item">
+                                <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </c:otherwise>
+            </c:choose>
         </div>
     </body>
 </html>
