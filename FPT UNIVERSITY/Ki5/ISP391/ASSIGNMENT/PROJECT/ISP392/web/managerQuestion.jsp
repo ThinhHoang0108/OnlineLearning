@@ -65,7 +65,7 @@
                                                     </c:forEach>
                                                 </select>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <input type="search" name="keyword" id="form1" value="" class="form-control ms-2 mb-2 py-3" style="height: 38px !important;" placeholder="Search"/>
+                                                <input type="search" name="keyword" id="form1" value="${requestScope.keyword}" class="form-control ms-2 mb-2 py-3" style="height: 38px !important;" placeholder="Search"/>
                                                 <button type="submit" class="btn btn-primary mb-2">
                                                     <i class="fas fa-search"></i>
                                                 </button>
@@ -85,7 +85,7 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                <c:forEach items="${requestScope.listQuestion}" var="lq">
+                                                <c:forEach items="${sessionScope.listQuestion}" var="lq">
                                                     <tr>
                                                         <td>${lq.questionID}</td>
                                                         <td>${lq.content}</td>

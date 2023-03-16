@@ -81,7 +81,7 @@ public class QuestionListController extends HttpServlet {
         ArrayList<QuestionDetail> listQuestion = dao.getAllQuestionByPage(page, Base.PAGE_SIZE);
         request.getSession().setAttribute("listLesson", listLesson);
         request.getSession().setAttribute("listCourse", listCourse);
-        request.setAttribute("listQuestion", listQuestion);
+        request.getSession().setAttribute("listQuestion", listQuestion);
         request.setAttribute("page", page);
         request.setAttribute("totalPage", totalPage);
         request.setAttribute("pagination_url", "question-list?");
