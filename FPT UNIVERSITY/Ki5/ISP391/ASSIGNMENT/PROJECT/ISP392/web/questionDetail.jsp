@@ -31,7 +31,7 @@
                     <!-- Container Fluid-->
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Manager Quiz</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Manager Question</h1>
                             <!--<c:if test="${sessionScope.checkSuccess == 'false'}">
                                  <p class="text-danger">${sessionScope.messageStatus}</p>
                             </c:if>
@@ -40,7 +40,8 @@
                             </c:if> -->
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
-                                <li class="breadcrumb-item active" aria-current="page">Manager Question</li>
+                                <li class="breadcrumb-item"><a href="question-list">Manager Question</a></li>
+                                <li class="breadcrumb-item active" aria-current="page">Question Detail</li>
                             </ol>
                         </div>
                         <div class="row">
@@ -51,7 +52,7 @@
                                             <h4>Question: </h4>
                                             &nbsp;&nbsp;&nbsp;&nbsp;
                                             <form action="updateQuestion" class="row">
-                                                <input type="hidden" name="questionId" value="${requestScope.QUESTION.questionID}">
+                                                <input type="hidden" name="questionID" value="${requestScope.QUESTION.questionID}">
 
                                                 <div class="col"  style="width: 800px">
                                                     <input class="form-control" type="text" name="questionContent"  value="${requestScope.QUESTION.content}">
@@ -69,14 +70,14 @@
                                             <c:forEach var="a" items="${requestScope.ANSWER}">
                                                 <li>
                                                     <form action="updateAnswer" class="row">
-                                                        <input type="hidden" name="questionId" value="${requestScope.QUESTION.questionID}">
-                                                        <input type="hidden" name="answerId" value="${a.answerID}">
+                                                        <input type="hidden" name="questionID" value="${requestScope.QUESTION.questionID}">
+                                                        <input type="hidden" name="answerID" value="${a.answerID}">
                                                         <div class="col-6">
                                                             <input class="form-control col-6" type="text" name="answerContent" value="${a.content}">
                                                         </div>
                                                         <div class="col-1">
                                                             <select name="isCorrect" id="true" class="form-control">
-                                                                <option value="${a.correct}" selected="">${a.correct}</option>
+                                                                <option value="${a.correct}" selected>${a.correct}</option>
                                                                 <option value="true">True</option>
                                                                 <option value="false">False</option>
                                                             </select>
@@ -92,7 +93,7 @@
                                             <form action="updateAnswer">
                                                 <li>
                                                     <div class="row">
-                                                        <input type="hidden" name="questionId" value="${requestScope.QUESTION.questionID}">
+                                                        <input type="hidden" name="questionID" value="${requestScope.QUESTION.questionID}">
                                                         <div class="col-6">
                                                             <input class="form-control col-6" type="text" name="answerContent" value="">
                                                         </div>

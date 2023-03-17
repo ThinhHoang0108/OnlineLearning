@@ -100,7 +100,7 @@
                                                                 <a href="#" class="btn btn-success btn-primary">Active</a>
                                                                 &nbsp;&nbsp;
                                                             </c:if>
-                                                            <a href="#" class="btn btn-primary">Detail</a>  
+                                                            <a href="question-detailAD?questionID=${lq.questionID}" class="btn btn-primary">Detail</a>  
                                                         </td>                                         
                                                     </tr>
                                                 </c:forEach>

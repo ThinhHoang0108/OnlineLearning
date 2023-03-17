@@ -407,4 +407,19 @@ public class QuestionDAO extends MyDAO {
         return (x);
     }
 
+    public void updateQuestion(int questionID, String content) {
+        xSql = "   UPDATE dbo.Question \n"
+                + "  SET content = ?\n"
+                + "  WHERE questionId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, content);
+            ps.setInt(2, questionID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
