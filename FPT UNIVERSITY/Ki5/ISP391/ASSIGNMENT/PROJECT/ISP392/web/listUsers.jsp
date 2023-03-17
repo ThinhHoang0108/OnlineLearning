@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Dob</label>
-                                <input name="Dob" type="text" class="form-control" required>
+                                <input name="dob" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>
@@ -85,7 +85,7 @@
                             </div>
                             <div class="form-group">
                                 <label>UserName</label>
-                                <input name="username" class="form-control" required></input>
+                                <input name="username" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Password</label>

@@ -16,6 +16,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.sql.Date;
+import java.text.SimpleDateFormat;
 import model.User;
 
 /**
@@ -65,12 +66,11 @@ public class addUser extends HttpServlet {
         String dob_raw = request.getParameter("dob");
         String phone_raw = request.getParameter("phone");
         String username_raw = request.getParameter("username");
-        String password_raw = request.getParameter("password");
-        
-        
+        String password_raw = request.getParameter("password");        
         UserDAO dao = new UserDAO();
         dao.insertUser(name_raw, dob_raw, phone_raw, username_raw, password_raw);
-        request.getRequestDispatcher("listUsers.jsp").forward(request, response);
+        //request.getRequestDispatcher("listUsers.jsp").forward(request, response);
+        response.sendRedirect("manageUser");
     } 
 
     /** 

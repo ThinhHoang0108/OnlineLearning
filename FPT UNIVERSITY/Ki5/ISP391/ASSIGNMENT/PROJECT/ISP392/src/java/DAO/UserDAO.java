@@ -8,6 +8,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import model.Role;
@@ -135,6 +136,7 @@ public class UserDAO extends MyDAO {
                 + "     VALUES\n"
                 + "           (?,?,?,?,?)";
         try {
+            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
             ps = con.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, dob);
