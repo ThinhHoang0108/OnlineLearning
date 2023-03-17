@@ -84,6 +84,9 @@
                             <div class="course-info d-flex justify-content-between align-items-center">
                                 <h5>Schedule</h5>
                                 <p>${course.createDate}</p>
+                                <c:if test="${requestScope.checkRegis == 0}">
+                                    <button type="submit" class="btn btn-primary mt-4 me-3" data-toggle="modal" data-target="#SBSI${SBSI.getSubjectId()}">Register ${SBSI.subjectName}</button>
+                                </c:if>
                             </div>
 
                         </div>
