@@ -210,7 +210,7 @@ public class SliderDAO extends MyDAO {
 
     public int getfirstSliderId() {
         int t = 0;
-        xSql = "select MIN(sliderId) from Slide where status = 1";
+        xSql = "select MIN(sliderId) from Slide";
         try {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
