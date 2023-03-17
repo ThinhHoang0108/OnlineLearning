@@ -105,15 +105,16 @@
                                                             </c:if>
                                                         </td>
                                                         <td class="d-flex justify-content-center">  
-                                                            <c:if test="${lq.status == 'true'}">
-                                                                <a href="#" class="btn btn-danger btn-primary">Deactive</a>
-                                                                &nbsp;&nbsp;
+                                                            <!--  <c:if test="${lq.status == 'true'}">
+                                                                 <a href="#" class="btn btn-danger btn-primary">Deactive</a>
+                                                                 &nbsp;&nbsp;
                                                             </c:if>
                                                             <c:if test="${l1.status == 'false'}">
                                                                 <a href="#" class="btn btn-success btn-primary">Active</a>
                                                                 &nbsp;&nbsp;
                                                             </c:if>
-                                                            <a href="#" class="btn btn-primary">Detail</a>  
+                                                            -->
+                                                            <a href="question-detailAD?questionID=${lq.questionID}" class="btn btn-primary">Detail</a>  
                                                         </td>                                         
                                                     </tr>
                                                 </c:forEach>

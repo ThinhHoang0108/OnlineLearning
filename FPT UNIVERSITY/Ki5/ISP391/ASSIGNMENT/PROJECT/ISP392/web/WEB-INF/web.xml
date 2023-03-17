@@ -198,6 +198,14 @@
         <servlet-name>InsertQuestionController</servlet-name>
         <servlet-class>controller.question.InsertQuestionController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>UpdateQuestionController</servlet-name>
+        <servlet-class>controller.question.UpdateQuestionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAnswerController</servlet-name>
+        <servlet-class>controller.question.UpdateAnswerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -361,6 +369,14 @@
     <servlet-mapping>
         <servlet-name>InsertQuestionController</servlet-name>
         <url-pattern>/insert-questionAD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateQuestionController</servlet-name>
+        <url-pattern>/updateQuestion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAnswerController</servlet-name>
+        <url-pattern>/updateAnswer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
