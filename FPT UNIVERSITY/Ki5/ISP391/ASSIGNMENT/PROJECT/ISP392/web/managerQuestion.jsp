@@ -31,7 +31,7 @@
                     <!-- Container Fluid-->
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Manager Quiz</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Manager Questione</h1>
                             <c:if test="${sessionScope.checkSuccess == 'false'}">
                                 <p class="text-danger">${sessionScope.messageStatus}</p>
                             </c:if>
