@@ -4,6 +4,7 @@
  */
 package model;
 
+import java.sql.Date;
 import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
@@ -17,19 +18,11 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class Registeration {
-    private int regisId;
-    private String regisDate;
+public class Register {
+    private int registerID;
+    private Date regis_Date;
     private boolean status;
-    //private Subject subject;
-    private int subjectId;
-    private String subName;
-    private PricePackage pricePackage;
-    private int pricePackageId;
-    //private Account account;
-    private int accountId;
-    private int year;
-    private String priceName;
-    private int price;
-    private String email;
+    private int courseID;
+    private int userID;
+
 }
