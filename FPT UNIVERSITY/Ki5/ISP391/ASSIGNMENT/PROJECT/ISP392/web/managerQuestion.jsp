@@ -31,13 +31,7 @@
                     <!-- Container Fluid-->
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Manager Questione</h1>
-                            <c:if test="${sessionScope.checkSuccess == 'false'}">
-                                <p class="text-danger">${sessionScope.messageStatus}</p>
-                            </c:if>
-                            <c:if test="${sessionScope.checkSuccess == 'true'}">
-                                <p class="text-success">${sessionScope.messageStatus}</p>
-                            </c:if>
+                            <h1 class="h3 mb-0 text-gray-800">Manager Question</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Manager Question</li>
@@ -71,7 +65,6 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <a href="QuizListController" class="btn btn-primary ms-5 pt-2" />Chose quiz to Add</a>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-flush">
