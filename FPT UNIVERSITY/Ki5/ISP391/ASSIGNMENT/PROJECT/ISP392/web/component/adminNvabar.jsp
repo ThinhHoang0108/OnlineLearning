@@ -89,7 +89,7 @@
                 </a>
                 <div id="collapseTable2" class="collapse" aria-labelledby="headingTable" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <a class="collapse-item" href="managerQuestion.jsp">Manage Question</a>
+                        <a class="collapse-item" href="question-list">Manage Question</a>
                         <a class="collapse-item" href="QuizListController">Manage Quiz</a>
                     </div>
                 </div>

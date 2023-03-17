@@ -166,6 +166,46 @@
         <servlet-name>SearchBlogController</servlet-name>
         <servlet-class>controller.blog.SearchBlogController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>AddNewQuizController</servlet-name>
+        <servlet-class>controller.asyn.AddNewQuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>ChangeStatusQuiz</servlet-name>
+        <servlet-class>controller.quiz.ChangeStatusQuiz</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>HideQuizController</servlet-name>
+        <servlet-class>controller.quiz.HideQuizController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionListController</servlet-name>
+        <servlet-class>controller.question.QuestionListController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>SearchQuestionController</servlet-name>
+        <servlet-class>controller.question.SearchQuestionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionListAdminController</servlet-name>
+        <servlet-class>controller.question.QuestionListAdminController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>QuestionDetailController</servlet-name>
+        <servlet-class>controller.question.QuestionDetailController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>InsertQuestionController</servlet-name>
+        <servlet-class>controller.question.InsertQuestionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateQuestionController</servlet-name>
+        <servlet-class>controller.question.UpdateQuestionController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>UpdateAnswerController</servlet-name>
+        <servlet-class>controller.question.UpdateAnswerController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -297,6 +337,46 @@
     <servlet-mapping>
         <servlet-name>SearchBlogController</servlet-name>
         <url-pattern>/search-blog</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>AddNewQuizController</servlet-name>
+        <url-pattern>/AddNewQuiz-async</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ChangeStatusQuiz</servlet-name>
+        <url-pattern>/status-quiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>HideQuizController</servlet-name>
+        <url-pattern>/hide-quiz</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionListController</servlet-name>
+        <url-pattern>/question-list</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>SearchQuestionController</servlet-name>
+        <url-pattern>/search-question</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionListAdminController</servlet-name>
+        <url-pattern>/question-listAd</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>QuestionDetailController</servlet-name>
+        <url-pattern>/question-detailAD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>InsertQuestionController</servlet-name>
+        <url-pattern>/insert-questionAD</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateQuestionController</servlet-name>
+        <url-pattern>/updateQuestion</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>UpdateAnswerController</servlet-name>
+        <url-pattern>/updateAnswer</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

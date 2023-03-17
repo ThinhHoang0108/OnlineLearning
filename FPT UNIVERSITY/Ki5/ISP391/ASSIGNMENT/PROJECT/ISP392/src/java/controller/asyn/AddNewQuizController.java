@@ -2,21 +2,23 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.quiz;
+package controller.asyn;
 
-import DAO.QuizDao;
+import DAO.LessonDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.Lesson;
 
 /**
  *
  * @author ADMIN
  */
-public class AddNewQuizz extends HttpServlet {
+public class AddNewQuizController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,19 +33,11 @@ public class AddNewQuizz extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String quizName = request.getParameter("content");
-            int levelID = Integer.parseInt(request.getParameter("levelID"));
             int courseID = Integer.parseInt(request.getParameter("courseID"));
-            int lessonID = Integer.parseInt(request.getParameter("lessonID"));
-            String start_time = request.getParameter("start_time");
-            String end_time = request.getParameter("end_time");
-            Float ratePass = Float.parseFloat(request.getParameter("ratePass"));
-            int totalQuestion = Integer.parseInt(request.getParameter("totalQuestion"));
-            int attempt = Integer.parseInt(request.getParameter("attempt"));
-            int duration = Integer.parseInt(request.getParameter("duration"));
-            String description = request.getParameter("description");
-            new QuizDao().insertQuiz(quizName, levelID, courseID, lessonID, start_time, end_time, ratePass, totalQuestion, attempt, duration, description);
-            response.sendRedirect("QuizListController");
+            List<Lesson> listLesson = new LessonDAO().getAllLesson(courseID);
+            request.setAttribute("listLesson", listLesson);
+            request.getRequestDispatcher("listLesson.jsp").forward(request, response);
+
         }
     }
 

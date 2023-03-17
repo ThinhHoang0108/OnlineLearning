@@ -2,21 +2,22 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.quiz;
+package controller.question;
 
-import DAO.QuizDao;
+import DAO.QuestionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Question;
 
 /**
  *
  * @author ADMIN
  */
-public class AddNewQuizz extends HttpServlet {
+public class InsertQuestionController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,19 +32,16 @@ public class AddNewQuizz extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String quizName = request.getParameter("content");
-            int levelID = Integer.parseInt(request.getParameter("levelID"));
-            int courseID = Integer.parseInt(request.getParameter("courseID"));
-            int lessonID = Integer.parseInt(request.getParameter("lessonID"));
-            String start_time = request.getParameter("start_time");
-            String end_time = request.getParameter("end_time");
-            Float ratePass = Float.parseFloat(request.getParameter("ratePass"));
-            int totalQuestion = Integer.parseInt(request.getParameter("totalQuestion"));
-            int attempt = Integer.parseInt(request.getParameter("attempt"));
-            int duration = Integer.parseInt(request.getParameter("duration"));
-            String description = request.getParameter("description");
-            new QuizDao().insertQuiz(quizName, levelID, courseID, lessonID, start_time, end_time, ratePass, totalQuestion, attempt, duration, description);
-            response.sendRedirect("QuizListController");
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet InsertQuestionController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet InsertQuestionController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -73,7 +71,16 @@ public class AddNewQuizz extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int courseID = Integer.parseInt(request.getParameter("courseID"));
+        int quizID = Integer.parseInt(request.getParameter("quizID"));
+        int lessonID = Integer.parseInt(request.getParameter("lessonID"));
+        String content = request.getParameter("content");
+        if (new QuestionDAO().insertQuestion(courseID, lessonID, quizID, content)) {
+            Question lastQuestionAdd = new QuestionDAO().getLastQues();
+            request.getRequestDispatcher("question-detailAD?questionID=" + lastQuestionAdd.getQuestionID()).forward(request, response);
+        } else {
+            request.getRequestDispatcher("question-listAd?quizID=" + quizID + "&courseID=" + courseID + "&lessonID=" + lessonID).forward(request, response);
+        }
     }
 
     /**

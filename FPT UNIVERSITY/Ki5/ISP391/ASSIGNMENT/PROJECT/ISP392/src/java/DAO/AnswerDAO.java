@@ -72,4 +72,53 @@ public class AnswerDAO extends MyDAO {
         }
         return false;
     }
+
+    public void insertAnswer(int questionID, String content, Boolean valueOf) {
+        xSql = "INSERT INTO [dbo].[Answer]\n"
+                + "           ([quesId]\n"
+                + "           ,[content]\n"
+                + "           ,[correct])\n"
+                + "     VALUES\n"
+                + "           (?,?,?)";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, questionID);
+            ps.setString(2, content);
+            ps.setBoolean(3, valueOf);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateAnswer(int answerID, String content, boolean correct) {
+        xSql = "UPDATE [dbo].[Answer]\n"
+                + "   SET [content] = ?\n"
+                + "      ,[correct] = ?\n"
+                + " WHERE answerId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, content);
+            ps.setBoolean(2, correct);
+            ps.setInt(3, answerID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void deleteAnswer(int answerID) {
+        xSql = "DELETE FROM [dbo].[Answer]\n"
+                + "      WHERE answerId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, answerID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 }

@@ -32,6 +32,12 @@
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
                             <h1 class="h3 mb-0 text-gray-800">Manager Quiz</h1>
+                            <c:if test="${sessionScope.checkSuccess == 'false'}">
+                                <p class="text-danger">${sessionScope.messageStatus}</p>
+                            </c:if>
+                            <c:if test="${sessionScope.checkSuccess == 'true'}">
+                                <p class="text-success">${sessionScope.messageStatus}</p>
+                            </c:if>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Manager Quiz</li>
@@ -65,7 +71,7 @@
                                                 </button>
                                             </div>
                                         </form>
-                                        <a href="QuizDetailController?action=" class="btn btn-primary ms-5 pt-2" />Add New</a>
+                                        <a href="QuizDetailController?action=AddNewQuizz&message=0" class="btn btn-primary ms-5 pt-2" />Add New</a>
                                     </div>
                                     <div class="table-responsive">
                                         <table class="table align-items-center table-flush">
@@ -77,7 +83,7 @@
                                                     <th>Course name</th>
                                                     <th>Duration</th>
                                                     <th>Pass rate</th>
-                                                    <th>Action</th>
+                                                    <th class="d-flex justify-content-center">Action</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -89,7 +95,19 @@
                                                         <td>${l.course.content}</td>
                                                         <td>${l.duration}</td>
                                                         <td>${l.ratePass}%</td>
-                                                        <td><a href="#" class="btn btn-sm btn-primary">Detail</a></td>
+                                                        <td class="d-flex justify-content-center">  
+                                                            <c:if test="${l.status == 'true'}">
+                                                                <a href="hide-quiz?quizzID=${l.quizID}" class="btn btn-danger btn-primary">Deactive</a>
+                                                                &nbsp;&nbsp;
+                                                            </c:if>
+                                                            <c:if test="${l.status == 'false'}">
+                                                                <a href="status-quiz?quizzID=${l.quizID}" class="btn btn-success btn-primary">Active</a>
+                                                                &nbsp;&nbsp;
+                                                            </c:if>
+                                                            <a href="QuizDetailController?quizzID=${l.quizID}&action=EditQuizController&message=0" class="btn btn-primary">Detail</a>  
+                                                            &nbsp;&nbsp;
+                                                            <a href="question-listAd?quizID=${l.quizID}&courseID=${l.courseID}&lessonID=${l.lessonID}" class="btn btn-info btn-primary">Question</a>
+                                                        </td>                                         
                                                     </tr>
                                                 </c:forEach>
                                             </tbody>

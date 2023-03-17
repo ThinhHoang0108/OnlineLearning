@@ -46,6 +46,8 @@ public class QuizDao extends MyDAO {
                         .userID(rs.getInt("userID"))
                         .questionID(rs.getInt("questionID"))
                         .quizlevel(quizlevel)
+                        .start_time(rs.getTime("start_time"))
+                        .end_time(rs.getTime("end_time"))
                         .build();
                 t.add(x);
             }
@@ -81,6 +83,8 @@ public class QuizDao extends MyDAO {
                         .userID(rs.getInt("userID"))
                         .questionID(rs.getInt("questionID"))
                         .quizlevel(quizlevel)
+                        .start_time(rs.getTime("start_time"))
+                        .end_time(rs.getTime("end_time"))
                         .build();
             }
             rs.close();
@@ -126,6 +130,21 @@ public class QuizDao extends MyDAO {
             ps = con.prepareStatement(xSql);
             ps.setInt(1, userID);
             ps.setInt(2, quizID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return true;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return false;
+    }
+    public boolean checkDoQuizz(int quizID) {
+        xSql = "SELECT * FROM dbo.Quiz_POINT WHERE quizID = ?";
+
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizID);
             rs = ps.executeQuery();
             while (rs.next()) {
                 return true;
@@ -533,6 +552,105 @@ public class QuizDao extends MyDAO {
             e.printStackTrace();
         }
         return (t);
+    }
+
+    public void insertQuiz(String quizName, int levelID, int courseID, int lessonID, String start_time, String end_time, Float ratePass, int totalQuestion, int attempt, int duration, String description) {
+        xSql = "INSERT INTO [dbo].[Quizz]\n"
+                + "           ([content]\n"
+                + "           ,[LevelID]\n"
+                + "           ,[start_time]\n"
+                + "           ,[end_time]\n"
+                + "           ,[status]\n"
+                + "           ,[ratePass]\n"
+                + "           ,[courseID]\n"
+                + "           ,[description]\n"
+                + "           ,[totalQuestion]\n"
+                + "           ,[attempt]\n"
+                + "           ,[IDLesson]\n"
+                + "           ,[duration])\n"
+                + "     VALUES\n"
+                + "           (?,?,?,?,1,?,?,?,?,?,?,?)";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, quizName);
+            ps.setInt(2, levelID);
+            ps.setString(3, start_time);
+            ps.setString(4, end_time);
+            ps.setFloat(5, ratePass);
+            ps.setInt(6, courseID);
+            ps.setString(7, description);
+            ps.setInt(8, totalQuestion);
+            ps.setInt(9, attempt);
+            ps.setInt(10, lessonID);
+            ps.setInt(11, duration);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void updateQuiz(String quizName, int levelID, int courseID, int lessonID, String start_time, String end_time, Float ratePass, int totalQuestion, int attempt, int duration, String description, int quizzID) {
+        xSql = "UPDATE [dbo].[Quizz]\n"
+                + "   SET [content] = ?\n"
+                + "      ,[LevelID] = ?\n"
+                + "      ,[start_time] = ?\n"
+                + "      ,[end_time] = ?\n"
+                + "      ,[status] = 1\n"
+                + "      ,[ratePass] = ?\n"
+                + "      ,[courseID] = ?\n"
+                + "      ,[description] = ?\n"
+                + "      ,[totalQuestion] = ?\n"
+                + "      ,[attempt] = ?\n"
+                + "      ,[IDLesson] = ?\n"
+                + "      ,[duration] = ?\n"
+                + " WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, quizName);
+            ps.setInt(2, levelID);
+            ps.setString(3, start_time);
+            ps.setString(4, end_time);
+            ps.setFloat(5, ratePass);
+            ps.setInt(6, courseID);
+            ps.setString(7, description);
+            ps.setInt(8, totalQuestion);
+            ps.setInt(9, attempt);
+            ps.setInt(10, lessonID);
+            ps.setInt(11, duration);
+            ps.setInt(12, quizzID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void activeQuiz(int quizzID) {
+        xSql = " UPDATE dbo.Quizz\n"
+                + " SET [status] = 1\n"
+                + " WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizzID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+    public void deactiveQuiz(int quizzID) {
+        xSql = " UPDATE dbo.Quizz\n"
+                + " SET [status] = 0\n"
+                + " WHERE ID = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, quizzID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

@@ -2,21 +2,29 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.quiz;
+package controller.question;
 
-import DAO.QuizDao;
+import Base.Base;
+import DAO.CourseDAO;
+import DAO.LessonDAO;
+import DAO.QuestionDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.ArrayList;
+import java.util.List;
+import model.Course;
+import model.Lesson;
+import model.QuestionDetail;
 
 /**
  *
  * @author ADMIN
  */
-public class AddNewQuizz extends HttpServlet {
+public class QuestionListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -31,19 +39,16 @@ public class AddNewQuizz extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String quizName = request.getParameter("content");
-            int levelID = Integer.parseInt(request.getParameter("levelID"));
-            int courseID = Integer.parseInt(request.getParameter("courseID"));
-            int lessonID = Integer.parseInt(request.getParameter("lessonID"));
-            String start_time = request.getParameter("start_time");
-            String end_time = request.getParameter("end_time");
-            Float ratePass = Float.parseFloat(request.getParameter("ratePass"));
-            int totalQuestion = Integer.parseInt(request.getParameter("totalQuestion"));
-            int attempt = Integer.parseInt(request.getParameter("attempt"));
-            int duration = Integer.parseInt(request.getParameter("duration"));
-            String description = request.getParameter("description");
-            new QuizDao().insertQuiz(quizName, levelID, courseID, lessonID, start_time, end_time, ratePass, totalQuestion, attempt, duration, description);
-            response.sendRedirect("QuizListController");
+            /* TODO output your page here. You may use following sample code. */
+            out.println("<!DOCTYPE html>");
+            out.println("<html>");
+            out.println("<head>");
+            out.println("<title>Servlet QuestionListController</title>");
+            out.println("</head>");
+            out.println("<body>");
+            out.println("<h1>Servlet QuestionListController at " + request.getContextPath() + "</h1>");
+            out.println("</body>");
+            out.println("</html>");
         }
     }
 
@@ -59,7 +64,28 @@ public class AddNewQuizz extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        int page = 1;
+        String pageIndex = request.getParameter("page");
+        if (pageIndex != null) {
+            page = Integer.parseInt(pageIndex);
+        }
+        DAO.QuestionDAO dao = new QuestionDAO();
+        int totalQuestion = dao.getTotalQuestion();
+        int totalPage = totalQuestion / Base.PAGE_SIZE;
+        if (totalQuestion % Base.PAGE_SIZE != 0) {
+            totalPage += 1;
+        }
+//        List<Question> listQuestion = dao.getAllQuestion();
+        List<Course> listCourse = new CourseDAO().getAllcourse();
+        List<Lesson> listLesson = new LessonDAO().getAll();
+        ArrayList<QuestionDetail> listQuestion = dao.getAllQuestionByPage(page, Base.PAGE_SIZE);
+        request.getSession().setAttribute("listLesson", listLesson);
+        request.getSession().setAttribute("listCourse", listCourse);
+        request.getSession().setAttribute("listQuestion", listQuestion);
+        request.setAttribute("page", page);
+        request.setAttribute("totalPage", totalPage);
+        request.setAttribute("pagination_url", "question-list?");
+        request.getRequestDispatcher("managerQuestion.jsp").forward(request, response);
     }
 
     /**

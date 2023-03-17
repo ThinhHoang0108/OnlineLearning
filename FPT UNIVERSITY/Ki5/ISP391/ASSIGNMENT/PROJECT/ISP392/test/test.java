@@ -24,6 +24,7 @@ import model.Comment;
 import model.Course;
 import model.Lesson;
 import model.Question;
+import model.QuestionDetail;
 import model.Quiz;
 import model.QuizLevel;
 import model.QuizPoint;
@@ -45,10 +46,9 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        int totalSearchItems = new BlogDAO().getTotalBlogByKeyword("O");
-        List<Blog> listBlogByPageing = new BlogDAO().getAllBlogByPageKeyword(1, Base.PAGE_SIZE, "Meji");
-        System.out.println(totalSearchItems);
-        System.out.println(listBlogByPageing);
+        ArrayList<QuestionDetail> listQuestionByPageing = new QuestionDAO().getAllQuestionByPage(1, 3);
+        boolean test = new QuestionDAO().insertQuestion(1, 1, 2, "Mock Test Final");
+        System.out.println(test);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);

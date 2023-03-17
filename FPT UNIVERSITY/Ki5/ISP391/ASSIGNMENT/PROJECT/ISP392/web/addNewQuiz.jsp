@@ -44,7 +44,7 @@
                     <!-- Container Fluid-->
                     <div class="container-fluid" id="container-wrapper">
                         <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                            <h1 class="h3 mb-0 text-gray-800">Quiz</h1>
+                            <h1 class="h3 mb-0 text-gray-800">Manager Quiz</h1>
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
                                 <li class="breadcrumb-item"><a href="QuizListController">Manage Quiz</a></li>
@@ -55,35 +55,47 @@
                             <div class="col-lg-12 mb-4">
                                 <div class="card mb-4">
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                        <h6 class="m-0 font-weight-bold text-primary">Add new Quiz</h6>
+                                        <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                            <h6 class="m-0 font-weight-bold text-primary">Add new Quiz</h6>
+                                            <p class="text-success">${sessionScope.messageError}</p>
+                                        </c:if>
+                                        <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                            <h6 class="m-0 font-weight-bold text-primary">Edit Quiz</h6>
+                                            <p class="text-danger">${sessionScope.messageError}</p>
+                                        </c:if>
                                     </div>
                                     <div class="card-body">
                                         <form action="${sessionScope.action}" method="post">
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Quiz name</label>
-                                                <input type="text" class="form-control" name="content" id="exampleFormControlInput1" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="text" class="form-control" name="content" id="exampleFormControlInput1" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="text" class="form-control" name="content" id="exampleFormControlInput1" value="${requestScope.quizByID.content}">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Quiz Level</label>
                                                 <select class="form-control" name="levelID" id="exampleFormControlSelect1">
-                                                    <c:forEach items="${sessionScope.listQuizLevel}" var="lv">
-                                                        <option value="${lv.quizLevelId}">${lv.quizLevelName}</option>
+                                                    <c:forEach items="${listQuizLevel}" var="lv">
+                                                        <option value="${lv.quizLevelId}" ${lv.quizLevelId == requestScope.quizByID.levelID?"selected":""}>${lv.quizLevelName}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlSelect1">Course Name</label>
-                                                <select class="form-control" name="courseID" id="exampleFormControlSelect1" >
-                                                    <c:forEach items="${sessionScope.listCourse}" var="c">
-                                                        <option value="${c.id}">${c.content}</option>
+                                                <select class="form-control" name="courseID" id="exampleFormControlSelect1" onchange="CourseToLessonAsync(this.value)">
+                                                    <c:forEach items="${listCourse}" var="c">
+                                                        <option value="${c.id}" ${c.id == requestScope.quizByID.courseID?"selected":""}>${c.content}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
-                                            <div class="form-group">
+                                            <div class="form-group" id="update_lesson" >
                                                 <label for="exampleFormControlSelect1">Lesson Name</label>
-                                                <select class="form-control" name="lessonID" id="exampleFormControlSelect1">
-                                                    <c:forEach items="${sessionScope.listLesson}" var="l">
-                                                        <option value="${l.lessonID}">${l.content}</option>
+                                                <select class="form-control" name="lessonID" >
+                                                    <c:forEach items="${listLesson}" var="l">
+                                                        <option value="${l.lessonID}" ${l.lessonID == requestScope.quizByID.lessonID?"selected":""}>${l.content}</option>
                                                     </c:forEach>
                                                 </select>
                                             </div>
@@ -91,7 +103,7 @@
                                             <div class="form-group">
                                                 <label for="clockPicker1">Start time</label>
                                                 <div class="input-group clockpicker" id="clockPicker1">
-                                                    <input type="text" class="form-control" value="06:30" name="start_time">                     
+                                                    <input type="text" class="form-control" value="${requestScope.quizByID.start_time}" name="start_time">                     
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                     </div>                      
@@ -100,7 +112,7 @@
                                             <div class="form-group">
                                                 <label for="clockPicker2">End tiem</label>
                                                 <div class="input-group clockpicker" id="clockPicker2">
-                                                    <input type="text" class="form-control" value="12:30" name="end_time">                     
+                                                    <input type="text" class="form-control" value="${requestScope.quizByID.end_time}" name="end_time">                     
                                                     <div class="input-group-append">
                                                         <span class="input-group-text"><i class="fas fa-clock"></i></span>
                                                     </div>                      
@@ -108,28 +120,53 @@
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Rate Pass</label>
-                                                <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" value="${requestScope.quizByID.ratePass}" style="width: 50%" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="ratePass" id="exampleFormControlInput1" value="${requestScope.quizByID.ratePass}" style="width: 50%">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Total Question</label>
-                                                <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.totalQuestion}" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="totalQuestion" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.totalQuestion}">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Attempt</label>
-                                                <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}"  required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="attempt" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}">
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlInput1">Duration</label>
-                                                <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" required>
+                                                <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                    <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}" required>
+                                                </c:if>
+                                                <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                    <input type="number" class="form-control" name="duration" id="exampleFormControlInput1" style="width: 50%" value="${requestScope.quizByID.attempt}" required>
+                                                </c:if>
                                             </div>
                                             <div class="form-group">
                                                 <label for="exampleFormControlTextarea1">Description</label>
-                                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                                <textarea class="form-control" name="description" id="exampleFormControlTextarea1" rows="3" >${requestScope.quizByID.description}</textarea>
                                             </div>
                                             <div class="col-12">
                                                 <div class="d-flex justify-content-center">
                                                     <!--<button type="submit" class="btn btn-primary px-4 py-2 fw-bold">check</button>-->
-                                                    <button type="submit" name="btnAction" value="submitQuizz" class="btn btn-primary px-4 py-2 fw-bold">Submit</button> 
+                                                    <c:if test="${sessionScope.action == 'AddNewQuizz'}">
+                                                        <button type="submit" name="btnAction" value="submitQuizz" class="btn btn-primary px-4 py-2 fw-bold">Add</button> 
+                                                    </c:if>
+                                                    <c:if test="${sessionScope.action == 'EditQuizController'}">
+                                                        <button type="submit" name="btnAction" value="submitQuizz" class="btn btn-primary px-4 py-2 fw-bold">Save</button> 
+                                                    </c:if>
                                                 </div>
                                             </div>    
                                         </form>
@@ -165,6 +202,19 @@
         <script src="dashboard/vendor/bootstrap-touchspin/js/jquery.bootstrap-touchspin.js"></script>
         <!-- ClockPicker -->
         <script src="davendor/clock-picker/clockpicker.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/axios@1.1.2/dist/axios.min.js"></script>
+        <script>
+                                                    function CourseToLessonAsync(courseID) {
+                                                        axios.get('AddNewQuiz-async', {
+                                                            params: {
+                                                                courseID: courseID
+                                                            }
+                                                        }).then((response) => {
+//                                                            console.log(response);
+                                                            document.getElementById("update_lesson").innerHTML = response.data;
+                                                        })
+                                                    }
+        </script>
         <script>
             $(document).ready(function () {
 

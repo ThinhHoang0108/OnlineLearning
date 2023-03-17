@@ -48,7 +48,7 @@
             <div class="breadcrumbs" data-aos="fade-in">
                 <div class="container">
                     <h2>Course Details</h2>
-                    <h4>${error}</h4>
+                    <h4>${requestScope.error}</h4>
                 </div>
             </div><!-- End Breadcrumbs -->
 
@@ -128,7 +128,9 @@
                                                                 <p class="card-text">Time: ${q.duration} (mins)</p>
                                                                 <p class="card-text">Attempt: ${q.attempt}</p>
                                                                 <p class="card-text">Total question: ${q.totalQuestion}</p>
-                                                                <a href="DoQuiz?quizzID=${q.quizID}&courseID=${requestScope.courseID}&method=get" class="btn btn-primary">Do Quiz</a>
+                                                                <p class="card-text">Start Time: ${q.start_time}</p>
+                                                                <p class="card-text">End Time ${q.end_time}</p>
+                                                                <a href="DoQuiz?quizzID=${q.quizID}&courseID=${requestScope.courseID}&method=get" class="btn btn-primary  ${q.status == "false"?"disabled":""}"  >Do Quiz</a>
                                                             </div>
                                                         </div>
                                                     </c:forEach>
