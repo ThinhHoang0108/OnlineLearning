@@ -47,11 +47,11 @@
 
                 <h1 class="logo me-xxl-5"><a href="home.jsp"></a></h1>
                 <!-- Uncomment below if you prefer to use an image logo -->
-                <a href="home.jsp" class="logo me-xxl-auto"><img src="assets/img/logo.jpeg" alt="" class="img-fluid"></a>
+                <a href="home" class="logo me-xxl-auto"><img src="assets/img/logo.jpeg" alt="" class="img-fluid"></a>
 
                 <nav id="navbar" class="navbar order-last order-lg-0">
                     <ul>
-                        <li><a class="active" href="home.jsp">Home</a></li>
+                        <li><a class="active" href="home">Home</a></li>
                         <li><a href="about">About</a></li>
                         <li><a href="courselist">Courses</a></li>
                         <li><a href="blog">Blog</a></li>
@@ -68,7 +68,7 @@
                                 <li class="dropdown">
                                     <a href="#"><span>Profile</span> <i class="bi bi-chevron-down"></i></a>
                                     <ul>
-                                        <li><a href="profile"><i class="bi bi-person-circle">&nbsp;&nbsp;Your infomation</i></a></li> 
+                                        <li><a href="changeProfile.jsp"><i class="bi bi-person-circle">&nbsp;&nbsp;Your infomation</i></a></li> 
                                         <li><a href="quiz-list"><i class="bi bi-journal-bookmark">&nbsp;&nbsp;My taken quiz</i></a></li> 
                                         <li><a href="#"><i class="bi bi-basket">&nbsp;&nbsp;My Registration</i></a></li>
                                             <c:if test="${sessionScope.account.roleID == 3}">

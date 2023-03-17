@@ -60,10 +60,10 @@ public class AddSlider extends HttpServlet {
         String sliderUrl_raw = request.getParameter("slider_url");
         String content_raw = request.getParameter("content");
         String notes_raw = request.getParameter("notes");
-        String courseId_raw =  request.getParameter("course");
+        int courseId_raw = Integer.parseInt(request.getParameter("course")) ;
 
         SliderDAO s = new SliderDAO();
-        s.insertSlider(title_raw, true, sliderUrl_raw, content_raw, notes_raw, 1);
+        s.insertSlider(title_raw, true, sliderUrl_raw, content_raw, notes_raw, courseId_raw);
         //request.getRequestDispatcher("Slider/SliderList.jsp").forward(request, response);
         //response.sendRedirect("sliderList");
         request.getRequestDispatcher("sliderList").forward(request, response);

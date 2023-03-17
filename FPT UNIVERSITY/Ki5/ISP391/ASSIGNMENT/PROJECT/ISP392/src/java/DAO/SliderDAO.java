@@ -9,6 +9,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import model.Course;
 import model.Slider;
 import util.DBContext;
 import util.MyDAO;
@@ -107,6 +108,7 @@ public class SliderDAO extends MyDAO {
             ps.setInt(1, sliderId);
             rs = ps.executeQuery();
             if (rs.next()) {
+                Course course = new CourseDAO().getCourseById(rs.getInt("courseID"));
                 x = Slider.builder().sliderId(rs.getInt("sliderId"))
                         .slider_url(rs.getString("slider_url"))
                         .status(rs.getBoolean("status"))
@@ -116,6 +118,7 @@ public class SliderDAO extends MyDAO {
                         .notes(rs.getString("notes"))
                         .isShow(rs.getBoolean("isShow"))
                         .courseId(rs.getInt("courseID"))
+                        .course(course)
                         .build();
             }
 
@@ -223,5 +226,18 @@ public class SliderDAO extends MyDAO {
             e.printStackTrace();
         }
         return (t);
+    }
+
+    public void deleteSlider(int id) {
+        xSql = "DELETE FROM [dbo].[Slide]\n"
+                + "      WHERE sliderId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, id);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }

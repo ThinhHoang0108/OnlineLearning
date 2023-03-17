@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-        <link href="css/manager.css" rel="stylesheet" type="text/css"/>
+        <link href="csslogin/manager.css" rel="stylesheet" type="text/css"/>
         <style>
             img{
                 width: 200px;
@@ -22,8 +22,9 @@
             }
         </style>
     <body>       
-        
-        <form action="editprofile" method="post">
+
+
+        <form action="profile" method="get">
             <div class="modal-header">						
                 <h4 class="modal-title">My Profile</h4>
                 <a href="home"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></a>
@@ -31,35 +32,37 @@
             <div class="modal-body">
                 <div class="form-group">
                     <label hidden>
-                    <input value="${sessionScope.user.getUserId()}" name="id" type="text" class="form-control" 'hidden="hidden"' required>
+                        <input value="${sessionScope.account.userID}" name="id" type="text" class="form-control" 'hidden="hidden"'>
                     </label>
                 </div>
                 <div class="form-group">
                     <label>Name</label>
-                    <input value="${sessionScope.account.name}" name="balance" type="text" class="form-control"  >
+                    <input value="${sessionScope.account.name}" name="name" type="text" class="form-control"  >
                 </div>
                 <div class="form-group">
                     <label>Date of birth</label>
-                    <input value="${sessionScope.account.dob}" name="address" type="text" class="form-control" >
+                    <input value="${sessionScope.account.dob}" name="dob" type="text" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>
-                    <input value=${sessionScope.account.phone} name="phone" type="text" class="form-control" >
+                    <input value="${sessionScope.account.phone}" name="phone" type="text" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>User Name</label>
-                    <input value=${sessionScope.account.username} name="phone" type="text" class="form-control" readonly >
+                    <input value="${sessionScope.account.username}" name="username" type="text" class="form-control" readonly >
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input value=${sessionScope.account.password} name="phone" type="password" class="form-control" >
+                    <input value="${sessionScope.account.password}" name="pass" type="password" class="form-control" >
                     <a href="change.jsp"/> Change password
                 </div>
             </div>
-<!--            <div class="modal-footer">
+            <div class="modal-footer">
                 <input type="submit" class="btn btn-success" value="Edit">
-            </div>-->
+            </div>
         </form>
+
+
     </body>
 </html>
 

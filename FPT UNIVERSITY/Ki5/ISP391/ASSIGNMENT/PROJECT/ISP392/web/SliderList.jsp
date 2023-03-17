@@ -23,7 +23,7 @@
             }
         </style>
     <body>
-
+        <p><a href="dashboard.jsp"><button>Back</button></a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
@@ -36,6 +36,7 @@
                         </div>
                     </div>
                 </div>
+
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr>
@@ -52,12 +53,14 @@
                                 <td>${o.sliderId}</td>
                                 <td>${o.title}</td>
                                 <td>
-                                    <img src="${o.slider_url}">
+                                    <a href="sliderDetail?sliderId=${o.sliderId}">
+                                        <img src="${o.slider_url}">
+                                    </a>   
                                 </td>
                                 <td>${o.status}</td>
                                 <td>
-                                    <a href="updateSlider?slideID=${o.sliderId}">Update</a>
-                                    <a href="#" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
+                                    <a href="updateSlider?slideID=${o.sliderId}"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <a href="deleteSlider?slideID=${o.sliderId}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
                         </c:forEach>        

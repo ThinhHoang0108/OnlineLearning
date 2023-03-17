@@ -110,14 +110,15 @@ public class UserDAO extends MyDAO {
         return (x);
     }
 
-    public void updateUser(String DOB, String phoneNumber, String passWord) {
+    public void updateUser( String DOB, String phoneNumber,String name, int UserId) {
         try {
-            String sql = "update [dbo].[User] set [Dateofbirth] = ?, [PhoneNumber]=?, [Password]=? where ID = ?";
+            String sql = "update [dbo].[User] set  [Dateofbirth] = ?, [PhoneNumber]=?, [Name]=? where ID = ?";
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setString(1, DOB);
             st.setString(2, phoneNumber);
-            st.setString(3, passWord);
+            st.setString(3, name);
+            st.setInt(4, UserId);
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();

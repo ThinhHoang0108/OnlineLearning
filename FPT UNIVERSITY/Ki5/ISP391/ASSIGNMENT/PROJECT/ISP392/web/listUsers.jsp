@@ -77,7 +77,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Dob</label>
-                                <input name="Dob" type="date" class="form-control" required>
+                                <input name="Dob" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Phone</label>

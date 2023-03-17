@@ -27,4 +27,5 @@ public class Slider {
      private String notes;
      private boolean isShow;
      private int courseId;
+     private Course course;
 }

@@ -32,7 +32,7 @@
             <div class="carousel-inner">
                 <c:forEach items="${sessionScope.listSliders}" var="o">
                     <div class="carousel-item ${o.sliderId == firstSliderId?"active":""}">
-                        <img class="d-block w-100" src="${o.slider_url}"  style="width: 80%;height: 80vh">
+                        <a href="coursedetail?courseID=${o.courseId}&method=get"> <img class="d-block w-100" src="${o.slider_url}"  style="width: 80%;height: 80vh"></a>
                     </div>
                 </c:forEach>
 

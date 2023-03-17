@@ -143,5 +143,9 @@ public class test {
 //        System.out.println(i);
 //        QuizPoint lastQuizPoint = new QuizDao().getQuizPointLast(6,2);
 //        System.out.println(lastQuizPoint);
+
+        Slider listSlider = new SliderDAO().getSliderById(11);
+        System.out.println(listSlider);
+        
     }
 }

@@ -30,9 +30,9 @@ public class ChangeProfile extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        User u = (User)request.getSession().getAttribute("account");
-        request.setAttribute("user", u);
-        request.getRequestDispatcher("changeProfile.jsp").forward(request, response);  
+//        User u = (User)request.getSession().getAttribute("account");
+//        request.setAttribute("user", u);
+//        request.getRequestDispatcher("changeProfile.jsp").forward(request, response);  
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
@@ -61,15 +61,15 @@ public class ChangeProfile extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String dob = request.getParameter("dob");
-        String phoneNumber = request.getParameter("phone");
-        String password = request.getParameter("pass");
-        int id = Integer.parseInt(request.getParameter("id"));
-        UserDAO u = new UserDAO();
-        u.updateUser(dob, phoneNumber, password);
-        request.setAttribute("msg", "Success");
-        request.setAttribute("id", id);
-        request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
+//        String dob = request.getParameter("dob");
+//        String phoneNumber = request.getParameter("phone");
+//        String password = request.getParameter("pass");
+//        int id = Integer.parseInt(request.getParameter("id"));
+//        UserDAO u = new UserDAO();
+//        u.updateUser(dob, phoneNumber, password);
+//        request.setAttribute("msg", "Success");
+//        request.setAttribute("id", id);
+//        request.getRequestDispatcher("changeProfile.jsp").forward(request, response);
     }
 
     /**

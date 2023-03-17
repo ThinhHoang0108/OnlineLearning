@@ -3,9 +3,9 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
 
-package controller;
+package controller.slider;
 
-import DAO.UserDAO;
+import DAO.SliderDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -18,8 +18,8 @@ import jakarta.servlet.http.HttpServletResponse;
  *
  * @author ADMIN
  */
-@WebServlet(name="EditProfileServlet", urlPatterns={"/editprofile"})
-public class EditProfileServlet extends HttpServlet {
+@WebServlet(name="DeleteSliderController", urlPatterns={"/deleteSlider"})
+public class DeleteSliderController extends HttpServlet {
    
     /** 
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code> methods.
@@ -36,10 +36,10 @@ public class EditProfileServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet EditProfileServlet</title>");  
+            out.println("<title>Servlet DeleteSliderController</title>");  
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet EditProfileServlet at " + request.getContextPath () + "</h1>");
+            out.println("<h1>Servlet DeleteSliderController at " + request.getContextPath () + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -56,7 +56,10 @@ public class EditProfileServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-        processRequest(request, response);
+        int slideId = Integer.parseInt(request.getParameter("slideID"));
+            SliderDAO s = new SliderDAO();
+            s.deleteSlider(slideId);
+            response.sendRedirect("sliderList");
     } 
 
     /** 
@@ -69,13 +72,7 @@ public class EditProfileServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
     throws ServletException, IOException {
-//        String dob = request.getParameter("dob");
-//        String phoneNumber = request.getParameter("phone");
-//        String password = request.getParameter("pass");
-//        UserDAO u = new UserDAO();
-//        u.updateUser(dob, phoneNumber, password);
-//        //request.getRequestDispatcher("home.jsp").forward(request, response);
-//        response.sendRedirect("userDetail.jsp");
+        processRequest(request, response);
     }
 
     /** 
