@@ -85,10 +85,12 @@ public class RegisterDAO extends MyDAO {
         return (t);
     }
 
-    public int getTotalRegister() {
+    public int getTotalRegister(int userID) {
         try {
-            String sql = "SELECT COUNT(regisId) FROM dbo.Register";
+            String sql = "WITH t AS(SELECT ROW_NUMBER() over (order by r.regisId asc) AS regisId,r.regis_Date,r.status,r.userId,r.courseId FROM dbo.Register r WHERE r.userId = ?)\n"
+                    + "SELECT COUNT(t.regisId) FROM t";
             ps = con.prepareStatement(sql);
+            ps.setInt(1, userID);
             rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);
@@ -101,7 +103,8 @@ public class RegisterDAO extends MyDAO {
 
     public List<Register> getAllRegisterByPage(int page, int PAGE_SIZE, int userID) {
         List<Register> t = new ArrayList<>();
-        String xSql = "SELECT * FROM dbo.Register WHERE userId = ? ORDER BY regisId ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        String xSql = "SELECT ROW_NUMBER() over (order by r.regisId asc) AS regisId,r.regis_Date,r.status,r.userId,r.courseId FROM dbo.Register r"
+                + " WHERE userId = ? ORDER BY regisId ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
         Register x;
         try {
             ps = con.prepareStatement(xSql);
