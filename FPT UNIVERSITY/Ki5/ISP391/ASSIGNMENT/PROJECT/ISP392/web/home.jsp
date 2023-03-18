@@ -119,13 +119,15 @@
 
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                 <div class="course-item">
-                                    <img src="${n.thumnailURL}" class="img-fluid" alt="...">
+                                    <a href="coursedetail?courseID=${n.id}&method=get">
+                                        <img src="${n.thumnailURL}" class="img-fluid" >
+                                    </a>
                                     <div class="course-content">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h4>${n.category.name}</h4>
                                         </div>
 
-                                        <h3><a href="#">${n.content}</a></h3>
+                                        <h3><a href="coursedetail?courseID=${n.id}&method=get">${n.content}</a></h3>
                                         <p>${n.description}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">
@@ -163,7 +165,7 @@
                                     <span>Technical Leader</span>
                                     <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
                                     <div class="social">
-                                        <a href=""><i class="bi bi-facebook"></i></a>
+                                        <a href="https://www.facebook.com/thinh.hoangxuan.3/"><i class="bi bi-facebook"></i></a>
                                         <a href=""><i class="bi bi-instagram"></i></a>
                                     </div>
                                 </div>

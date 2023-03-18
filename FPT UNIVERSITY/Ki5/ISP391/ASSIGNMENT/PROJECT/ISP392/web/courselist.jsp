@@ -70,7 +70,9 @@
                         <c:forEach items="${sessionScope.listCoursebyPageing}" var="l" >
                             <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
                                 <div class="course-item">
-                                    <img src="${l.thumnailURL}" class="img-fluid" alt="...">
+                                    <a href="coursedetail?courseID=${l.id}&method=get">
+                                        <img src="${l.thumnailURL}" class="img-fluid" alt="...">
+                                    </a>
                                     <div class="course-content">
                                         <div class="d-flex justify-content-between align-items-center mb-3">
                                             <h4>${l.createDate}</h4> 
