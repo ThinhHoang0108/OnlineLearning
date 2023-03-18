@@ -66,9 +66,10 @@ public class addUser extends HttpServlet {
         String dob_raw = request.getParameter("dob");
         String phone_raw = request.getParameter("phone");
         String username_raw = request.getParameter("username");
-        String password_raw = request.getParameter("password");        
+        String password_raw = request.getParameter("password");
+        int role_id = Integer.parseInt(request.getParameter("role"));
         UserDAO dao = new UserDAO();
-        dao.insertUser(name_raw, dob_raw, phone_raw, username_raw, password_raw);
+        dao.insertUser(name_raw, dob_raw, phone_raw, username_raw, password_raw,role_id);
         //request.getRequestDispatcher("listUsers.jsp").forward(request, response);
         response.sendRedirect("manageUser");
     } 

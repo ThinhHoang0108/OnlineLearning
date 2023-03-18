@@ -138,15 +138,16 @@ public class UserDAO extends MyDAO {
         }
     }
 
-    public void insertUser(String name, String dob, String phoneNumber, String username, String password) {
+    public void insertUser(String name, String dob, String phoneNumber, String username, String password, int role_id) {
         String sql = "INSERT INTO [dbo].[User]\n"
                 + "           ([Name]\n"
                 + "           ,[Dateofbirth]\n"
                 + "           ,[PhoneNumber]\n"
                 + "           ,[Username]\n"
                 + "           ,[Password])\n"
+                + "           ,[IDrole])\n"
                 + "     VALUES\n"
-                + "           (?,?,?,?,?)";
+                + "           (?,?,?,?,?,?)";
         try {
             SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
             ps = con.prepareStatement(sql);
@@ -155,6 +156,8 @@ public class UserDAO extends MyDAO {
             ps.setString(3, phoneNumber);
             ps.setString(4, username);
             ps.setString(5, password);
+            ps.setInt(6, role_id);
+            
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -283,6 +286,7 @@ public class UserDAO extends MyDAO {
             ps.setInt(3, PAGE_SIZE);
             rs = ps.executeQuery();
             while (rs.next()) {
+                Role role = new RoleDAO().getRoleByID(rs.getInt("IDrole"));
                 x = User.builder().userID(rs.getInt("ID"))
                         .name(rs.getString("Name"))
                         .dob(rs.getDate("Dateofbirth"))
@@ -291,6 +295,7 @@ public class UserDAO extends MyDAO {
                         .password(rs.getString("Password"))
                         .email(rs.getString("email"))
                         .roleID(rs.getInt("IDrole"))
+                        .role(role)
                         .build();
                 t.add(x);
             }

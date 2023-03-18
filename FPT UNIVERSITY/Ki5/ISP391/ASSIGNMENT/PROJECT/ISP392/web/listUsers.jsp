@@ -41,19 +41,23 @@
                             <th>ID</th>
                             <th>Name</th>
                             <th>DOB</th>
+                            <th>Role</th>
                             <th>Username</th>
 
                         </tr>
                     </thead>
                     <tbody>
                         <c:forEach items="${sessionScope.listUserByPageing}" var="o">
+                           
                             <tr>
                                 <td>${o.userID}</td>
                                 <td><a href="UserDetail?userID=${o.userID}">${o.name}</a></td>
-                                <td>${o.dob}</td>                               
+                                <td>${o.dob}</td> 
+                                <td>${o.role.role_name}</td>
                                 <td>${o.username}</td>
 
                             </tr>
+                          
                         </c:forEach>        
 
 
@@ -90,6 +94,14 @@
                             <div class="form-group">
                                 <label>Password</label>
                                 <input name="password" class="form-control" required>
+                            </div>
+                             <div class="form-group">
+                                <label>Role</label>
+                                <select name="role" class="form-select" aria-label="Default select example">
+                                    <c:forEach items="${listRole}" var="lc">
+                                        <option value="${lc.role_id}">${lc.role_name}</option>
+                                    </c:forEach>
+                                </select>
                             </div>
 
 
