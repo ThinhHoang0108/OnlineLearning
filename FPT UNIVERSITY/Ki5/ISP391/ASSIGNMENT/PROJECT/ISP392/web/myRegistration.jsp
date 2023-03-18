@@ -46,8 +46,8 @@
             <!-- ======= Breadcrumbs ======= -->
             <div class="breadcrumbs">
                 <div class="container">
-                    <h2>My Quiz Taken</h2>
-                    <p>View all quiz we have done </p>
+                    <h2>My Registration</h2>
+                    <p>View all coures we have registe </p>
                 </div>
             </div><!-- End Breadcrumbs -->
 
@@ -58,40 +58,39 @@
                     <table class="table">
                         <thead class="thead-dark">
                             <tr>
-                                <th scope="col">Attempt</th>
-                                <th scope="col">Quiz Name</th>
-                                <th scope="col">Point</th>
-                                <th scope="col">Date take</th>
-                                <th scope="col">Duration</th>
+                                <th scope="col">Register ID</th>
+                                <th scope="col">Course Name</th>
+                                <th scope="col">Register Date</th>
                                 <th scope="col">Status</th>
+                                <th scope="col">Category</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>
-                        <c:forEach items="${sessionScope.listQuizPointHistory}" var="l">
-                            <tr>
-                                <td>${l.attempt}</td>
-                                <td>${l.quizContent}</td>
-                                <td>${l.point}/10 (${l.pointPercent}%)</td>
-                                <td>${l.taken_date}</td>
-                                <td>${l.duration} (mins)</td>
-                            <c:choose>
-                                <c:when test="${l.pointPercent >= l.ratePass}">
-                                    <td><a class="text-success">Passed</a></td>
-                                </c:when>
-                                <c:otherwise>
-                                    <td><a class="text-danger">Not Passed</a></td>
-                                </c:otherwise>
-                            </c:choose>
-                            <td><a href="ReviewQuizController?quizzID=${l.quizID}&attempt=${l.attempt}&courseID=${l.courseID}" class="btn bg-primary text-white rounded-pill mb-2" style="float: bottom"/>Detail</a><td>
+                            <c:forEach items="${sessionScope.listRegisterByPageing}" var="l">
+                                <tr>
+                                    <td>${l.registerID}</td>
+                                    <td>${l.course.content}</td>
+                                    <td>${l.regis_Date}</td>
+                                    <td>
+                                        <c:if test="${l.status == 'true'}">
+                                            <span class="badge badge-success">Actice</span>
+                                        </c:if>
+                                        <c:if test="${l.status == 'false'}">
+                                            <span class="badge badge-danger">Pending</span>
+                                        </c:if>
+                                    </td>
+                                    <td>${l.course.category.name}</td>
+
+                                    <td><a href="#" class="btn btn-danger btn-primary text-white rounded-pill mb-2" style="float: bottom"/>Cancel</a><td>
                                 </tr>
-                        </c:forEach>
+                            </c:forEach>
                         </tbody>
                     </table>
             </section>
             <div class="container">
                 <c:choose>
-                    <c:when test="${listQuizPointHistory == null || listQuizPointHistory.size() ==0}">
+                    <c:when test="${listRegisterByPageing == null || listRegisterByPageing.size() ==0}">
                         Null
                     </c:when>
                     <c:when test="${totalPage < 2}">
@@ -102,7 +101,7 @@
                                 </li>
                                 <c:forEach begin="1" end="${totalPage}" var="i">
                                     <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                </c:forEach>
+                                    </c:forEach>
                                 <li class="page-item disabled">
                                     <span class="page-link">Next</span>
                                 </li>
@@ -117,7 +116,7 @@
                                 </li>
                                 <c:forEach begin="1" end="${totalPage}" var="i">
                                     <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                </c:forEach>
+                                    </c:forEach>
                                 <li class="page-item">
                                     <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
                                 </li>
@@ -132,7 +131,7 @@
                                 </li>
                                 <c:forEach begin="1" end="${totalPage}" var="i">
                                     <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                </c:forEach>
+                                    </c:forEach>
                                 <li class="page-item disabled">
                                     <span class="page-link">Next</span>
                                 </li>
@@ -147,7 +146,7 @@
                                 </li>
                                 <c:forEach begin="1" end="${totalPage}" var="i">
                                     <li class="page-item ${i == page?"active":""}"><a class="page-link" href="${pagination_url}page=${i}">${i}</a></li>
-                                </c:forEach>
+                                    </c:forEach>
                                 <li class="page-item">
                                     <a class="page-link" href="${pagination_url}page=${page+1}">Next</a>
                                 </li>

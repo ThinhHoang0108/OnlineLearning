@@ -100,7 +100,7 @@
                                                         <td> <c:if test="${lq.status == 'true'}">
                                                                 <span class="badge badge-success">Actice</span>
                                                             </c:if>
-                                                            <c:if test="${l1.status == 'false'}">
+                                                            <c:if test="${lq.status == 'false'}">
                                                                 <span class="badge badge-danger">Pending</span>
                                                             </c:if>
                                                         </td>

@@ -50,7 +50,12 @@ public class RegistrationListController extends HttpServlet {
                 totalPage += 1;
             }
             List<Register> listRegister = new RegisterDAO().getAllRegistration(account.getUserID());
-            request.setAttribute("listRegister", listRegister);
+            request.getSession().setAttribute("listRegister", listRegister);
+            List<Register> listRegisterByPageing = dao.getAllRegisterByPage(page, Base.PAGE_SIZE, account.getUserID());
+            request.getSession().setAttribute("listRegisterByPageing", listRegisterByPageing);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "registration-list?");
             request.getRequestDispatcher("myRegistration.jsp").forward(request, response);
 
         }

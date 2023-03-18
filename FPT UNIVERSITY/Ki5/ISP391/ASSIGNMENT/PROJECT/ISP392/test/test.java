@@ -10,6 +10,7 @@ import DAO.QuestionDAO;
 import DAO.QuizDao;
 import DAO.QuizLevelDAO;
 import DAO.QuizPointDAO;
+import DAO.RegisterDAO;
 import DAO.RoleDAO;
 import DAO.SliderDAO;
 import DAO.SubjectDAO;
@@ -29,6 +30,7 @@ import model.Quiz;
 import model.QuizLevel;
 import model.QuizPoint;
 import model.QuizPointHistory;
+import model.Register;
 import model.Role;
 import model.Slider;
 import model.Subject;
@@ -46,9 +48,9 @@ import util.SendEmail;
 public class test {
 
     public static void main(String[] args) {
-        ArrayList<QuestionDetail> listQuestionByPageing = new QuestionDAO().getAllQuestionByPage(1, 3);
-        boolean test = new QuestionDAO().insertQuestion(1, 1, 2, "Mock Test Final");
-        System.out.println(test);
+//        ArrayList<QuestionDetail> listQuestionByPageing = new QuestionDAO().getAllQuestionByPage(1, 3);
+//        boolean test = new QuestionDAO().insertQuestion(1, 1, 2, "Mock Test Final");
+//        System.out.println(test);
 //        Quiz quiz = new QuizDao().getQuizByID(2);
 //        QuizPoint quizpoint = new QuizDao().getQuizPointLast(1, 1);
 //        List<Question> listQ = new QuestionDAO().getAllQuestionByQuestionID(2);
@@ -143,9 +145,9 @@ public class test {
 //        System.out.println(i);
 //        QuizPoint lastQuizPoint = new QuizDao().getQuizPointLast(6,2);
 //        System.out.println(lastQuizPoint);
+        List<Register> listRegister = new RegisterDAO().getAllRegistration(6);
+        List<Register> listRegisterByPageing = new RegisterDAO().getAllRegisterByPage(1, Base.PAGE_SIZE, 6);
+        System.out.println(listRegisterByPageing);
 
-        Slider listSlider = new SliderDAO().getSliderById(11);
-        System.out.println(listSlider);
-        
     }
 }

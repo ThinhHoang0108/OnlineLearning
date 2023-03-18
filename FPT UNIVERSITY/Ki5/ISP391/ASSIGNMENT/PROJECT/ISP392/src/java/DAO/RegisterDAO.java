@@ -99,4 +99,35 @@ public class RegisterDAO extends MyDAO {
         return 0;
     }
 
+    public List<Register> getAllRegisterByPage(int page, int PAGE_SIZE, int userID) {
+        List<Register> t = new ArrayList<>();
+        String xSql = "SELECT * FROM dbo.Register WHERE userId = ? ORDER BY regisId ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        Register x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, userID);
+            ps.setInt(2, page);
+            ps.setInt(3, PAGE_SIZE);
+            ps.setInt(4, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Course course = new CourseDAO().getCourseById(rs.getInt("courseId"));
+                x = Register.builder()
+                        .registerID(rs.getInt("regisId"))
+                        .regis_Date(rs.getDate("regis_Date"))
+                        .status(rs.getBoolean("status"))
+                        .courseID(rs.getInt("courseId"))
+                        .userID(rs.getInt("userId"))
+                        .course(course)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
 }
