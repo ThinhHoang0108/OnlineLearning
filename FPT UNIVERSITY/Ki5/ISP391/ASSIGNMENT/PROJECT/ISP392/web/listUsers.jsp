@@ -88,6 +88,10 @@
                                 <input name="phone" type="text" class="form-control" required>
                             </div>
                             <div class="form-group">
+                                <label>Email</label>
+                                <input name="email" type="text" class="form-control" required>
+                            </div>
+                            <div class="form-group">
                                 <label>UserName</label>
                                 <input name="username" class="form-control" required>
                             </div>

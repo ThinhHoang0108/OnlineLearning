@@ -41,12 +41,16 @@
             <input value="${acc.phone}" name="title" type="text" class="form-control" readonly required>
         </div>
         <div class="form-group">
+            <label>Email:</label>
+            <input value="${acc.email}" name="title" type="text" class="form-control" readonly required>
+        </div>
+        <div class="form-group">
             <label>Username:</label>
             <input value="${acc.username}" name="content" type="text" class="form-control" readonly required>
         </div>
         <div class="form-group">
             <label>Password:</label>
-            <input value="*********" name="notes" type="text" class="form-control" readonly required>
+            <input value="${acc.password}" name="notes" type="password" class="form-control" readonly required>
         </div>                                                   
     </div>
 
