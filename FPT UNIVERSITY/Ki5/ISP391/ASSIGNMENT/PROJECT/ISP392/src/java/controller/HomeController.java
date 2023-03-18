@@ -41,6 +41,7 @@ public class HomeController extends HttpServlet {
             List<Category> listCategories = new CategoryDAO().getAllCategory();
             List<Slider> listSliders = new SliderDAO().getAllSlider();
             List<Course> listCourse = new CourseDAO().getAllcourse();
+            List<Course> listTop3CourseNew = new CourseDAO().getTop3CourseNew();
             int firstSliderId = new SliderDAO().getfirstSliderId();
             HttpSession session = request.getSession();
             session.setAttribute("listCategories", listCategories);
@@ -48,6 +49,7 @@ public class HomeController extends HttpServlet {
             request.setAttribute("firstSliderId", firstSliderId);
 
             request.setAttribute("listCourse", listCourse);
+            request.setAttribute("listTop3CourseNew", listTop3CourseNew);
             request.getRequestDispatcher("home.jsp").forward(request, response);
         }
     }

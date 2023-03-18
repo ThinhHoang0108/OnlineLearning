@@ -232,5 +232,31 @@ public class CourseDAO extends MyDAO {
         return (t);
     }
 
+    public List<Course> getTop3CourseNew() {
+        List<Course> t = new ArrayList<>();
+        xSql = "SELECT TOP(3) * FROM dbo.Course ORDER BY ID DESC";
+        Course x;
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Category category = new CategoryDAO().getCategoryById(rs.getInt("IDcategory"));
+                x = Course.builder().id(rs.getInt("ID"))
+                        .thumnailURL(rs.getString("Thumnail"))
+                        .content(rs.getString("Content"))
+                        .description(rs.getString("Description"))
+                        .createDate(rs.getDate("DateCreated"))
+                        .IDcategory(rs.getInt("IDcategory"))
+                        .category(category)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
 
 }
