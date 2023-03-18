@@ -54,7 +54,7 @@
                                 <td>${o.title}</td>
                                 <td>
                                     <a href="sliderDetail?sliderId=${o.sliderId}">
-                                        <img src="${o.slider_url}">
+                                        <img src="dashboard/img/${o.slider_url}">
                                     </a>   
                                 </td>
                                 <td>${o.status}</td>
@@ -88,7 +88,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Slider_URL</label>
-                                <input name="slider_url" type="text" class="form-control" required>
+                                <input name="slider_url" type="file" class="form-control" required>
                             </div>
                             <div class="form-group">
                                 <label>Content</label>
