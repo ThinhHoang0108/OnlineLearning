@@ -144,12 +144,12 @@ public class UserDAO extends MyDAO {
                 + "           ,[Dateofbirth]\n"
                 + "           ,[PhoneNumber]\n"
                 + "           ,[Username]\n"
-                + "           ,[Password])\n"
+                + "           ,[Password]\n"
                 + "           ,[IDrole])\n"
                 + "     VALUES\n"
                 + "           (?,?,?,?,?,?)";
         try {
-            SimpleDateFormat date = new SimpleDateFormat("yyyy-MM-dd");
+            
             ps = con.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, dob);
