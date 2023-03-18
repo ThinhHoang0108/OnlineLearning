@@ -54,7 +54,10 @@
             <!-- ======= Why Us Section ======= -->
             <section id="why-us" class="why-us">
                 <div class="container" data-aos="fade-up">
-
+                    <div class="section-title text-end">
+                        <h2></h2>
+                        <p>Post</p>
+                    </div>
                     <div class="row">
                         <div class="col-lg-4 d-flex align-items-stretch">
                             <div class="content">
@@ -157,7 +160,7 @@
                                 <img src="assets/img/trainers/thinh.jpg" class="img-fluid" alt="">
                                 <div class="member-content">
                                     <h4>Hoang Xuan Thinh</h4>
-                                    <span>Lead Technical</span>
+                                    <span>Technical Leader</span>
                                     <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
                                     <div class="social">
                                         <a href=""><i class="bi bi-facebook"></i></a>
@@ -171,7 +174,7 @@
                                 <img src="assets/img/trainers/thang.jpg" class="img-fluid" alt="">
                                 <div class="member-content">
                                     <h4>Vu Xuan Thang</h4>
-                                    <span>Doc Lead</span>
+                                    <span>Document Leader</span>
                                     <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
                                     <div class="social">
                                         <a href="https://www.facebook.com/ThangBono2908"><i class="bi bi-facebook"></i></a>
