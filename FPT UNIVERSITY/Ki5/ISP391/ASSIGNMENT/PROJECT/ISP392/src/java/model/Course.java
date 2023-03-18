@@ -28,6 +28,7 @@ public class Course {
     private String description;
     private Date createDate;
     private int IDcategory;
+    private Category category;
     
 
 }

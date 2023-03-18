@@ -4,10 +4,99 @@
  */
 package DAO;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import model.Course;
+import model.Register;
+import util.MyDAO;
+
 /**
  *
  * @author ADMIN
  */
-public class RegisterDAO {
-    
+public class RegisterDAO extends MyDAO {
+
+    public int checkRegistration(int courseID, int userID) {
+        try {
+            String sql = "SELECT * FROM dbo.Register WHERE courseId = ? AND userId = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, courseID);
+            ps.setInt(2, userID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
+    public void insertCourseRegistration(int userID, int courseID) {
+        xSql = "INSERT INTO [dbo].[Register]\n"
+                + "           ([regis_Date]\n"
+                + "           ,[status]\n"
+                + "           ,[courseId]\n"
+                + "           ,[userId])\n"
+                + "     VALUES\n"
+                + "           (?,1,?,?)";
+        try {
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            ZonedDateTime zdt = ZonedDateTime.now();
+            String today = dtf.format(zdt);
+            ps = con.prepareStatement(xSql);
+            ps.setString(1, today);
+            ps.setInt(2, courseID);
+            ps.setInt(3, userID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    public List<Register> getAllRegistration(int userID) {
+        List<Register> t = new ArrayList<>();
+        String xSql = "SELECT * FROM dbo.Register WHERE userId = ?";
+        Register x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, userID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Course course = new CourseDAO().getCourseById(rs.getInt("courseId"));
+                x = Register.builder()
+                        .registerID(rs.getInt("regisId"))
+                        .regis_Date(rs.getDate("regis_Date"))
+                        .status(rs.getBoolean("status"))
+                        .courseID(rs.getInt("courseId"))
+                        .userID(rs.getInt("userId"))
+                        .course(course)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public int getTotalRegister() {
+        try {
+            String sql = "SELECT COUNT(regisId) FROM dbo.Register";
+            ps = con.prepareStatement(sql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
 }

@@ -206,6 +206,14 @@
         <servlet-name>UpdateAnswerController</servlet-name>
         <servlet-class>controller.question.UpdateAnswerController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>CourseRegistrationController</servlet-name>
+        <servlet-class>controller.Registration.CourseRegistrationController</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>RegistrationListController</servlet-name>
+        <servlet-class>controller.Registration.RegistrationListController</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -377,6 +385,14 @@
     <servlet-mapping>
         <servlet-name>UpdateAnswerController</servlet-name>
         <url-pattern>/updateAnswer</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>CourseRegistrationController</servlet-name>
+        <url-pattern>/course-register</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>RegistrationListController</servlet-name>
+        <url-pattern>/registration-list</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -70,7 +70,7 @@
                                     <ul>
                                         <li><a href="changeProfile.jsp"><i class="bi bi-person-circle">&nbsp;&nbsp;Your infomation</i></a></li> 
                                         <li><a href="quiz-list"><i class="bi bi-journal-bookmark">&nbsp;&nbsp;My taken quiz</i></a></li> 
-                                        <li><a href="#"><i class="bi bi-basket">&nbsp;&nbsp;My Registration</i></a></li>
+                                        <li><a href="registration-list"><i class="bi bi-basket">&nbsp;&nbsp;My Registration</i></a></li>
                                             <c:if test="${sessionScope.account.roleID == 3}">
                                             <li> <a href="dashboard.jsp">
                                                     <i class="bi bi-person-fill-lock">&nbsp;&nbsp;Dashbord</i>

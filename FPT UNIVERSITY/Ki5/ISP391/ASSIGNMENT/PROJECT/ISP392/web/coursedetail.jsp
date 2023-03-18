@@ -84,12 +84,19 @@
                             <div class="course-info d-flex justify-content-between align-items-center">
                                 <h5>Schedule</h5>
                                 <p>${course.createDate}</p>
-
                             </div>
-                            <div class="icon-box">
-                                <%--<c:if test="${requestScope.checkRegis == 0}">--%>
-                                <h3><a href="#" class="btn btn-primary mt-5 me-4">Register</a></h3>
-                                <%--</c:if>--%>
+                            <div class="course-info d-flex justify-content-between align-items-center">
+                                <h5>Category</h5>
+                                <p>${course.category.name}</p>
+                            </div>
+                            <div class="icon-box d-flex justify-content-sm-start">
+                                <c:if test="${requestScope.checkRegis == 0}">
+                                    <a href="course-register?courseID=${course.id}" class="btn btn-primary mt-5 me-3">Register</a>
+                                </c:if>
+                                <c:if test="${requestScope.checkRegis != 0}">
+                                    <a href="#" class="btn btn-danger mt-5 me-4 d-flex conte" >Registered</a>
+                                </c:if>
+
 
                             </div>
 
@@ -100,60 +107,63 @@
             </section><!-- End Cource Details Section -->
 
             <!-- ======= Cource Details Tabs Section ======= -->
-            <section id="cource-details-tabs" class="cource-details-tabs">
-                <div class="container" data-aos="fade-up">
+            <c:if test="${requestScope.checkRegis != 0}">
+                <section id="cource-details-tabs" class="cource-details-tabs">
+                    <div class="container" data-aos="fade-up">
 
-                    <div class="row">
-                        <div class="col-lg-3">
-                            <ul class="nav nav-tabs flex-column">
+                        <div class="row">
+                            <div class="col-lg-3">
+                                <ul class="nav nav-tabs flex-column">
 
-                                <div class="list-group list-group-light">
-                                    <!--<li class="nav-item">
-                                        <a class="nav-link" data-bs-toggle="tab" href="#tab-${l.lessonID}"></a>
-                                        </li>-->
-                                    <c:forEach items="${listLesson}" var="l">
-                                        <a href="coursedetail?lessonID=${l.lessonID}&courseID=${l.courseID}&method=post" class="list-group-item list-group-item-action">${l.content}</a>
-                                    </c:forEach>
-                                </div>
-                            </ul>
-                        </div>
-                        <div class="col-lg-9 mt-4 mt-lg-0">
-                            <div class="tab-content">
-                                <div class="row">
-                                    <div class="col-lg-8 details order-2 order-lg-1">
-                                        <c:choose>
-                                            <c:when test="${requestScope.lessonGetByLessonID != null}">
-                                                <h2>${requestScope.lessonGetByLessonID.description}</h2>
-                                                <p class="fst-italic"></p>
-                                                <iframe width="800" height="500" src="https://www.youtube.com/embed/${requestScope.lessonGetByLessonID.urlVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
-                                                <div class="row mt-5">
-                                                    <c:forEach items="${listQuizByLessonId}" var="q">
-                                                        <div class="card" style="width: 40%">
-                                                            <div class="card-body">
-                                                                <h5 class="card-title">${q.content}</h5>
-                                                                <p class="card-text">Level: ${q.quizlevel.quizLevelName}</p>
-                                                                <p class="card-text">Time: ${q.duration} (mins)</p>
-                                                                <p class="card-text">Attempt: ${q.attempt}</p>
-                                                                <p class="card-text">Total question: ${q.totalQuestion}</p>
-                                                                <p class="card-text">Start Time: ${q.start_time}</p>
-                                                                <p class="card-text">End Time ${q.end_time}</p>
-                                                                <a href="DoQuiz?quizzID=${q.quizID}&courseID=${requestScope.courseID}&method=get" class="btn btn-primary  ${q.status == "false"?"disabled":""}"  >Do Quiz</a>
+                                    <div class="list-group list-group-light">
+                                        <!--<li class="nav-item">
+                                            <a class="nav-link" data-bs-toggle="tab" href="#tab-${l.lessonID}"></a>
+                                            </li>-->
+                                        <c:forEach items="${listLesson}" var="l">
+                                            <a href="coursedetail?lessonID=${l.lessonID}&courseID=${l.courseID}&method=post" class="list-group-item list-group-item-action">${l.content}</a>
+                                        </c:forEach>
+                                    </div>
+                                </ul>
+                            </div>
+                            <div class="col-lg-9 mt-4 mt-lg-0">
+                                <div class="tab-content">
+                                    <div class="row">
+                                        <div class="col-lg-8 details order-2 order-lg-1">
+                                            <c:choose>
+                                                <c:when test="${requestScope.lessonGetByLessonID != null}">
+                                                    <h2>${requestScope.lessonGetByLessonID.description}</h2>
+                                                    <p class="fst-italic"></p>
+                                                    <iframe width="800" height="500" src="https://www.youtube.com/embed/${requestScope.lessonGetByLessonID.urlVideo}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                                    <div class="row mt-5">
+                                                        <c:forEach items="${listQuizByLessonId}" var="q">
+                                                            <div class="card" style="width: 40%">
+                                                                <div class="card-body">
+                                                                    <h5 class="card-title">${q.content}</h5>
+                                                                    <p class="card-text">Level: ${q.quizlevel.quizLevelName}</p>
+                                                                    <p class="card-text">Time: ${q.duration} (mins)</p>
+                                                                    <p class="card-text">Attempt: ${q.attempt}</p>
+                                                                    <p class="card-text">Total question: ${q.totalQuestion}</p>
+                                                                    <p class="card-text">Start Time: ${q.start_time}</p>
+                                                                    <p class="card-text">End Time ${q.end_time}</p>
+                                                                    <a href="DoQuiz?quizzID=${q.quizID}&courseID=${requestScope.courseID}&method=get" class="btn btn-primary  ${q.status == "false"?"disabled":""}"  >Do Quiz</a>
+                                                                </div>
                                                             </div>
-                                                        </div>
-                                                    </c:forEach>
-                                                </div>
-                                            </c:when>
-                                        </c:choose>
+                                                        </c:forEach>
+                                                    </div>
+                                                </c:when>
+                                            </c:choose>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
+                        <div class ="row ">
+                        </div>
                     </div>
-                    <div class ="row ">
-                    </div>
-                </div>
 
-            </section><!-- End Cource Details Tabs Section -->
+                </section><!-- End Cource Details Tabs Section -->
+            </c:if>
+
 
         </main><!-- End #main -->
 

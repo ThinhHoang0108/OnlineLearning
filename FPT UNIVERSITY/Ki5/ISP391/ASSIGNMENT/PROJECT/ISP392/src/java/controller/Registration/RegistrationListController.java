@@ -2,32 +2,26 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.Course;
+package controller.Registration;
 
-import DAO.CourseDAO;
-import DAO.LessonDAO;
-import DAO.QuizDao;
+import Base.Base;
 import DAO.RegisterDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import java.util.List;
-import model.Course;
-import model.Lesson;
-import model.Quiz;
+import model.Register;
 import model.User;
 
 /**
  *
- * @author vuxua
+ * @author ADMIN
  */
-@WebServlet(name = "CourseDetail", urlPatterns = {"/coursedetail"})
-public class CourseDetail extends HttpServlet {
+public class RegistrationListController extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -42,37 +36,23 @@ public class CourseDetail extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            int courseID = Integer.parseInt(request.getParameter("courseID"));
-            String method = request.getParameter("method");
             HttpSession session = request.getSession();
             User account = (User) session.getAttribute("account");
-            //Course course = new CourseDAO;
-//            String xid = request.getParameter("id");
-            int lessonID = 0;
-            int checkRegis = new RegisterDAO().checkRegistration(courseID, account.getUserID());
-
-            if (method.equalsIgnoreCase("get")) {
-                DAO.CourseDAO dao = new CourseDAO();
-                Course course = dao.getCourseById(courseID);
-                LessonDAO dao1 = new LessonDAO();
-                List<Lesson> listLesson = dao1.getAllLesson(courseID);
-                request.getSession().setAttribute("course", course);
-                request.getSession().setAttribute("listLesson", listLesson);
-            } else if (method.equalsIgnoreCase("post")) {
-                lessonID = Integer.parseInt(request.getParameter("lessonID"));
-                Lesson lessonGetByLessonID = new LessonDAO().getLessonByLessonID(lessonID);
-                List<Lesson> listLesson = new LessonDAO().getAllLesson(courseID);
-                List<Quiz> listQuizByLessonID = new QuizDao().getAllQuizByLessonID(lessonID);
-                request.getSession().setAttribute("listLesson", listLesson);
-                request.getSession().setAttribute("lessonIDresult", lessonID);
-                request.getSession().setAttribute("courseIDresult", courseID);
-                request.setAttribute("lessonID", lessonID);
-                request.setAttribute("courseID", courseID);
-                request.setAttribute("listQuizByLessonId", listQuizByLessonID);
-                request.setAttribute("lessonGetByLessonID", lessonGetByLessonID);
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
             }
-            request.setAttribute("checkRegis", checkRegis);
-            request.getRequestDispatcher("coursedetail.jsp").forward(request, response);
+            RegisterDAO dao = new RegisterDAO();
+            int totalRegister = dao.getTotalRegister();
+            int totalPage = totalRegister / Base.PAGE_SIZE;
+            if (totalRegister % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
+            List<Register> listRegister = new RegisterDAO().getAllRegistration(account.getUserID());
+            request.setAttribute("listRegister", listRegister);
+            request.getRequestDispatcher("myRegistration.jsp").forward(request, response);
+
         }
     }
 

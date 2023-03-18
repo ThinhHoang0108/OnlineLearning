@@ -9,6 +9,7 @@ import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.List;
 import model.AnswerDetail;
+import model.Category;
 import model.Course;
 import model.Quiz;
 import model.QuizLevel;
@@ -139,6 +140,7 @@ public class QuizDao extends MyDAO {
         }
         return false;
     }
+
     public boolean checkDoQuizz(int quizID) {
         xSql = "SELECT * FROM dbo.Quiz_POINT WHERE quizID = ?";
 
@@ -250,7 +252,7 @@ public class QuizDao extends MyDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
-                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"), new CategoryDAO().getCategoryById(rs.getInt("IDcategory")));
                 x = Quiz.builder()
                         .quizID(rs.getInt("ID"))
                         .content(rs.getString("content"))
@@ -290,7 +292,7 @@ public class QuizDao extends MyDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
-                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"), new CategoryDAO().getCategoryById(rs.getInt("IDcategory")));
                 x = Quiz.builder()
                         .quizID(rs.getInt("ID"))
                         .content(rs.getString("content"))
@@ -395,7 +397,7 @@ public class QuizDao extends MyDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
-                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description Course"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"), new CategoryDAO().getCategoryById(rs.getInt("IDcategory")));
                 x = Quiz.builder()
                         .quizID(rs.getInt("ID"))
                         .content(rs.getString("Quiz name"))
@@ -439,7 +441,7 @@ public class QuizDao extends MyDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
-                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description Course"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"), new CategoryDAO().getCategoryById(rs.getInt("IDcategory")));
                 x = Quiz.builder()
                         .quizID(rs.getInt("ID"))
                         .content(rs.getString("Quiz name"))
@@ -484,7 +486,7 @@ public class QuizDao extends MyDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
-                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description Course"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"), new CategoryDAO().getCategoryById(rs.getInt("IDcategory")));
                 x = Quiz.builder()
                         .quizID(rs.getInt("ID"))
                         .content(rs.getString("Quiz name"))
@@ -528,7 +530,7 @@ public class QuizDao extends MyDAO {
             rs = ps.executeQuery();
             while (rs.next()) {
                 QuizLevel quizlevel = new QuizLevel(rs.getInt("LevelID"), rs.getString("QuizLevelName"));
-                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description Course"), rs.getDate("DateCreated"), rs.getInt("IDcategory"));
+                Course course = new Course(rs.getInt("courseID"), rs.getString("Thumnail"), rs.getString("Content"), rs.getString("Description"), rs.getDate("DateCreated"), rs.getInt("IDcategory"), new CategoryDAO().getCategoryById(rs.getInt("IDcategory")));
                 x = Quiz.builder()
                         .quizID(rs.getInt("ID"))
                         .content(rs.getString("Quiz name"))
@@ -639,6 +641,7 @@ public class QuizDao extends MyDAO {
             e.printStackTrace();
         }
     }
+
     public void deactiveQuiz(int quizzID) {
         xSql = " UPDATE dbo.Quizz\n"
                 + " SET [status] = 0\n"

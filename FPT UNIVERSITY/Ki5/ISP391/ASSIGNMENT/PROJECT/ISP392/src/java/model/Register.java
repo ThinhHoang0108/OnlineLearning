@@ -24,5 +24,6 @@ public class Register {
     private boolean status;
     private int courseID;
     private int userID;
+    private Course course;
 
 }

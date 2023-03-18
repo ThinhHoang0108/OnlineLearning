@@ -6,6 +6,7 @@ package DAO;
 
 import java.util.ArrayList;
 import java.util.List;
+import model.Category;
 import model.Course;
 import util.MyDAO;
 
@@ -101,12 +102,14 @@ public class CourseDAO extends MyDAO {
             ps.setInt(1, courseID);
             rs = ps.executeQuery();
             if (rs.next()) {
+                Category category = new CategoryDAO().getCategoryById(rs.getInt("IDcategory"));
                 x = Course.builder().id(rs.getInt("ID"))
                         .thumnailURL(rs.getString("Thumnail"))
                         .content(rs.getString("Content"))
                         .description(rs.getString("Description"))
                         .createDate(rs.getDate("DateCreated"))
                         .IDcategory(rs.getInt("IDcategory"))
+                        .category(category)
                         .build();
             }
             rs.close();
