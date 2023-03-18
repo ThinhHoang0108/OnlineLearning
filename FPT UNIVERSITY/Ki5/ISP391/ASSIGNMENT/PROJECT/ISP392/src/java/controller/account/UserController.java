@@ -7,6 +7,7 @@ package controller.account;
 import controller.*;
 import Base.Base;
 import DAO.CourseDAO;
+import DAO.RoleDAO;
 import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -16,7 +17,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
+import java.util.ArrayList;
 import java.util.List;
+import model.Role;
 import model.User;
 
 /**
@@ -54,7 +57,10 @@ public class UserController extends HttpServlet {
             request.setAttribute("listUsers", listUsers);
             request.getSession().setAttribute("listUsers", listUsers);
             List<User> listUserByPageing = d.getAllUserByPage(page, Base.PAGE_SIZE);
+            ArrayList<Role> listRole =new RoleDAO().getAllRole();
+            
             request.getSession().setAttribute("listUserByPageing", listUserByPageing);
+            request.setAttribute("listRole", listRole);
             request.setAttribute("page", page);
             request.setAttribute("totalPage", totalPage);
             request.setAttribute("pagination_url", "manageUser?");

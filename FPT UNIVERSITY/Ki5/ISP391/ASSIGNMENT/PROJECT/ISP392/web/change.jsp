@@ -1,3 +1,4 @@
+
 <%-- 
     Document   : change
     Created on : Feb 13, 2023, 1:32:33 AM
@@ -27,7 +28,7 @@
                         <div class="card fat">
                             <div class="card-body">
                                 <h4 class="card-title">Change Password</h4>
-                                <form method="POST" class="my-login-validation" novalidate="" action="ChangePasswordController">
+                                <form action="ChangePasswordController" method="post" class="my-login-validation" novalidate="" >
                                     <div class="form-group">
                                         <label for="new-password">Old Password</label>
                                         <input  type="password" class="form-control" name="oldPassword" required autofocus data-eye>
@@ -36,8 +37,11 @@
                                         <label for="new-password">Reset Password</label>
                                         <input type="password" class="form-control" name="twicePassword" required autofocus data-eye>
                                         <input type="hidden" class="form-control" name="email" value="${email}">
+                                        <input type="hidden" class="form-control" name="username" value="${sessionScope.account.username}">
+
                                         <input type="hidden" class="form-control" name="action" value="change">
-                                        ${msg}
+                                        <div style="color: red">${msg}</div>
+                                        <div style="color: green">${msg1}</div>
                                         <div class="form-text text-muted">
                                             Make sure your password is strong and easy to remember
                                         </div>

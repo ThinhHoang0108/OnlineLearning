@@ -4,6 +4,7 @@
  */
 package DAO;
 
+import java.util.ArrayList;
 import model.Role;
 import util.MyDAO;
 
@@ -28,6 +29,27 @@ public class RoleDAO extends MyDAO {
             e.printStackTrace();
         }
         return (x);
+    }
+
+    public ArrayList<Role> getAllRole() {
+        ArrayList<Role> r = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.[Role]";
+        Role x;
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = Role.builder().role_id(rs.getInt("ID"))
+                        .role_name(rs.getString("Position"))
+                        .build();
+                r.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (r);
     }
 
 }

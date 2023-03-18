@@ -32,6 +32,18 @@ public class UserDAO extends MyDAO {
         } catch (Exception e) {
         }
     }
+        public void updatePasswordByUsername(String password, String username) {
+        try {
+            PreparedStatement ps = connection.prepareStatement("UPDATE [dbo].[User]\n"
+                    + "   SET [Password] = ?\n"
+                    + " WHERE [Username] = ?");
+            ps.setString(1, password);
+            ps.setString(2, username);
+            ps.executeUpdate();
+        } catch (Exception e) {
+        }
+    }
+
 
     public boolean checkEmail(String email) {
         try {

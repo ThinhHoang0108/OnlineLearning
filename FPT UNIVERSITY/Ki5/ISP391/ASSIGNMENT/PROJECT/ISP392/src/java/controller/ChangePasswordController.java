@@ -21,10 +21,9 @@ import model.User;
  */
 @WebServlet(name = "ChangePasswordController", urlPatterns = {"/ChangePasswordController"})
 
-
 public class ChangePasswordController extends HttpServlet {
 
-        private static final UserDAO DAO = new UserDAO();
+    private static final UserDAO DAO = new UserDAO();
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
@@ -39,22 +38,22 @@ public class ChangePasswordController extends HttpServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-        
-        if(action.equals("reset")){
+
+        if (action.equals("reset")) {
             String email = request.getParameter("email");
             request.setAttribute("email", email);
             request.getRequestDispatcher("reset.jsp").forward(request, response);
-        }
-        else{
+        } else {
             HttpSession session = request.getSession();
-            User account = (User)session.getAttribute("account");
+            User account = (User) session.getAttribute("account");
             String email = "";
-            
+
 //            request.setAttribute("email", account.getUsername());
-            if(request.getParameter("email") != null && !request.getParameter("email").equals(""))
+            if (request.getParameter("email") != null && !request.getParameter("email").equals("")) {
                 email = request.getParameter("email");
+            }
             request.setAttribute("email", email);
-            request.getRequestDispatcher("change.jsp").forward(request, response);  
+            request.getRequestDispatcher("change.jsp").forward(request, response);
         }
     }
 
@@ -70,36 +69,59 @@ public class ChangePasswordController extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         //String oldPassword = request.getParameter("oldPassword");       
-        String password = request.getParameter("password");
-        String twicePassword = request.getParameter("twicePassword");
-        String action = request.getParameter("action");
-        String email = request.getParameter("email");
-        
-        if(action.equals("reset")){
-            
-            if(!password.equals(twicePassword))
-                request.setAttribute("msg", "<div style=\"color:red;text-align:center\">New password need to match reset password</div>");
-            else{
-                DAO.updatePassword(email, password);
-                request.setAttribute("msg", "<div style=\"color:green;text-align:center\">Reset successfully,click <a href=\"http://localhost:8080/ISP392/home.jsp\" > here </a>to home page</div>");
-                
-            }
-                request.getRequestDispatcher("reset.jsp").forward(request, response);
-        }else{
-            String oldPassword = request.getParameter("oldPassword");
-            String passwordOfEmail = DAO.getPasswordOfEmail(email);
-            if(!password.equals(twicePassword))
-                request.setAttribute("msg", "<div style=\"color:red;text-align:center\">New password need to match reset password</div>");
-            if(!oldPassword.equals(passwordOfEmail))
-                request.setAttribute("msg", "<div style=\"color:red;text-align:center\">Wrong password</div>");
-            if(password.equals(twicePassword) && oldPassword.equals(passwordOfEmail)){
-                DAO.updatePassword(email, password);
-                request.setAttribute("msg", "<div style=\"color:green;text-align:center\">Change successfully,click <a href=\"http://localhost:8080/ISP392/home.jsp\" > here </a>to home page</div>");
-            }
-            
+//        String password = request.getParameter("password");
+//        String twicePassword = request.getParameter("twicePassword");
+//        String action = request.getParameter("action");
+//        String email = request.getParameter("email");
+//        
+//        if(action.equals("reset")){
+//            
+//            if(!password.equals(twicePassword))
+//                request.setAttribute("msg", "<div style=\"color:red;text-align:center\">New password need to match reset password</div>");
+//            else{
+//                DAO.updatePassword(email, password);
+//                request.setAttribute("msg", "<div style=\"color:green;text-align:center\">Reset successfully,click <a href=\"http://localhost:8080/ISP392/home.jsp\" > here </a>to home page</div>");
+//                
+//            }
+//                request.getRequestDispatcher("reset.jsp").forward(request, response);
+//        }else{
+//            String oldPassword = request.getParameter("oldPassword");
+//            String passwordOfEmail = DAO.getPasswordOfEmail(email);
+//            if(!password.equals(twicePassword))
+//                request.setAttribute("msg", "<div style=\"color:red;text-align:center\">New password need to match reset password</div>");
+//            if(!oldPassword.equals(passwordOfEmail))
+//                request.setAttribute("msg", "<div style=\"color:red;text-align:center\">Wrong password</div>");
+//            if(password.equals(twicePassword) && oldPassword.equals(passwordOfEmail)){
+//                DAO.updatePassword(email, password);
+//                request.setAttribute("msg", "<div style=\"color:green;text-align:center\">Change successfully,click <a href=\"http://localhost:8080/ISP392/home.jsp\" > here </a>to home page</div>");
+//            }
+//            
+//            request.getRequestDispatcher("change.jsp").forward(request, response);
+//        }
+        String opass = request.getParameter("oldPassword");
+        String npass = request.getParameter("password");
+        String cpass = request.getParameter("twicePassword");
+        String username = request.getParameter("username");
+
+        User currUser = (User) request.getSession().getAttribute("account");
+        if (!opass.equals(currUser.getPassword())) {
+            // current password is incorrect
+            // display an error message and return to the password change form
+            request.setAttribute("msg", "Current password is incorrect.");
             request.getRequestDispatcher("change.jsp").forward(request, response);
+            return;
         }
-            
+        if (!npass.equals(cpass)) {
+            // new password and confirm new password fields do not match
+            // display an error message and return to the password change form
+            request.setAttribute("msg", "New password and confirm new password fields do not match.");
+            request.getRequestDispatcher("change.jsp").forward(request, response);
+            return;
+        }
+        DAO.updatePasswordByUsername(cpass, username);
+        request.setAttribute("msg1", "Your password has been successfully changed.");
+        request.getRequestDispatcher("change.jsp").forward(request, response);
+
     }
 
     /**
