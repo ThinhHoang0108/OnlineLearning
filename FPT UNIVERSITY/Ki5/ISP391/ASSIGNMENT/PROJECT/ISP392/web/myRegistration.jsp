@@ -82,7 +82,7 @@
                                     </td>
                                     <td>${l.course.category.name}</td>
 
-                                    <td><a href="cancel-register?" class="btn btn-danger btn-primary text-white rounded-pill mb-2" style="float: bottom"/>Cancel</a><td>
+                                    <td><a href="cancel-register?courseID=${l.course.id}" class="btn btn-danger btn-primary text-white rounded-pill mb-2" style="float: bottom"/>Cancel</a><td>
                                 </tr>
                             </c:forEach>
                         </tbody>

@@ -133,4 +133,18 @@ public class RegisterDAO extends MyDAO {
         return (t);
     }
 
+    public void deleteRegistration(int courseID, int userID) {
+        xSql = "DELETE FROM [dbo].[Register]\n"
+                + "      WHERE courseId = ? AND userId = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, courseID);
+            ps.setInt(2, userID);
+            ps.executeUpdate();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
 }
