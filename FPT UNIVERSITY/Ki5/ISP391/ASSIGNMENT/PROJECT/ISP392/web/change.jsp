@@ -18,6 +18,7 @@
         <!--sdfsadf-->
     </head>
     <body class="my-login-page">
+          <a href="changeProfile.jsp"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></a>
         <section class="h-100">
             <div class="container h-100">
                 <div class="row justify-content-md-center align-items-center h-100">
