@@ -53,9 +53,9 @@
                 </div>
                 <div class="form-group">
                     <label>Password</label>
-                    <input value="${sessionScope.account.password}" name="pass" type="password" class="form-control" >
-                    <a href="change.jsp"/> Change password
+                    <input value="${sessionScope.account.password}" name="pass" type="password" class="form-control" readonly>               
                 </div>
+                    <button><a href="change.jsp"/> Change password</button>
             </div>
             <div class="modal-footer">
                 <input type="submit" class="btn btn-success" value="Edit">
