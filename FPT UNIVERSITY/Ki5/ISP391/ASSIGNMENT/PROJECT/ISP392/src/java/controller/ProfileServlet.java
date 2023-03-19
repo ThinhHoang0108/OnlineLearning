@@ -62,10 +62,12 @@ public class ProfileServlet extends HttpServlet {
         String name = request.getParameter("name");
         String dob = request.getParameter("dob");
         String phoneNumber = request.getParameter("phone");
+        String email = request.getParameter("email");
+        
         int id = Integer.parseInt(request.getParameter("id"));
         UserDAO u = new UserDAO();
        
-        u.updateUser(dob, phoneNumber, name, id);
+        u.updateUser(dob, phoneNumber, name,email, id);
         User account = u.getUserByID(id);
         request.getSession().setAttribute("account", account);
         //request.getRequestDispatcher("home").forward(request, response);

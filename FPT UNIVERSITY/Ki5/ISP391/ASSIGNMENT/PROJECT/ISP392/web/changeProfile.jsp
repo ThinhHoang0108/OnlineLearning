@@ -48,6 +48,10 @@
                     <input value="${sessionScope.account.phone}" name="phone" type="text" class="form-control" >
                 </div>
                 <div class="form-group">
+                    <label>Email</label>
+                    <input value="${sessionScope.account.email}" name="phone" type="text" class="form-control" >
+                </div>
+                <div class="form-group">
                     <label>User Name</label>
                     <input value="${sessionScope.account.username}" name="username" type="text" class="form-control" readonly >
                 </div>
