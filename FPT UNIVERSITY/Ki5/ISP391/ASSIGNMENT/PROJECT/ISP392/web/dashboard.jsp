@@ -66,7 +66,6 @@
                                                 <div class="text-xs font-weight-bold text-uppercase mb-1">Total Register</div>
                                                 <div class="h5 mb-0 font-weight-bold text-gray-800">${totalRegister}</div>
                                                 <div class="mt-2 mb-0 text-muted text-xs">
-                                                    <span>Since today</span>
                                                 </div>
                                             </div>
                                             <div class="col-auto">
@@ -106,7 +105,7 @@
                                                 </div>
                                             </div>
                                             <div class="col-auto">
-                                                <i class="fas fa-comments fa-2x text-warning"></i>
+                                                <i class="fas fa-book-reader fa-2x text-warning"></i>
                                             </div>
                                         </div>
                                     </div>
@@ -161,7 +160,7 @@
                                     <div>
                                         <c:forEach items="${listComment}" var="c">
                                             <div class="customer-message align-items-center">
-                                                <a class="font-weight-bold" href="#">
+                                                <a class="font-weight-bold" href="blogdetail?blogID=${c.blogID}">
                                                     <div class="text-truncate message-title">${c.content}</div>
                                                     <div class="small text-gray-500 message-time font-weight-bold">${c.user.name} · ${c.createDate}</div>
                                                 </a>

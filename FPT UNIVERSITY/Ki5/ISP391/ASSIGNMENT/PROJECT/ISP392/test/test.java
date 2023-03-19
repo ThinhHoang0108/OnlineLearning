@@ -145,9 +145,8 @@ public class test {
 //        System.out.println(i);
 //        QuizPoint lastQuizPoint = new QuizDao().getQuizPointLast(6,2);
 //        System.out.println(lastQuizPoint);
-        List<Register> listRegister = new RegisterDAO().getAllRegistration(6);
-        List<Register> listRegisterByPageing = new RegisterDAO().getAllRegisterByPage(1, Base.PAGE_SIZE, 6);
-        System.out.println(listRegisterByPageing);
+        List<Comment> listComment = new CommentDAO().getAllCommentToday();
+        System.out.println(listComment);
 
     }
 }

@@ -40,7 +40,7 @@
                                 <p class="text-success">${sessionScope.messageStatus}</p>
                             </c:if>
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><a href="dashboard.jsp">Dashboard</a></li>
+                                <li class="breadcrumb-item"><a href="dashboard">Dashboard</a></li>
                                 <li class="breadcrumb-item active" aria-current="page">Manager Question</li>
                             </ol>
                         </div>

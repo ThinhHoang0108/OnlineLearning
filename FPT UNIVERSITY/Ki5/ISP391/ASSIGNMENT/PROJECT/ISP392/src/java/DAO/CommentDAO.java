@@ -27,7 +27,7 @@ public class CommentDAO extends MyDAO {
             ps.setInt(1, blogID);
             rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt("IDuser"), rs.getString("Name"), rs.getDate("Dateofbirth"), rs.getString("PhoneNumber"), rs.getString("Username"), rs.getString("Password"), rs.getString("email"), rs.getInt("IDrole"));
+                User user = new UserDAO().getUserByID(rs.getInt("IDuser"));
                 x = Comment.builder()
                         .id(rs.getInt("ID"))
                         .blogID(rs.getInt("IDblog"))
@@ -45,6 +45,7 @@ public class CommentDAO extends MyDAO {
         }
         return (t);
     }
+
     public List<Comment> getAllCommentToday() {
         List<Comment> t = new ArrayList<>();
         xSql = "SELECT * FROM dbo.Comment WHERE DAY(createDate) = DAY(GETDATE())";
@@ -53,7 +54,7 @@ public class CommentDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt("IDuser"), rs.getString("Name"), rs.getDate("Dateofbirth"), rs.getString("PhoneNumber"), rs.getString("Username"), rs.getString("Password"), rs.getString("email"), rs.getInt("IDrole"));
+                User user = new UserDAO().getUserByID(rs.getInt("IDuser"));
                 x = Comment.builder()
                         .id(rs.getInt("ID"))
                         .blogID(rs.getInt("IDblog"))
@@ -107,7 +108,7 @@ public class CommentDAO extends MyDAO {
 
     }
 
-    public List<Comment> getAllCommentByPage(int blogID,int page, int PAGE_SIZE) {
+    public List<Comment> getAllCommentByPage(int blogID, int page, int PAGE_SIZE) {
         List<Comment> t = new ArrayList<>();
         xSql = "SELECT c.*,u.Name,u.Dateofbirth, u.Username,u.PhoneNumber,u.Username,u.Password, u.email, u.IDrole FROM dbo.Comment c INNER JOIN dbo.[User] u ON u.ID = c.IDuser WHERE c.IDblog = ? ORDER BY ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
         Comment x;
@@ -119,7 +120,7 @@ public class CommentDAO extends MyDAO {
             ps.setInt(4, PAGE_SIZE);
             rs = ps.executeQuery();
             while (rs.next()) {
-                User user = new User(rs.getInt("IDuser"), rs.getString("Name"), rs.getDate("Dateofbirth"), rs.getString("PhoneNumber"), rs.getString("Username"), rs.getString("Password"), rs.getString("email"), rs.getInt("IDrole"));
+                User user = new UserDAO().getUserByID(rs.getInt("IDuser"));
                 x = Comment.builder()
                         .id(rs.getInt("ID"))
                         .blogID(rs.getInt("IDblog"))

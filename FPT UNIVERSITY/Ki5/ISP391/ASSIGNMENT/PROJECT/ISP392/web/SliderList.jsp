@@ -23,7 +23,7 @@
             }
         </style>
     <body>
-        <p><a href="dashboard.jsp"><button>Back</button></a>
+        <p><a href="dashboard"><button>Back</button></a>
         <div class="container">
             <div class="table-wrapper">
                 <div class="table-title">
