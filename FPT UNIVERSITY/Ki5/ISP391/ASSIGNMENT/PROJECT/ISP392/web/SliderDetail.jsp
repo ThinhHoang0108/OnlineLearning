@@ -29,7 +29,7 @@
     <div class="modal-body">
         <div class="form-group">
 <!--            <label> Imagine </label>-->
-            <img class="mx-auto d-block img-fluid" src="${SliderById.slider_url}" />
+            <img class="mx-auto d-block img-fluid" src="dashboard/img/${SliderById.slider_url}" />
             <p></p>
         </div>
         <div class="form-group">
