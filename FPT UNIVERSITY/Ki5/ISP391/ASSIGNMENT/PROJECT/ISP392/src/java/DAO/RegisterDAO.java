@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import model.Course;
 import model.Register;
+import model.User;
 import util.MyDAO;
 
 /**
@@ -84,6 +85,34 @@ public class RegisterDAO extends MyDAO {
         }
         return (t);
     }
+    public List<Register> getAllToday() {
+        List<Register> t = new ArrayList<>();
+        String xSql = "SELECT * FROM dbo.Register WHERE DAY(regis_Date) = DAY(GETDATE())";
+        Register x;
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new UserDAO().getUserByID(rs.getInt("userId"));
+                Course course = new CourseDAO().getCourseById(rs.getInt("courseId"));
+                x = Register.builder()
+                        .registerID(rs.getInt("regisId"))
+                        .regis_Date(rs.getDate("regis_Date"))
+                        .status(rs.getBoolean("status"))
+                        .courseID(rs.getInt("courseId"))
+                        .userID(rs.getInt("userId"))
+                        .course(course)
+                        .user(user)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
 
     public int getTotalRegister(int userID) {
         try {
@@ -91,6 +120,19 @@ public class RegisterDAO extends MyDAO {
                     + "SELECT COUNT(t.regisId) FROM t";
             ps = con.prepareStatement(sql);
             ps.setInt(1, userID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+    public int getTotalRegister() {
+        try {
+            String sql = "SELECT COUNT(regisId) FROM dbo.Register";
+            ps = con.prepareStatement(sql);
             rs = ps.executeQuery();
             while (rs.next()) {
                 return rs.getInt(1);

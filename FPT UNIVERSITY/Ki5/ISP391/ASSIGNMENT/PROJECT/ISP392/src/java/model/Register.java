@@ -25,5 +25,6 @@ public class Register {
     private int courseID;
     private int userID;
     private Course course;
+    private User user;
 
 }

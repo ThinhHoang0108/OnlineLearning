@@ -32,7 +32,8 @@ public class UserDAO extends MyDAO {
         } catch (Exception e) {
         }
     }
-        public void updatePasswordByUsername(String password, String username) {
+
+    public void updatePasswordByUsername(String password, String username) {
         try {
             PreparedStatement ps = connection.prepareStatement("UPDATE [dbo].[User]\n"
                     + "   SET [Password] = ?\n"
@@ -43,7 +44,6 @@ public class UserDAO extends MyDAO {
         } catch (Exception e) {
         }
     }
-
 
     public boolean checkEmail(String email) {
         try {
@@ -79,7 +79,7 @@ public class UserDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
-                 x = User.builder().userID(rs.getInt("ID"))
+                x = User.builder().userID(rs.getInt("ID"))
                         .name(rs.getString("Name"))
                         .dob(rs.getDate("Dateofbirth"))
                         .phone(rs.getString("PhoneNumber"))
@@ -106,7 +106,7 @@ public class UserDAO extends MyDAO {
             ps.setInt(1, userID);
             rs = ps.executeQuery();
             if (rs.next()) {
-                 x = User.builder().userID(rs.getInt("ID"))
+                x = User.builder().userID(rs.getInt("ID"))
                         .name(rs.getString("Name"))
                         .dob(rs.getDate("Dateofbirth"))
                         .phone(rs.getString("PhoneNumber"))
@@ -123,15 +123,15 @@ public class UserDAO extends MyDAO {
         return (x);
     }
 
-    public void updateUser( String DOB, String phoneNumber,String name,String email, int UserId) {
+    public void updateUser(String DOB, String phoneNumber, String name, String email, int UserId) {
         try {
             String sql = "update [dbo].[User] set  [Dateofbirth] = ?, [PhoneNumber]=?, [Name]=?, [email]=? where ID = ?";
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setString(1, DOB);
             st.setString(2, phoneNumber);
-            st.setString(3, name);            
-            st.setString(4, email);            
+            st.setString(3, name);
+            st.setString(4, email);
             st.setInt(5, UserId);
             st.executeUpdate();
         } catch (SQLException e) {
@@ -151,7 +151,7 @@ public class UserDAO extends MyDAO {
                 + "     VALUES\n"
                 + "           (?,?,?,?,?,?,?)";
         try {
-            
+
             ps = con.prepareStatement(sql);
             ps.setString(1, name);
             ps.setString(2, dob);
@@ -160,7 +160,7 @@ public class UserDAO extends MyDAO {
             ps.setString(5, password);
             ps.setInt(6, role_id);
             ps.setString(7, email);
-            
+
             ps.executeUpdate();
         } catch (Exception e) {
             System.out.println(e);
@@ -170,6 +170,24 @@ public class UserDAO extends MyDAO {
     public int getNumberUser() {
         int t = 0;
         xSql = "SELECT COUNT(ID) as Total FROM [User]";
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                t = rs.getInt("Total");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public int getNumberUserRegisterToday() {
+        int t = 0;
+        xSql = "WITH t AS (SELECT DISTINCT userId FROM dbo.Register WHERE DAY(regis_Date) = DAY(GETDATE()))\n"
+                + "SELECT  COUNT(userId) FROM t";
         try {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();

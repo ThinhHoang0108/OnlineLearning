@@ -45,6 +45,32 @@ public class CommentDAO extends MyDAO {
         }
         return (t);
     }
+    public List<Comment> getAllCommentToday() {
+        List<Comment> t = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.Comment WHERE DAY(createDate) = DAY(GETDATE())";
+        Comment x;
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new User(rs.getInt("IDuser"), rs.getString("Name"), rs.getDate("Dateofbirth"), rs.getString("PhoneNumber"), rs.getString("Username"), rs.getString("Password"), rs.getString("email"), rs.getInt("IDrole"));
+                x = Comment.builder()
+                        .id(rs.getInt("ID"))
+                        .blogID(rs.getInt("IDblog"))
+                        .userID(rs.getInt("IDuser"))
+                        .content(rs.getString("Content"))
+                        .createDate(rs.getString("createDate"))
+                        .user(user)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
 
     public int getTotalComment(int blogID) {
         try {
