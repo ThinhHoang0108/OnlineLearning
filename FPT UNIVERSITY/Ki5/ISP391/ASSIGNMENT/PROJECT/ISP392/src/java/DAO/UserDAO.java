@@ -123,15 +123,16 @@ public class UserDAO extends MyDAO {
         return (x);
     }
 
-    public void updateUser( String DOB, String phoneNumber,String name, int UserId) {
+    public void updateUser( String DOB, String phoneNumber,String name,String email, int UserId) {
         try {
-            String sql = "update [dbo].[User] set  [Dateofbirth] = ?, [PhoneNumber]=?, [Name]=? where ID = ?";
+            String sql = "update [dbo].[User] set  [Dateofbirth] = ?, [PhoneNumber]=?, [Name]=?, [email]=? where ID = ?";
             PreparedStatement st = connection.prepareStatement(sql);
 
             st.setString(1, DOB);
             st.setString(2, phoneNumber);
-            st.setString(3, name);
-            st.setInt(4, UserId);
+            st.setString(3, name);            
+            st.setString(4, email);            
+            st.setInt(5, UserId);
             st.executeUpdate();
         } catch (SQLException e) {
             e.printStackTrace();
