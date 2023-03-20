@@ -26,5 +26,7 @@ public class Blog {
    private int uID;
    private int cID;
    private Date createDate;
+   private User user;
+   private Category category;
    
 }

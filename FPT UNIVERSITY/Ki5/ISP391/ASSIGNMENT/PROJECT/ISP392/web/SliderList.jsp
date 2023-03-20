@@ -70,7 +70,7 @@
         </div>
         <div id="addEmployeeModal" class="modal fade">
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content"  style="width: 800px">
                     <form action="addSlider" >
                         <div class="modal-header">						
                             <h4 class="modal-title">Add Slider</h4>

@@ -249,7 +249,7 @@
         <h1>Edit Lesson</h1>
         <div id="editEmployeeModal" >
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="width: 800px">
                     <form action="updatelesson" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Edit Lesson</h4>

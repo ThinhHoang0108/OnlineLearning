@@ -70,31 +70,22 @@
 
                                 <div class="meta-top">
                                     <ul>
-                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.html">John Doe</a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.html"><time datetime="2020-01-01">${blog.createDate}</time></a></li>
-                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.html">12 Comments</a></li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> ${blog.user.name}</li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i><time datetime="2020-01-01">${blog.createDate}</time></li>
+                                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i>${sessionScope.totalComment} Comments</li>
                                     </ul>
                                 </div><!-- End meta top -->
 
                                 <div class="content">
-                                    <blockquote>
-                                        <p>
-                                            ${blog.description}
-                                        </p>
-                                    </blockquote>
+                                    <p>
+                                        ${blog.description}
+                                    </p>
                                 </div><!-- End post content -->
 
                                 <div class="meta-bottom">
-                                    <i class="bi bi-folder"></i>
-                                    <ul class="cats">
-                                        <li><a href="#">Business</a></li>
-                                    </ul>
-
                                     <i class="bi bi-tags"></i>
                                     <ul class="tags">
-                                        <li><a href="#">Creative</a></li>
-                                        <li><a href="#">Tips</a></li>
-                                        <li><a href="#">Marketing</a></li>
+                                        <li><a href="listCourseByCate?categoryID=${blog.category.id}&cateName=${blog.category.name}">${blog.category.name}</a></li>
                                     </ul>
                                 </div><!-- End meta bottom -->
 

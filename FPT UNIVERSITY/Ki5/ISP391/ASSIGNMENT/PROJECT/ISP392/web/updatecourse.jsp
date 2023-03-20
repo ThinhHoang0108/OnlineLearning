@@ -274,7 +274,7 @@
         <h1>Edit Course</h1>
         <div id="editEmployeeModal" >
             <div class="modal-dialog">
-                <div class="modal-content">
+                <div class="modal-content" style="width: 800px">
                     <form action="updatecourse" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Edit Course</h4>

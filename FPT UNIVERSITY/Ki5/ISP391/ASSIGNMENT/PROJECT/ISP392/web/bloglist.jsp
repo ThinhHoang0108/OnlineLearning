@@ -77,7 +77,6 @@
 
                                     <div class="card-body">
                                         <h5 class="card-title"><a href="blogdetail?blogID=${g.id}">${g.content}</a></h5>
-                                        <p class="card-text">${g.description}</p>
                                     </div>
                                 </div>
                             </div>

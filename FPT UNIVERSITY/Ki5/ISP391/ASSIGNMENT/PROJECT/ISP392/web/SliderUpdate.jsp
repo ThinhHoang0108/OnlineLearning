@@ -36,7 +36,7 @@
                 </div>
                 <div class="form-group">
                     <label>Slider_URL</label>
-                    <input value="${slide.slider_url}" name="sliderUrl" type="text" class="form-control"  required>
+                    <input value="${slide.slider_url}" name="sliderUrl" type="file" class="form-control"  required>
                 </div>
                 <div class="form-group">
                     <label>Title</label>

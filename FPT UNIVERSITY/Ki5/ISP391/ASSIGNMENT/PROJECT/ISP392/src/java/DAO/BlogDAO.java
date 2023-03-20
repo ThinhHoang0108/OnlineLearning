@@ -7,6 +7,8 @@ package DAO;
 import java.util.ArrayList;
 import java.util.List;
 import model.Blog;
+import model.Category;
+import model.User;
 import util.MyDAO;
 
 /**
@@ -23,6 +25,7 @@ public class BlogDAO extends MyDAO {
             ps = con.prepareStatement(xSql);
             rs = ps.executeQuery();
             while (rs.next()) {
+                User user = new UserDAO().getUserByID(rs.getInt(6));
                 x = Blog.builder().id(rs.getInt(1))
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
@@ -30,6 +33,7 @@ public class BlogDAO extends MyDAO {
                         .uID(rs.getInt(6))
                         .cID(rs.getInt(7))
                         .createDate(rs.getDate(5))
+                        .user(user)
                         .build();
                 t.add(x);
             }
@@ -49,6 +53,8 @@ public class BlogDAO extends MyDAO {
             ps.setInt(1, blogID);
             rs = ps.executeQuery();
             if (rs.next()) {
+                User user = new UserDAO().getUserByID(rs.getInt(6));
+                Category category = new CategoryDAO().getCategoryById(rs.getInt(1));
                 x = Blog.builder().id(rs.getInt(1))
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
@@ -56,6 +62,8 @@ public class BlogDAO extends MyDAO {
                         .uID(rs.getInt(6))
                         .cID(rs.getInt(7))
                         .createDate(rs.getDate(5))
+                        .user(user)
+                        .category(category)
                         .build();
             }
             rs.close();
@@ -91,6 +99,7 @@ public class BlogDAO extends MyDAO {
             ps.setInt(3, PAGE_SIZE);
             rs = ps.executeQuery();
             while (rs.next()) {
+                User user = new UserDAO().getUserByID(rs.getInt(6));
                 x = Blog.builder().id(rs.getInt(1))
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
@@ -98,6 +107,7 @@ public class BlogDAO extends MyDAO {
                         .uID(rs.getInt(6))
                         .cID(rs.getInt(7))
                         .createDate(rs.getDate(5))
+                        .user(user)
                         .build();
                 t.add(x);
             }
@@ -120,6 +130,7 @@ public class BlogDAO extends MyDAO {
             ps.setInt(3, PAGE_SIZE);
             rs = ps.executeQuery();
             while (rs.next()) {
+                 User user = new UserDAO().getUserByID(rs.getInt(6));
                 x = Blog.builder().id(rs.getInt(1))
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
@@ -127,6 +138,7 @@ public class BlogDAO extends MyDAO {
                         .uID(rs.getInt(6))
                         .cID(rs.getInt(7))
                         .createDate(rs.getDate(5))
+                        .user(user)
                         .build();
                 t.add(x);
             }
