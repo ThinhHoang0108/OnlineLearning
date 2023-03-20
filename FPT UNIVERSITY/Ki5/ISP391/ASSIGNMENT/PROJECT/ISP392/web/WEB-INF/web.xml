@@ -34,6 +34,7 @@
         <url-pattern>/registration-list</url-pattern>
         <url-pattern>/quiz-list</url-pattern>
         <url-pattern>/ReviewQuizController</url-pattern>
+        <url-pattern>/coursedetail</url-pattern>
     </filter-mapping>
     <filter-mapping>
         <filter-name>AdminFilter</filter-name>
@@ -286,6 +287,10 @@
         <servlet-name>DashboardController</servlet-name>
         <servlet-class>controller.dashboard.DashboardController</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>ListCourseByCate</servlet-name>
+        <servlet-class>controller.ListCourseByCate</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginController</servlet-name>
         <url-pattern>/login</url-pattern>
@@ -473,6 +478,10 @@
     <servlet-mapping>
         <servlet-name>DashboardController</servlet-name>
         <url-pattern>/dashboard</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>ListCourseByCate</servlet-name>
+        <url-pattern>/listCourseByCate</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

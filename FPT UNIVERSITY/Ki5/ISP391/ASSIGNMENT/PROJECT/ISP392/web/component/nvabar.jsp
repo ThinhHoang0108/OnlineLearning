@@ -59,7 +59,7 @@
                         <li class="dropdown"><a href="#"><span>Categories</span> <i class="bi bi-chevron-down"></i></a>
                             <ul>
                                 <c:forEach  items="${sessionScope.listCategories}" var="l">
-                                    <li><a href="#">${l.name}</a></li>
+                                    <li><a href="listCourseByCate?categoryID=${l.id}&cateName=${l.name}">${l.name}</a></li>
                                     </c:forEach>
                             </ul>
                         </li>

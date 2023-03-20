@@ -163,7 +163,7 @@
                                 <div class="member-content">
                                     <h4>Hoang Xuan Thinh</h4>
                                     <span>Technical Leader</span>
-                                    <p>Et architecto provident deleniti facere repellat nobis iste. Id facere quia quae dolores dolorem tempore.</p>
+                                    <p>"Ceux qui resteront"</p>
                                     <div class="social">
                                         <a href="https://www.facebook.com/thinh.hoangxuan.3/"><i class="bi bi-facebook"></i></a>
                                         <a href=""><i class="bi bi-instagram"></i></a>
@@ -203,7 +203,7 @@
                         </div>
                         <div class="col-lg-4 col-md-6 d-flex align-items-end">
                             <div class="member">
-                                <img src="assets/img/trainers/tuan.jpg" class="img-fluid" alt="">
+                                <img src="assets/img/trainers/tuan1.jpg" class="img-fluid" alt="">
                                 <div class="member-content">
                                     <h4>Nguyen Minh Tuan</h4>
                                     <span>Developer</span>

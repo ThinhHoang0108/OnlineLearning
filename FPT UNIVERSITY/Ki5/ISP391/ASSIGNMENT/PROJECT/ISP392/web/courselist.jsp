@@ -56,6 +56,9 @@
             <!-- ======= Courses Section ======= -->
             <section id="courses" class="courses">
                 <div class="container" data-aos="fade-up">
+                    <h2>${cateName} Course</h2>
+                    <br>
+                    <br>
                     <div class="col-lg-4 col-md-6 d-flex align-items-start">
                         <form action="search-course" method="post">
                             <div class="input-group">

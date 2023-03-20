@@ -143,8 +143,8 @@ public class CourseDAO extends MyDAO {
                 + "           (?,?,?,?,?)";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, content);
-            ps.setString(2, thumnail);
+            ps.setString(2, content);
+            ps.setString(1, thumnail);
             ps.setString(3, description);
             ps.setString(4, datecreate);
             ps.setString(5, category);
@@ -168,6 +168,21 @@ public class CourseDAO extends MyDAO {
         return 0;
     }
 
+    public int getTotalCourse(int cateID) {
+        try {
+            String sql = "SELECT COUNT(ID) FROM dbo.Course WHERE IDcategory = ?";
+            ps = con.prepareStatement(sql);
+            ps.setInt(1, cateID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                return rs.getInt(1);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return 0;
+    }
+
     public void updateCourse(String thumnail, String content, String description, String datecreate, String category, String id) {
         String sql = "UPDATE [Course]\n"
                 + "SET       [thumnail] = ?\n"
@@ -178,8 +193,8 @@ public class CourseDAO extends MyDAO {
                 + "WHERE ID = ?";
         try {
             ps = con.prepareStatement(sql);
-            ps.setString(1, content);
-            ps.setString(2, thumnail);
+            ps.setString(2, content);
+            ps.setString(1, thumnail);
             ps.setString(3, description);
             ps.setString(4, datecreate);
             ps.setString(5, category);
@@ -248,6 +263,35 @@ public class CourseDAO extends MyDAO {
                         .createDate(rs.getDate("DateCreated"))
                         .IDcategory(rs.getInt("IDcategory"))
                         .category(category)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public List<Course> getAllcourseByPageAndCateID(int page, int PAGE_SIZE, int cateID) {
+        List<Course> t = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.Course WHERE IDcategory = ? ORDER BY ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        Course x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, cateID);
+            ps.setInt(2, page);
+            ps.setInt(3, PAGE_SIZE);
+            ps.setInt(4, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                x = Course.builder().id(rs.getInt("ID"))
+                        .thumnailURL(rs.getString("Thumnail"))
+                        .content(rs.getString("Content"))
+                        .description(rs.getString("Description"))
+                        .createDate(rs.getDate("DateCreated"))
+                        .IDcategory(rs.getInt("IDcategory"))
                         .build();
                 t.add(x);
             }

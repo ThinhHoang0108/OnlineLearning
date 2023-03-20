@@ -2,26 +2,24 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/JSP_Servlet/Servlet.java to edit this template
  */
-package controller.Course;
+package controller;
 
+import Base.Base;
 import DAO.CourseDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import jakarta.servlet.http.HttpSession;
 import java.util.List;
 import model.Course;
 
 /**
  *
- * @author vuxua
+ * @author ADMIN
  */
-@WebServlet(name = "addCourse", urlPatterns = {"/addcourse"})
-public class addCourse extends HttpServlet {
+public class ListCourseByCate extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -36,15 +34,27 @@ public class addCourse extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-            String thumnail_raw = request.getParameter("thumnail");
-            String content_raw = request.getParameter("content");
-            String description_raw = request.getParameter("description");
-            String datecreate_raw = request.getParameter("datecreate");
-            String category_raw = request.getParameter("category");
+            int cateID = Integer.parseInt(request.getParameter("categoryID"));
+            String cateName = request.getParameter("cateName");
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
             DAO.CourseDAO dao = new CourseDAO();
-            dao.insertCourse(thumnail_raw,content_raw, description_raw, datecreate_raw, category_raw);
-           // request.getRequestDispatcher("editcourse.jsp").forward(request, response);
-            response.sendRedirect("editcourse");
+            int totalCourse = dao.getTotalCourse(cateID);
+            int totalPage = totalCourse / Base.PAGE_SIZE;
+            if (totalCourse % Base.PAGE_SIZE != 0) {
+                totalPage += 1;
+            }
+            List<Course> listCourseByPageing = dao.getAllcourseByPageAndCateID(page, Base.PAGE_SIZE, cateID);
+            request.getSession().setAttribute("listCoursebyPageing", listCourseByPageing);
+            request.setAttribute("page", page);
+            request.setAttribute("totalPage", totalPage);
+            request.setAttribute("pagination_url", "listCourseByCate?categoryID=" + cateID + "&cateName=" + cateName + "&");
+            request.setAttribute("cateName", cateName);
+            request.getRequestDispatcher("courselist.jsp").forward(request, response);
+
         }
     }
 
