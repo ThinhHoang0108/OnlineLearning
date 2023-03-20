@@ -44,9 +44,11 @@ public class BlgDetailController extends HttpServlet {
             Blog blog = new BlogDAO().getBlogById(blogID);
             int totalComment = dao.getTotalComment(blogID);
             List<Comment> listComment = new CommentDAO().getCommentByBlogID(blogID);
+            List<Blog> listTop3BlogNew = new BlogDAO().getTop3BlogNew();
             request.getSession().setAttribute("listComment", listComment);
             session.setAttribute("totalComment", totalComment);
             session.setAttribute("blog", blog);
+            session.setAttribute("listTop3BlogNew", listTop3BlogNew);
             request.setAttribute("blogID", blogID);
             request.getRequestDispatcher("blog.jsp").forward(request, response);
         }

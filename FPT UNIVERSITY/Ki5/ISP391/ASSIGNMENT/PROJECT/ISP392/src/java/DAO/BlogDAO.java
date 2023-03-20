@@ -130,7 +130,7 @@ public class BlogDAO extends MyDAO {
             ps.setInt(3, PAGE_SIZE);
             rs = ps.executeQuery();
             while (rs.next()) {
-                 User user = new UserDAO().getUserByID(rs.getInt(6));
+                User user = new UserDAO().getUserByID(rs.getInt(6));
                 x = Blog.builder().id(rs.getInt(1))
                         .thumnailURL(rs.getString(2))
                         .content(rs.getString(3))
@@ -162,5 +162,33 @@ public class BlogDAO extends MyDAO {
             e.printStackTrace();
         }
         return 0;
+    }
+
+    public List<Blog> getTop3BlogNew() {
+        List<Blog> t = new ArrayList<>();
+        String xSql = "SELECT TOP(4) * FROM dbo.[Blog] ORDER BY NEWID()";
+        Blog x;
+        try {
+            ps = con.prepareStatement(xSql);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                User user = new UserDAO().getUserByID(rs.getInt(6));
+                x = Blog.builder().id(rs.getInt(1))
+                        .thumnailURL(rs.getString(2))
+                        .content(rs.getString(3))
+                        .description(rs.getString(4))
+                        .uID(rs.getInt(6))
+                        .cID(rs.getInt(7))
+                        .createDate(rs.getDate(5))
+                        .user(user)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
     }
 }
