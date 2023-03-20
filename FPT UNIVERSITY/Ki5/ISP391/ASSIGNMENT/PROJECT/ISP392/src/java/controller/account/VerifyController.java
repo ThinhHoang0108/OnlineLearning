@@ -63,7 +63,7 @@ public class VerifyController extends HttpServlet {
         account.registerUser( user, pass, email, phone);
         User userAccount = account.login(user, pass);
         request.getSession().setAttribute("account", account);
-        response.sendRedirect("home");
+        response.sendRedirect("login.jsp");
     }
 
     /**

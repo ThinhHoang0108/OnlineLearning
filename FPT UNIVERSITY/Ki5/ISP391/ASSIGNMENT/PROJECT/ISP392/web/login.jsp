@@ -40,7 +40,7 @@
                                         </div>
                                     </div>
                                     <h4 class=" text-danger">
-                                        ${sessionScope.error}
+                                        ${error}
                                     </h4><br/>
 
                                     <div class="form-group m-0">

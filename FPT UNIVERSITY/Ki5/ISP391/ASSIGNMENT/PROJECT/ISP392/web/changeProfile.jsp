@@ -41,7 +41,7 @@
                 </div>
                 <div class="form-group">
                     <label>Date of birth</label>
-                    <input value="${sessionScope.account.dob}" name="dob" type="text" class="form-control" >
+                    <input value="${sessionScope.account.dob}" name="dob" type="date" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>Phone Number</label>

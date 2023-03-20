@@ -100,7 +100,7 @@ public class LoginController extends HttpServlet {
             request.getSession().setAttribute("account", account);
             response.sendRedirect("home");
         } else {
-            session.setAttribute("error", "Username or password incorect");
+            request.setAttribute("error", "Username or password incorect");
             request.getRequestDispatcher("login.jsp").forward(request, response);
 
         }
