@@ -253,7 +253,7 @@
                     <form action="updatelesson" method="post">
                         <div class="modal-header">						
                             <h4 class="modal-title">Edit Lesson</h4>
-                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            <a href="managelesson"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></a>
                         </div>
                         <div class="modal-body">
                             <div class="form-group">

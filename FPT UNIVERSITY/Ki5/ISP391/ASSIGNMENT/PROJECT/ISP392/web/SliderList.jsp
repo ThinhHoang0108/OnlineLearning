@@ -57,9 +57,12 @@
                                         <img src="dashboard/img/${o.slider_url}">
                                     </a>   
                                 </td>
-                                <td>${o.status}</td>
                                 <td>
-                                    <a href="updateSlider?slideID=${o.sliderId}"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
+                                    <c:if test="${o.status == 'true'}">Active</span></c:if>
+                                    <c:if test="${o.status == 'false'}">Deadactive</span></c:if>
+                                </td>
+                                <td>
+                                        <a href="updateSlider?slideID=${o.sliderId}"class="edit" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Edit">&#xE254;</i></a>
                                     <a href="deleteSlider?slideID=${o.sliderId}" class="delete" data-toggle="modal"><i class="material-icons" data-toggle="tooltip" title="Delete">&#xE872;</i></a>
                                 </td>
                             </tr>
@@ -82,10 +85,10 @@
                                 <label>Title</label>
                                 <input name="title" type="text" class="form-control" required>
                             </div>
-                            <div class="form-group">
+<!--                            <div class="form-group">
                                 <label>Status</label>
                                 <input name="status" type="checkbox" class="form-control" required>
-                            </div>
+                            </div>-->
                             <div class="form-group">
                                 <label>Slider_URL</label>
                                 <input name="slider_url" type="file" class="form-control" required>

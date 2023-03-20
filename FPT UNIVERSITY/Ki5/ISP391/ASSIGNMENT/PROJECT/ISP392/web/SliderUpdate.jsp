@@ -26,7 +26,7 @@
         <form action="updateSlider" method="post">
             <div class="modal-header">						
                 <h4 class="modal-title">Edit Slider</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <a href="sliderList"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button></a>
             </div>
             <div class="modal-body">
                 <div class="form-group">
@@ -54,7 +54,7 @@
                     <label>Course</label>
                     <select name="course" class="form-select" aria-label="Default select example">
                         <c:forEach items="${listCourse}" var="lc">
-                            <option value="${lc.id}">${lc.content}</option>
+                            <option value="${lc.id}" ${lc.id == slide.course.id?"selected":""}>${lc.content}</option>
                         </c:forEach>
                     </select>
                 </div>                  

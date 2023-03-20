@@ -32,7 +32,7 @@
             <div class="carousel-inner">
                 <c:forEach items="${sessionScope.listSliders}" var="o">
                     <div class="carousel-item ${o.sliderId == firstSliderId?"active":""}">
-                        <a href="coursedetail?courseID=${o.courseId}&method=get"> <img class="d-block w-100" src="dashboard/img/${o.slider_url}"  style="width: 80%;height: 100vh"></a>
+                        <a href="coursedetail?courseID=${o.courseId}&method=get"> <img class="d-block w-100" src="dashboard/img/${o.slider_url}"  style="width: 80%;height: 90vh"></a>
                     </div>
                 </c:forEach>
 
@@ -128,7 +128,6 @@
                                         </div>
 
                                         <h3><a href="coursedetail?courseID=${n.id}&method=get">${n.content}</a></h3>
-                                        <p>${n.description}</p>
                                         <div class="trainer d-flex justify-content-between align-items-center">
                                             <div class="trainer-profile d-flex align-items-center">
                                             </div>

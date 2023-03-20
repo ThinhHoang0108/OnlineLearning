@@ -31,7 +31,7 @@ public class updateLesson extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
             String id_raw = request.getParameter("id");
-            String urlVideo_raw = request.getParameter("urlVideo");
+            String urlVideo_raw = request.getParameter("thumnail");
             String content_raw = request.getParameter("content");
             String description_raw = request.getParameter("description");
             String course_raw = request.getParameter("course");

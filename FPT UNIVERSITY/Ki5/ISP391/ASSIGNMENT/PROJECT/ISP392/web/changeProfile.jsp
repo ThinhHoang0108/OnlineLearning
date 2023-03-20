@@ -49,7 +49,7 @@
                 </div>
                 <div class="form-group">
                     <label>Email</label>
-                    <input value="${sessionScope.account.email}" name="phone" type="text" class="form-control" >
+                    <input value="${sessionScope.account.email}" name="email" type="text" class="form-control" >
                 </div>
                 <div class="form-group">
                     <label>User Name</label>
