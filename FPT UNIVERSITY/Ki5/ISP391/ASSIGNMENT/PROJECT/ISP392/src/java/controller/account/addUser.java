@@ -70,9 +70,20 @@ public class addUser extends HttpServlet {
         String password_raw = request.getParameter("password");
         int role_id = Integer.parseInt(request.getParameter("role"));
         UserDAO dao = new UserDAO();
-        dao.insertUser(name_raw, dob_raw, phone_raw, username_raw, password_raw,role_id,email_raw);
+         User account = dao.checkUserExist(username_raw);
+        if (account == null) {        
+            dao.insertUser(name_raw, dob_raw, phone_raw, username_raw, password_raw,role_id,email_raw);
+            request.setAttribute("message1", "Add successful");
+            //response.sendRedirect("manageUser");
+            request.getRequestDispatcher("manageUser").forward(request, response);           
+        } else {
+            // day ve register
+            request.setAttribute("message1", "Account has already in system.Please try again!");
+            request.getRequestDispatcher("manageUser").forward(request, response);
+        }
+        
         //request.getRequestDispatcher("listUsers.jsp").forward(request, response);
-        response.sendRedirect("manageUser");
+        
     } 
 
     /** 
