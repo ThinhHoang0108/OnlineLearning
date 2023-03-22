@@ -4,6 +4,8 @@
  */
 package controller.account;
 
+import Base.Base;
+import DAO.UserDAO;
 import java.io.IOException;
 import java.io.PrintWriter;
 import jakarta.servlet.ServletException;
@@ -11,6 +13,8 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import java.util.List;
+import model.User;
 
 /**
  *
@@ -32,7 +36,31 @@ public class SearchUserController extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         try ( PrintWriter out = response.getWriter()) {
-           
+            int roleID = Integer.parseInt(request.getParameter("roleID"));
+            int page = 1;
+            String pageIndex = request.getParameter("page");
+            if (pageIndex != null) {
+                page = Integer.parseInt(pageIndex);
+            }
+            int totalSearchItems = 0;
+            int totalPage = 0;
+
+            if (roleID != 0) {
+                totalSearchItems = new UserDAO().getTotalSearch(roleID);
+                totalPage = totalSearchItems / Base.PAGE_SIZE;
+                if (totalSearchItems % Base.PAGE_SIZE != 0) {
+                    totalPage += 1;
+                }
+                List<User> listUserByPageing = new UserDAO().getAllUserByPageByRoleID(page, Base.PAGE_SIZE, roleID);
+                request.setAttribute("roleID", roleID);
+                request.setAttribute("page", page);
+                request.setAttribute("totalPage", totalPage);
+                request.getSession().setAttribute("listUserByPageing", listUserByPageing);
+                request.setAttribute("pagination_url", "search-user?roleID=" + roleID + "&");
+                request.getRequestDispatcher("listUsers.jsp").forward(request, response);
+            } else{
+                response.sendRedirect("manageUser");
+            }
         }
     }
 

@@ -53,7 +53,7 @@
                                                 <select name="courseID" class="form-control form-control-sm mb-auto" style="width: 40%">
                                                     <option value="0">Filter by Course</option>
                                                     <c:forEach items="${sessionScope.listCourse}" var="c">
-                                                        <option value="${c.id}">${c.content}</option>
+                                                        <option value="${c.id}" ${c.id == courseID?"selected":""}>${c.content}</option>
                                                     </c:forEach>
                                                 </select>
 
@@ -61,7 +61,7 @@
                                                 <select name="levelID" class="form-control form-control-sm mb-1" style="width: 1px">
                                                     <option value="0">Filter by Level</option>
                                                     <c:forEach items="${sessionScope.listQuizLevel}" var="lv">
-                                                        <option value="${lv.quizLevelId}">${lv.quizLevelName}</option>
+                                                        <option value="${lv.quizLevelId}" ${lv.quizLevelId == levelID?"selected":""}>${lv.quizLevelName}</option>
                                                     </c:forEach>
                                                 </select>
                                                 &nbsp;&nbsp;&nbsp;&nbsp;

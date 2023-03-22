@@ -45,18 +45,17 @@
                                     <div class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                         <form action="search-user" method="get" style="width: 900px; float: right !important">
                                             <div class="input-group">
-
                                                 &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <select name="roleID" class="form-control form-control-sm mb-1" style="width: 5vh">
+                                                <select name="roleID" class="form-control form-control-sm mb-1" style="width: 5vh" onchange="this.form.submit()">
                                                     <option value="0">Filter by Role</option>
                                                     <c:forEach items="${sessionScope.listRole}" var="lv">
-                                                        <option value="${lv.role_id}">${lv.role_name}</option>
+                                                        <option value="${lv.role_id}" ${lv.role_id == roleID?"selected":""}>${lv.role_name}</option>
                                                     </c:forEach>
                                                 </select>
-                                                &nbsp;&nbsp;&nbsp;&nbsp;
-                                                <button type="submit" class="btn btn-primary mb-2">
-                                                    <i class="fas fa-search"></i>
-                                                </button>
+                                                <!--                                                &nbsp;&nbsp;&nbsp;&nbsp;
+                                                                                                <button type="submit" class="btn btn-primary mb-2">
+                                                                                                    <i class="fas fa-search"></i>
+                                                                                                </button>-->
                                             </div>
                                         </form>
                                         <a href="#addEmployeeModal" class="btn btn-success" data-toggle="modal"> <i class="material-icons">&#xE147;</i> <span>Add New User</span></a>                                    </div>

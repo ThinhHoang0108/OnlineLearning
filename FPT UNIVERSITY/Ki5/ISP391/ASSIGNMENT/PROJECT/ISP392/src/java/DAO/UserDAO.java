@@ -328,4 +328,55 @@ public class UserDAO extends MyDAO {
         return (t);
     }
 
+    public int getTotalSearch(int roleID) {
+        int t = 0;
+        xSql = "SELECT COUNT(u.ID) as Total FROM [User] u WHERE u.IDrole = ?";
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, roleID);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                t = rs.getInt("Total");
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
+    public List<User> getAllUserByPageByRoleID(int page, int PAGE_SIZE, int roleID) {
+        List<User> t = new ArrayList<>();
+        xSql = "SELECT * FROM dbo.[User] WHERE IDrole = ? ORDER BY ID ASC OFFSET (?-1)*? ROW FETCH NEXT ? ROWS ONLY";
+        User x;
+        try {
+            ps = con.prepareStatement(xSql);
+            ps.setInt(1, roleID);
+            ps.setInt(2, page);
+            ps.setInt(3, PAGE_SIZE);
+            ps.setInt(4, PAGE_SIZE);
+            rs = ps.executeQuery();
+            while (rs.next()) {
+                Role role = new RoleDAO().getRoleByID(rs.getInt("IDrole"));
+                x = User.builder().userID(rs.getInt("ID"))
+                        .name(rs.getString("Name"))
+                        .dob(rs.getDate("Dateofbirth"))
+                        .phone(rs.getString("PhoneNumber"))
+                        .username(rs.getString("Username"))
+                        .password(rs.getString("Password"))
+                        .email(rs.getString("email"))
+                        .roleID(rs.getInt("IDrole"))
+                        .role(role)
+                        .build();
+                t.add(x);
+            }
+            rs.close();
+            ps.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return (t);
+    }
+
 }
