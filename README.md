@@ -1,4 +1,4 @@
-# Online Learning Website - Assigment ISP392
+# Online Learning Website - Assignment ISP392 - IS1603
 
 *The main project folder that for learning, practicing and taking assignment score in class*
 
@@ -8,8 +8,7 @@
 * Automatically send email verify after register
 * Authorizing client, user, admin by filter
 * Practicing quiz, instructional videos, and a personalized learning dashboard
-* Add to your cart
-* Paging or load more products don't reload page by using ajax
+* Paging or load more course don't reload page by using ajax
 * ...
 
 ## Table of Contents
