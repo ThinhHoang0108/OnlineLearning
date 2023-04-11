@@ -131,6 +131,10 @@
 - [x] Update admin account information
 - [ ] Statistic revenue
 
+## Github Stats
+
+![Thinh GitHub stats](https://github-readme-stats.vercel.app/api?username=ThinhHoang0108&show_icons=true&theme=radical)
+
 ## Useful Resources
 
 #| Name | Description
