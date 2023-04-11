@@ -80,6 +80,7 @@
   <div> 
 
 **4. Tool**
+
 <div>
   <img src ="https://img.icons8.com/windows/32/null/netbeans.png" alt="HTML5 logo" width="4%" title='NetBeans'/>
   <img src ="https://img.icons8.com/fluency/48/null/figma.png" alt="CSS3 logo" width="4%" title='Figma'/>
@@ -87,6 +88,7 @@
   <img src ="https://img.icons8.com/ios-filled/50/null/github.png" width="4%" title='Github'/>
   <img src ="https://img.icons8.com/fluency/48/null/java-coffee-cup-logo.png" width="4%" title='Java JDK'/>
 <div>
+
 **5.Libraries**
 
 - Lombok
