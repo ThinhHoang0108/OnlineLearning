@@ -133,7 +133,7 @@
 
 ## Github Stats
 
-![ISP GitHub stats](https://github-readme-stats.vercel.app/api?username=ThinhHoang0108&show_icons=true&theme=radical&hide=prs,issues)
+![ISP GitHub stats](https://github-readme-stats.vercel.app/api?username=Thinhhxhe161617&show_icons=true&theme=radical&hide=prs,issues&count_private=true)
 
 ## Useful Resources
 
