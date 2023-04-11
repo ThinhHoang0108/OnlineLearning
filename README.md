@@ -1,6 +1,6 @@
-# Online Learning Website - Assigment ISP392 - JAVA WEB APPLICATION DEVELOPMENT
+# Online Learning Website - Assigment ISP392
 
-The main project folder that for learning, practicing and taking assignment score in class
+*The main project folder that for learning, practicing and taking assignment score in class*
 
 ## You will find in this repo the following stuff:
 * The Java web source used to develop online learning website
@@ -36,9 +36,9 @@ The main project folder that for learning, practicing and taking assignment scor
 
 <div  align="center">
 
-<img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/HomePage.png"  alt="Home Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/LoginBar.png"  alt="Login Bar"  width="45%"></img>
+<img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/HomePage2.png"  alt="Home Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/Login.png"  alt="Login Bar"  width="45%"></img>
 
-<img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/CartBar.png"  alt="Cart Bar"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/SearchModel.png"  alt="Search Model"  width="45%"></img>
+<img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/CoursePage.png"  alt="Course List"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/CourseDetail.png"  alt="Course Detail"  width="45%"></img>
 
 <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/LoginForm.png"  alt="Login Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/RegistrationForm.png"  alt="Registration Page"  width="45%"></img>
 
