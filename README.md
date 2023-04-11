@@ -58,7 +58,7 @@
 **1. Frontend**
 
 <div>
-  <img src ="https://simpleicons.org/icons/html5.svg" alt="HTML5 logo" width="3%" title='HTML5'/>
+  <img src ="https://img.icons8.com/arcade/64/null/html-5.png" alt="HTML5 logo" width="3%" title='HTML5'/>
 
 <div> 
 
