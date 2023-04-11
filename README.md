@@ -40,15 +40,25 @@
 
 <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/CoursePage.png"  alt="Course List"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/CourseDetail.png"  alt="Course Detail"  width="45%"></img>
 
-<img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/LoginForm.png"  alt="Login Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/RegistrationForm.png"  alt="Registration Page"  width="45%"></img>
+<img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/BlogList.png"  alt="Blog List"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/BlogDetail.png"  alt="Blog Detail"  width="45%"></img>
 
-<img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/ShopPage.png"  alt="Shop Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/ViewCartPage.png"  alt="View Cart Page"  width="45%"></img>
+<img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/DoQuiz.png"  alt="Quiz Simultae"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/QuizReview.png"  alt="Quiz Review"  width="45%"></img>
 
-<img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/UserPage.png"  alt="User Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/CheckOutPage.png"  alt="Checkout Page"  width="45%"></img>
+<img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/MyTakenQuiz.png"  alt="My Taken Quiz"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/Dashboard.png"  alt="Dashboard"  width="45%"></img>
 
-<img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/OrderPage.png"  alt="Order Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/OrderDetailPage.png"  alt="Order Detail Page"  width="45%"></img>
+<img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/ManageQuestion.png"  alt="QuestionList"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/ManageQuestion2.png"  alt="Add Question"  width="45%"></img>
 
-<img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/AdminPage.png"  alt="Admin Page"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/khoahd7621/FlowerShop/blob/main/images/ManagePage.png"  alt="Manage Page"  width="45%"></img>
+<img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/ManageQuiz.png"  alt="QuizList"  width="45%"></img> &nbsp;&nbsp; <img  src="https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/preview/ManageQuiz2.png"  alt="Add Quiz"  width="45%"></img>
+
 
 </div>
+
+## Technology
+
+**1. Frontend**
+
+<div>
+  <img src ="https://simpleicons.org/icons/html5.svg" alt="HTML5 logo" width="3%" title='HTML5'/>
+
+<div> 
 
