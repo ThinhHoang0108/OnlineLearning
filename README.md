@@ -58,7 +58,13 @@
 **1. Frontend**
 
 <div>
+  <div>
   <img src ="https://img.icons8.com/arcade/64/null/html-5.png" alt="HTML5 logo" width="3%" title='HTML5'/>
-
+  <img src ="https://img.icons8.com/color/48/null/css3.png" alt="CSS3 logo" width="3%" title='CSS3'/>
+  <img src ="https://img.icons8.com/color/48/null/bootstrap.png" alt="Bootstrap logo" width="4%" title='Bootstrap'/>
+  <img src ="https://img.icons8.com/color/48/null/javascript--v1.png" alt="JavaScript logo" width="4%" title='JavaScript'/>
+  <img src ="https://img.icons8.com/ios-filled/50/null/jsp.png" alt="ES6 logo" width="4%" title='ES6'/>
+  <img src ="https://simpleicons.org/icons/axios.svg" width="4%" title='D3.js'/>
+<div> 
 <div> 
 
