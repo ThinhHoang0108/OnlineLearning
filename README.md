@@ -59,12 +59,83 @@
 
 <div>
   <div>
-  <img src ="https://img.icons8.com/arcade/64/null/html-5.png" alt="HTML5 logo" width="3%" title='HTML5'/>
-  <img src ="https://img.icons8.com/color/48/null/css3.png" alt="CSS3 logo" width="3%" title='CSS3'/>
+  <img src ="https://img.icons8.com/arcade/64/null/html-5.png" alt="HTML5 logo" width="4%" title='HTML5'/>
+  <img src ="https://img.icons8.com/color/48/null/css3.png" alt="CSS3 logo" width="4%" title='CSS3'/>
   <img src ="https://img.icons8.com/color/48/null/bootstrap.png" alt="Bootstrap logo" width="4%" title='Bootstrap'/>
   <img src ="https://img.icons8.com/color/48/null/javascript--v1.png" alt="JavaScript logo" width="4%" title='JavaScript'/>
-  <img src ="https://img.icons8.com/ios-filled/50/null/jsp.png" alt="ES6 logo" width="4%" title='ES6'/>
-  <img src ="https://simpleicons.org/icons/axios.svg" width="4%" title='D3.js'/>
-<div> 
-<div> 
+  <img src ="https://img.icons8.com/ios-filled/50/null/jsp.png" alt="ES6 logo" width="4%" title='Java Scripting Preprocessor'/>
+  <img src ="https://simpleicons.org/icons/axios.svg" width="4%" title='Axios'/>
+  <div> 
+<div>
+
+**2. Backend** 
+
+  <div>
+  <img src ="https://itphutran.com/wp-content/uploads/2017/05/V%C3%AD-d%E1%BB%A5-v%E1%BB%81-Servlet.png" alt="CSS3 logo" width="4%" title='JSP/Servlet'/>
+  <div> 
+
+**3. Database**
+
+  <div>
+  <img src ="https://img.icons8.com/color/48/null/microsoft-sql-server.png" alt="HTML5 logo" width="4%" title='Microsoft SQL Server'/>
+  <div> 
+
+**4. Tool**
+  <img src ="https://img.icons8.com/windows/32/null/netbeans.png" alt="HTML5 logo" width="4%" title='NetBeans'/>
+  <img src ="https://img.icons8.com/fluency/48/null/figma.png" alt="CSS3 logo" width="4%" title='Figma'/>
+  <img src ="https://img.icons8.com/color/48/null/tomcat.png" width="4%" title='Tomcat'/>
+  <img src ="https://img.icons8.com/ios-filled/50/null/github.png" width="4%" title='Github'/>
+  <img src ="https://img.icons8.com/fluency/48/null/java-coffee-cup-logo.png" width="4%" title='Java JDK'/>
+
+**5.Libraries**
+
+- Lombok
+- JSTL
+- sqljdbc4
+- javax.mail
+- javax.activation-1.2.0
+
+## Functional requirements
+
+**1. Guest:**
+- [x] Login by account
+- [x] Register an account
+- [x] Search, view courses
+- [x] View blogs
+- [x] View courses detail
+- [x] View blog's comment
+- [ ] Password retrieval
+
+**2. User**
+- [x] Search, view plants
+- [x] Add, update, remove course registration
+- [x] View blogs
+- [x] View blog's comment
+- [x] Logout
+- [x] Update account information
+- [x] Practice Quiz
+- [x] Comment blogs
+- [x] View taken quiz score, true/false answering
+
+
+**4. Admin:**
+- [x] Managing courses
+- [x] Managing lessons
+- [x] Managing accounts
+- [x] Managing slider
+- [x] Managing quiz
+- [x] Managing question
+- [x] Send email
+- [x] Update admin account information
+- [ ] Statistic revenue
+
+## Useful Resources
+
+#| Name | Description
+-| ---- | -----------
+1| [web folder](https://github.com/ThinhHoang0108/OnlineLearning/tree/master/ISP392/web) | -----------
+2| [src folder](https://github.com/ThinhHoang0108/OnlineLearning/tree/master/ISP392/src/java) | -----------
+3| [Database file](https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/script.sql) | -----------
+4| [libs folder](https://github.com/ThinhHoang0108/OnlineLearning/tree/master/ISP392/lib) | -----------
+
 
