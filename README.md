@@ -97,6 +97,10 @@
 - javax.mail
 - javax.activation-1.2.0
 
+## Group Activiry
+
+![Thinh stats](https://github-readme-stats.vercel.app/api?username=Thinhhxhe161617&theme=vue)
+
 ## Functional requirements
 
 **1. Guest:**
