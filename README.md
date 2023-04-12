@@ -97,10 +97,6 @@
 - javax.mail
 - javax.activation-1.2.0
 
-## Group Activiry
-
-![Thinh stats](https://github-readme-stats.vercel.app/api?username=Thinhhxhe161617&theme=vue)
-
 ## Functional requirements
 
 **1. Guest:**
@@ -144,4 +140,7 @@
 3| [Database file](https://github.com/ThinhHoang0108/OnlineLearning/blob/master/ISP392/script.sql) | -----------
 4| [libs folder](https://github.com/ThinhHoang0108/OnlineLearning/tree/master/ISP392/lib) | -----------
 
+## Individual Stats
+
+![Thinh GitHub stats](https://github-readme-stats.vercel.app/api?username=Thinhhxhe161617&show_icons=true&theme=transparent)
 
