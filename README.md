@@ -109,7 +109,7 @@
 - [ ] Password retrieval
 
 **2. User**
-- [x] Search, view plants
+- [x] Search, view course
 - [x] Add, update, remove course registration
 - [x] View blogs
 - [x] View blog's comment
